@@ -1,15 +1,33 @@
 import os
-from flask import Flask
-if os.path.exists("env.py"):
-    import env
+from flask import (
+    Flask, flash, render_template, redirect, 
+    request, session, url_for)
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
+from dotenv import load_dotenv
+load_dotenv()
 
 
 app = Flask(__name__)
 
 
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.secret_key = os.environ.get("SECRET_KEY")
+
+mongo = PyMongo(app)
+
+
+db = mongo.db
+print("Connected to database:", db)  # Check if db is None
+
 @app.route("/")
-def hello():
-    return "Test test test!!!"
+@app.route("/list_view")
+def list_view():
+    
+    lists = mongo.db.Lists.find()
+    return render_template("lists.html", lists = lists)
+
 
 
 if __name__ == "__main__":
