@@ -6,9 +6,9 @@ from flask_pymongo import PyMongo
 from dotenv import load_dotenv
 load_dotenv()
 
-
-print("MONGO_URI:", os.environ.get("MONGO_URI"))  # Debugging statement
-print("DB_URL:", os.environ.get("DB_URL"))  # Debugging statement
+# Debugging - to delete later
+# print("MONGO_URI:", os.environ.get("MONGO_URI"))
+# print("DB_URL:", os.environ.get("DB_URL"))
 
 app = Flask(__name__)
 

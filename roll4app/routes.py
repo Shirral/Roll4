@@ -1,5 +1,6 @@
 from flask import render_template, request
 from roll4app import app, mongo, db
+from roll4app.models import Users
 
 @app.route("/")
 @app.route("/list_view")
