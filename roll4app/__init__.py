@@ -2,9 +2,9 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_pymongo import PyMongo
-if os.path.exists(".env"):
-    from dotenv import load_dotenv
-    load_dotenv()
+# if os.path.exists(".env"):
+from dotenv import load_dotenv
+load_dotenv()
 
 
 print("MONGO_URI:", os.environ.get("MONGO_URI"))  # Debugging statement
