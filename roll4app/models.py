@@ -1,9 +1,9 @@
-from app import db
+from roll4app import db
 
 
 #schema for the PostreSQL database "roll4users" containing the "Users" table
 #with the user data
-class Users(db.model):
+class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(30), nullable=False, unique=True)
     user_password = db.Column(db.String(30), nullable=False)
