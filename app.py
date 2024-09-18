@@ -4,8 +4,9 @@ from flask import (
     request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from dotenv import load_dotenv
-load_dotenv()
+if os.environ.get("DEVELOPMENT") == True:
+    from dotenv import load_dotenv
+    load_dotenv()
 
 
 app = Flask(__name__)
@@ -18,8 +19,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-db = mongo.db
-print("Connected to database:", db)  # Check if db is None
+mongodb = mongo.db
+print("Connected to database:", mongodb)  # Check if db is None
 
 @app.route("/")
 @app.route("/list_view")
