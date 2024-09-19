@@ -23,3 +23,15 @@ def register():
         db.session.commit()
         return redirect(url_for("userprofile"))
     return render_template("register.html")
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    # if request.method == "POST":
+    #     user = Users.query.filter_by(user_name=request.form.get("user_name").lower()).first()
+
+    #     if user == True:
+    #         if user.user_password == request.form.get("user_password"):
+
+    
+    #     return redirect(url_for("list_view"))
+    return render_template("login.html")

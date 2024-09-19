@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"  type="text/css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css">
-    <title>base</title>
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <nav class="grey darken-4">
@@ -17,7 +17,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="{{url_for('list_view')}}">Your lists</a></li>
                 <li><a href="">New list</a></li>
-                <li><a href="">Log in/out</a></li>
+                <li><a href="{{url_for('login')}}">Log in/out</a></li>
             </ul>
         </div>
     </nav>
@@ -25,7 +25,7 @@
     <ul class="sidenav" id="mobile-demo">
         <li><a href="{{url_for('list_view')}}">Your lists</a></li>
         <li><a href="">New list</a></li>
-        <li><a href="">Log in/out</a></li>
+        <li><a href="{{url_for('login')}}">Log in/out</a></li>
         <li><a href="{{url_for('userprofile')}}">Your profile</a></li>
     </ul>
 
