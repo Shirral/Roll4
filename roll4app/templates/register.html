@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Lists</title>
+</head>
+<body>
+    <form method="POST" action="{{url_for('register')}}">
+        <div>
+            <div>
+                <input type="text" placeholder="Enter username..." id="user_name" name="user_name" minlength="3" maxlength="30" required>
+                <label for="user_name">Username</label>
+            </div>
+            <div>
+                <input type="text" placeholder="Enter password..." id="user_password" name="user_password" minlength="8" maxlength="30" required>
+                <label for="user_password">Password</label>
+            </div>
+        </div>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</body>
+</html>
