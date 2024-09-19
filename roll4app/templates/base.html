@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"  type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css">
+    <title>base</title>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Roll4</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="{{url_for('list_view')}}">Your lists</a></li>
+                <li><a href="">New list</a></li>
+                <li><a href="">Log in/out</a></li>
+                <li><a href="{{url_for('userprofile')}}"><i class="material-icons">e853</i></a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="{{url_for('list_view')}}">Your lists</a></li>
+        <li><a href="">New list</a></li>
+        <li><a href="">Log in/out</a></li>
+        <li><a href="{{url_for('userprofile')}}">Your profile</a></li>
+    </ul>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+
+
+    </main>
+    <footer class="page-footer">
+        <div>
+            <div class="container center">
+                <p>Footer... might be deleted later! Who knows!</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+</body>
+</html>

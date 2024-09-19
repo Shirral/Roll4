@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Lists</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
     {% for list in lists %}
     
         {{list.ListName}}<br>
@@ -15,5 +9,4 @@
         {{list.ListItems}}<br>
     
     {%endfor%}
-</body>
-</html>
+{% endblock %}

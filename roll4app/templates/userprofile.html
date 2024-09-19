@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User profile</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 
     <h3>Stuff will be here...</h3>
 
@@ -16,6 +10,5 @@
         {{a.user_password}}<br>
         {{a.darkmode}}<br>
     
-    {%endfor%}
-</body>
-</html>
+    {% endfor %}
+{% endblock %}
