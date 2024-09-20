@@ -14,7 +14,7 @@
             <div class="nav-wrapper">
                 <a href="{{url_for('list_view')}}" class="brand-logo">Roll4</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <a href="{{url_for('userprofile')}}" data-target="mobile-demo" class="right" id="profile-icon"><i class="material-icons">account_circle</i></a>
+                <a href="{{url_for('userprofile', username=session['currentuser'])}}" data-target="mobile-demo" class="right" id="profile-icon"><i class="material-icons">account_circle</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{url_for('list_view')}}">Your lists</a></li>
                     <li><a href="">New list</a></li>
@@ -27,7 +27,6 @@
             <li><a href="{{url_for('list_view')}}">Your lists</a></li>
             <li><a href="">New list</a></li>
             <li><a href="{{url_for('login')}}">Log in/out</a></li>
-            <li><a href="{{url_for('userprofile')}}">Your profile</a></li>
         </ul>
     </header>
 

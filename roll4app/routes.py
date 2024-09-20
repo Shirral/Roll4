@@ -9,10 +9,10 @@ def list_view():
     lists = mongo.db.Lists.find()
     return render_template("lists.html", lists=lists)
 
-@app.route("/userprofile")
-def userprofile():
-    user = list(Users.query.all())
-    return render_template("userprofile.html", user=user)
+@app.route("/userprofile/<username>", methods=["GET", "POST"])
+def userprofile(username):
+    username = Users.query.filter_by(user_name=session["currentuser"]).first().user_name
+    return render_template("userprofile.html", username=username)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -31,7 +31,7 @@ def register():
 
         session["currentuser"] = request.form.get("user_name").lower()
         flash(f"Welcome onboard, {session['currentuser']}!")
-        return redirect(url_for("userprofile"))
+        return redirect(url_for("userprofile"), username=session["currentuser"])
     return render_template("register.html")
 
 @app.route("/login", methods=["GET", "POST"])
