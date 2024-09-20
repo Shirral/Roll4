@@ -9,25 +9,39 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <nav class="grey darken-4">
-        <div class="nav-wrapper">
-            <a href="{{url_for('list_view')}}" class="brand-logo">Roll4</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <a href="{{url_for('userprofile')}}" data-target="mobile-demo" class="right" id="profile-icon"><i class="material-icons">account_circle</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="{{url_for('list_view')}}">Your lists</a></li>
-                <li><a href="">New list</a></li>
-                <li><a href="{{url_for('login')}}">Log in/out</a></li>
-            </ul>
-        </div>
-    </nav>
-    
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="{{url_for('list_view')}}">Your lists</a></li>
-        <li><a href="">New list</a></li>
-        <li><a href="{{url_for('login')}}">Log in/out</a></li>
-        <li><a href="{{url_for('userprofile')}}">Your profile</a></li>
-    </ul>
+    <header>    
+        <nav class="grey darken-4">
+            <div class="nav-wrapper">
+                <a href="{{url_for('list_view')}}" class="brand-logo">Roll4</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="{{url_for('userprofile')}}" data-target="mobile-demo" class="right" id="profile-icon"><i class="material-icons">account_circle</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{{url_for('list_view')}}">Your lists</a></li>
+                    <li><a href="">New list</a></li>
+                    <li><a href="{{url_for('login')}}">Log in/out</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="{{url_for('list_view')}}">Your lists</a></li>
+            <li><a href="">New list</a></li>
+            <li><a href="{{url_for('login')}}">Log in/out</a></li>
+            <li><a href="{{url_for('userprofile')}}">Your profile</a></li>
+        </ul>
+    </header>
+
+    <section>
+        {% with flashes = get_flashed_messages() %}
+            {% if flashes %}
+                {% for flash in flashes %}
+                    <div class="row">
+                        <h4>{{flash}}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
 
     <main class="container">
         {% block content %}
