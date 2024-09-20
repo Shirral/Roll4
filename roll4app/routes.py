@@ -11,8 +11,15 @@ def list_view():
 
 @app.route("/userprofile/<username>", methods=["GET", "POST"])
 def userprofile(username):
-    username = Users.query.filter_by(user_name=session["currentuser"]).first().user_name
-    return render_template("userprofile.html", username=username)
+    if "currentuser" in session:
+        username = Users.query.filter_by(user_name=session["currentuser"]).first().user_name
+        return render_template("userprofile.html", username=username)
+    
+    flash("You must be logged in to view this page!")
+    return redirect(url_for("login"))
+
+
+    
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
