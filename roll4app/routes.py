@@ -7,7 +7,10 @@ from roll4app.models import Users
 @app.route("/list_view")
 def list_view():
     lists = mongo.db.Lists.find()
-    return render_template("lists.html", lists=lists)
+    if "currentuser" in session:
+        return render_template("lists.html", lists=lists, sessioncookie = True)
+    else:
+        return render_template("lists.html", lists=lists, sessioncookie = False)
 
 @app.route("/userprofile/<username>", methods=["GET", "POST"])
 def userprofile(username):
@@ -17,9 +20,7 @@ def userprofile(username):
     
     flash("You must be logged in to view this page!")
     return redirect(url_for("login"))
-
-
-    
+   
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -41,6 +42,7 @@ def register():
         return redirect(url_for("userprofile"), username=session["currentuser"])
     return render_template("register.html")
 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -61,3 +63,10 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    flash("Logged out. See you later!")
+    session.pop("currentuser")
+    return redirect(url_for("login"))

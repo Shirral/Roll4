@@ -18,7 +18,13 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{url_for('list_view')}}">Your lists</a></li>
                     <li><a href="">New list</a></li>
-                    <li><a href="{{url_for('login')}}">Log in/out</a></li>
+                    <li class="login-logout">
+                        {% if sessioncookie %}
+                            <a href="{{url_for('logout')}}">Log out</a>
+                        {% else %}
+                            <a href="{{url_for('login')}}">Log in</a>
+                        {% endif %}
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -26,7 +32,13 @@
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{url_for('list_view')}}">Your lists</a></li>
             <li><a href="">New list</a></li>
-            <li><a href="{{url_for('login')}}">Log in/out</a></li>
+            <li class="login-logout">
+                {% if sessioncookie %}
+                    <a href="{{url_for('logout')}}">Log out</a>
+                {% else %}
+                    <a href="{{url_for('login')}}">Log in</a>
+                {% endif %}
+            </li>
         </ul>
     </header>
 
