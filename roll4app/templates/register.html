@@ -9,7 +9,7 @@
                 <label for="user_name">Username</label>
             </div>
             <div>
-                <input type="text" placeholder="Enter password..." id="user_password" name="user_password" minlength="8" maxlength="30" required>
+                <input type="password" placeholder="Enter password..." id="user_password" name="user_password" minlength="8" maxlength="30" required>
                 <label for="user_password">Password</label>
             </div>
         </div>
@@ -17,4 +17,8 @@
             <button type="submit">Register</button>
         </div>
     </form>
+
+    <div class="container"></div>
+        <p>Already registered? <a href="{{url_for('login')}}">Log in</a></p>
+    </div>
 {% endblock %}

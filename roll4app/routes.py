@@ -36,12 +36,21 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    # if request.method == "POST":
-    #     user = Users.query.filter_by(user_name=request.form.get("user_name").lower()).first()
+    if request.method == "POST":
+        existing_user = Users.query.filter_by(user_name=request.form.get("user_name").lower()).first()
 
-    #     if user:
-    #         if user.user_password == request.form.get("user_password"):
+        if existing_user:
+            if check_password_hash(existing_user.user_password, request.form.get("user_password")):
+                session['currentuser'] = request.form.get("user_name").lower()
+                flash(f"Hello again, {session['currentuser']}! Ready to roll?")
+                return redirect(url_for("list_view"))
 
-    
-    #     return redirect(url_for("list_view"))
+            else:
+                flash("Hmm... something's incorrect here. Try again!")
+                return redirect(url_for("login"))
+            
+        else:
+            flash("Hmm... something's incorrect here. Try again!")
+            return redirect(url_for("login"))
+
     return render_template("login.html")
