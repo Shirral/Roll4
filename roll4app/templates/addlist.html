@@ -15,14 +15,20 @@
             <div class="row center">
                 <p><a href="#">Add category?</a></p>
             </div>
-            <div class="row valign-wrapper">
-                <div class="col s1 center">
-                    <p class="itemnum">1.</p>
+            
+            {% for num in range(1, die+1) %}
+
+                <div class="row valign-wrapper">
+                    <div class="col s1 center">
+                        <p class="itemnum">{{num}}.</p>
+                    </div>
+                    <div class="input-field col s11">
+                        <input id="listitem{{num}}" name="listitem{{num}}" type="text" class="validate">
+                    </div>
                 </div>
-                <div class="input-field col s11">
-                    <input id="listitem[num]" name="listitem[num]" type="text" class="validate">
-                </div>
-            </div>
+            
+            {% endfor %}            
+            
             <div class="row center">
                 <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                     <i class="material-icons right">send</i>

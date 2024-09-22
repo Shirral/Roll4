@@ -72,9 +72,9 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/addlist")
-def addlist():
-    return render_template("addlist.html")
+@app.route("/addlist/<int:die>", methods=["GET", "POST"])
+def addlist(die):
+    return render_template("addlist.html", die=die)
 
 @app.route("/newlist")
 def newlist():
