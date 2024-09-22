@@ -16,6 +16,10 @@ main {
     padding: 0;
 }
 
+.itemnum {
+    font-size: x-large;
+}
+
 #profile-icon {
     margin: 0 18px;
 }

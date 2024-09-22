@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}New list{% endblock %}
+{% block content %}
+
+<div>
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="col s2"></div>
+                <div class="input-field col s8">
+                    <input placeholder="Name your list..." id="list_name" name="list_name" type="text" minlength="3" maxlength="30" class="center validate">
+                </div>
+                <div class="col s2"></div>
+            </div>
+            <div class="row center">
+                <p><a href="#">Add category?</a></p>
+            </div>
+            <div class="row valign-wrapper">
+                <div class="col s1 center">
+                    <p class="itemnum">1.</p>
+                </div>
+                <div class="input-field col s11">
+                    <input id="listitem[num]" name="listitem[num]" type="text" class="validate">
+                </div>
+            </div>
+            <div class="row center">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

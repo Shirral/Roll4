@@ -70,3 +70,8 @@ def logout():
     flash("Logged out. See you later!")
     session.pop("currentuser")
     return redirect(url_for("login"))
+
+
+@app.route("/addlist")
+def addlist():
+    return render_template("addlist.html")
