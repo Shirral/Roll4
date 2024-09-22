@@ -75,3 +75,7 @@ def logout():
 @app.route("/addlist")
 def addlist():
     return render_template("addlist.html")
+
+@app.route("/newlist")
+def newlist():
+    return render_template("newlist.html")

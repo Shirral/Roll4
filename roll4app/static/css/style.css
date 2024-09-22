@@ -12,12 +12,41 @@ main {
     flex: 1 0 auto;
 }
 
+img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+}
+
 .page-footer {
     padding: 0;
 }
 
 .itemnum {
     font-size: x-large;
+}
+
+.vfill {
+    height: 100%;
+}
+
+#dicepick {
+    margin: 20px 0;
+}
+
+.dicerow {
+    height: 25vh;
+    /* background-color: blue; */
+}
+
+.dicediv {
+    height: 60%;
+    /* background-color: blueviolet; */
+}
+
+.dicetextdiv {
+    height: 40%;
 }
 
 #profile-icon {
