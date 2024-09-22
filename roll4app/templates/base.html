@@ -17,7 +17,7 @@
                 <a href="{{url_for('userprofile', username=session['currentuser'])}}" data-target="mobile-demo" class="right" id="profile-icon"><i class="material-icons">account_circle</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{url_for('list_view')}}">Your lists</a></li>
-                    <li><a href="">New list</a></li>
+                    <li><a href="{{url_for('newlist')}}">New list</a></li>
                     <li class="login-logout">
                         {% if sessioncookie %}
                             <a href="{{url_for('logout')}}">Log out</a>
@@ -31,7 +31,7 @@
         
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{url_for('list_view')}}">Your lists</a></li>
-            <li><a href="">New list</a></li>
+            <li><a href="{{url_for('newlist')}}">New list</a></li>
             <li class="login-logout">
                 {% if sessioncookie %}
                     <a href="{{url_for('logout')}}">Log out</a>

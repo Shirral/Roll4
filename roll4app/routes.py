@@ -12,9 +12,14 @@ def list_view():
     else:
         return render_template("lists.html", lists=lists, sessioncookie = False)
 
+@app.route("/userprofile", defaults={"username": None}, methods=["GET", "POST"])
+@app.route("/userprofile/", defaults={"username": None}, methods=["GET", "POST"])
 @app.route("/userprofile/<username>", methods=["GET", "POST"])
 def userprofile(username):
     if "currentuser" in session:
+        if username == None:
+            username = session["currentuser"]
+            
         username = Users.query.filter_by(user_name=session["currentuser"]).first().user_name
         return render_template("userprofile.html", username=username)
     
