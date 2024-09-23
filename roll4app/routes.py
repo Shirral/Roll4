@@ -79,26 +79,34 @@ def logout():
 
 @app.route("/addlist/<int:die>", methods=["GET", "POST"])
 def addlist(die):
-    if request.method == "POST":
-        newlist = {
-            "ListName": request.form.get("list_name"),
-            "Die": die,
-            "UserName": session['currentuser'],
-            "ListItems": {}
-        }
+    if "currentuser" in session:
+        if request.method == "POST":
+            newlist = {
+                "ListName": request.form.get("list_name"),
+                "Die": die,
+                "UserName": session['currentuser'],
+                "ListItems": {}
+            }
 
-        num = 1
-        for key, val in request.form.items():
-            if key.startswith("listitem"):
-                newlist["ListItems"][str(num)] = val
-                num += 1
+            num = 1
+            for key, val in request.form.items():
+                if key.startswith("listitem"):
+                    newlist["ListItems"][str(num)] = val
+                    num += 1
 
-        mongo.db.Lists.insert_one(newlist)
-        flash("List created. Woohoo!")
-        return redirect(url_for("list_view"))
+            mongo.db.Lists.insert_one(newlist)
+            flash("List created. Woohoo!")
+            return redirect(url_for("list_view"))
 
-    return render_template("addlist.html", die=die)
+        return render_template("addlist.html", die=die)
+
+    flash("You must be logged in to view this page!")
+    return redirect(url_for("login"))
 
 @app.route("/newlist")
 def newlist():
-    return render_template("newlist.html")
+    if "currentuser" in session:
+        return render_template("newlist.html")
+    
+    flash("You must be logged in to view this page!")
+    return redirect(url_for("login"))
