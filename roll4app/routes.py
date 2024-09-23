@@ -85,7 +85,8 @@ def addlist(die):
                 "ListName": request.form.get("list_name"),
                 "Die": die,
                 "UserName": session['currentuser'],
-                "ListItems": {}
+                "ListItems": {},
+                "ListItemNotes": {}
             }
 
             num = 1
@@ -93,6 +94,12 @@ def addlist(die):
                 if key.startswith("listitem"):
                     newlist["ListItems"][str(num)] = val
                     num += 1
+
+            num2 = 1
+            for key, val in request.form.items():
+                if key.startswith("linote"):
+                    newlist["ListItemNotes"][str(num2)] = val
+                    num2 += 1
 
             mongo.db.Lists.insert_one(newlist)
             flash("List created. Woohoo!")
