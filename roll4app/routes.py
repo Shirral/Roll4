@@ -4,8 +4,8 @@ from roll4app import app, mongo, db
 from roll4app.models import Users
 
 @app.route("/")
-@app.route("/list_view")
-def list_view():
+@app.route("/lists")
+def lists():
     d20 = list(mongo.db.Lists.find({"Die": 20}))
     d12 = list(mongo.db.Lists.find({"Die": 12}))
     d10 = list(mongo.db.Lists.find({"Die": 10}))
