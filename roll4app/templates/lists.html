@@ -8,7 +8,7 @@
     {% if d20 | length > 0 %}
         <h4 class="center">d20</h4>
         {% for list in d20 %}
-            <div class="cardimport">
+            <div class="cardimport" id="{{list._id}}">
                 {{ list.ListName }}<br>
             </div>
         {% endfor %}
@@ -17,7 +17,7 @@
     {% if d12 | length > 0 %}
         <h4 class="center">d12</h4>
         {% for list in d12 %}
-            <div class="cardimport">
+            <div class="cardimport" id="{{list._id}}">
                 {{ list.ListName }}<br>
             </div>
         {% endfor %}
@@ -26,7 +26,7 @@
     {% if d10 | length > 0 %}
         <h4 class="center">d10</h4>
         {% for list in d10 %}
-            <div class="cardimport">
+            <div class="cardimport" id="{{list._id}}">
                 {{ list.ListName }}<br>
             </div>
         {% endfor %}
@@ -35,7 +35,7 @@
     {% if d8 | length > 0 %}
         <h4 class="center">d8</h4>
         {% for list in d8 %}
-            <div class="cardimport">
+            <div class="cardimport" id="{{list._id}}">
                 {{ list.ListName }}<br>
             </div>
         {% endfor %}
@@ -44,7 +44,7 @@
     {% if d6 | length > 0 %}
         <h4 class="center">d6</h4>
         {% for list in d6 %}
-            <div class="cardimport">
+            <div class="cardimport" id="{{list._id}}">
                 {{ list.ListName }}<br>
             </div>
         {% endfor %}
@@ -53,7 +53,7 @@
     {% if d4 | length > 0 %}
         <h4 class="center">d4</h4>
         {% for list in d4 %}
-            <div class="cardimport">
+            <div class="cardimport" id="{{list._id}}">
                 {{ list.ListName }}<br>
             </div>
         {% endfor %}
