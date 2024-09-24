@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
+from bson.objectid import ObjectId
 from roll4app import app, mongo, db
 from roll4app.models import Users
 
@@ -115,6 +116,12 @@ def addlist(die):
 
     flash("You must be logged in to view this page!")
     return redirect(url_for("login"))
+
+@app.route("/listview/<listid>", methods=["GET", "POST"])
+def listview(listid):
+    userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
+    print(userlist)
+    return render_template("listview.html", listid = listid, userlist=userlist)
 
 @app.route("/newlist")
 def newlist():
