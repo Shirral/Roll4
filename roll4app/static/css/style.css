@@ -1,7 +1,3 @@
-h3 {
-    color: green;
-}
-
 body {
     display: flex;
     min-height: 100vh;
@@ -25,6 +21,26 @@ img {
 
 .page-footer {
     padding: 0;
+}
+
+
+/* cars style borrowed from https://css-tricks.com/block-links-the-search-for-a-perfect-solution/ and edited */
+.cardimport {
+    background: white;
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 0.3rem #000;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 30px;
+
+    &:hover {
+        transform: translateY(-10px);
+    }
 }
 
 .itemnum {

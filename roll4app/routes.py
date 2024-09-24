@@ -6,11 +6,17 @@ from roll4app.models import Users
 @app.route("/")
 @app.route("/list_view")
 def list_view():
-    lists = mongo.db.Lists.find()
+    d20 = list(mongo.db.Lists.find({"Die": 20}))
+    d12 = list(mongo.db.Lists.find({"Die": 12}))
+    d10 = list(mongo.db.Lists.find({"Die": 10}))
+    d8 = list(mongo.db.Lists.find({"Die": 8}))
+    d6 = list(mongo.db.Lists.find({"Die": 6}))
+    d4 = list(mongo.db.Lists.find({"Die": 4}))
+
     if "currentuser" in session:
-        return render_template("lists.html", lists=lists, sessioncookie = True)
+        return render_template("lists.html", sessioncookie = True, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4)
     else:
-        return render_template("lists.html", lists=lists, sessioncookie = False)
+        return render_template("lists.html", sessioncookie = False, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4)
 
 @app.route("/userprofile", defaults={"username": None}, methods=["GET", "POST"])
 @app.route("/userprofile/", defaults={"username": None}, methods=["GET", "POST"])
