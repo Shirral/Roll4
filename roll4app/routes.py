@@ -64,7 +64,7 @@ def login():
             if check_password_hash(existing_user.user_password, request.form.get("user_password")):
                 session['currentuser'] = request.form.get("user_name").lower()
                 flash(f"Hello again, {session['currentuser']}! Ready to roll?")
-                return redirect(url_for("list_view"))
+                return redirect(url_for("lists"))
 
             else:
                 flash("Hmm... something's incorrect here. Try again!")
@@ -110,7 +110,7 @@ def addlist(die):
 
             mongo.db.Lists.insert_one(newlist)
             flash("List created. Woohoo!")
-            return redirect(url_for("list_view"))
+            return redirect(url_for("lists"))
 
         return render_template("addlist.html", die=die)
 
@@ -139,10 +139,19 @@ def categories():
     flash("You must be logged in to view this page!")
     return redirect(url_for("login"))
 
-@app.route("/addcategory")
+@app.route("/addcategory", methods=["GET", "POST"])
 def addcategory():
     if "currentuser" in session:
-        
+        if request.method == "POST":
+            newcategory = {
+                "CategoryName": request.form.get("category_name"),
+                "UserName": session['currentuser'],
+            }
+
+            mongo.db.Categories.insert_one(newcategory)
+            flash("Category created! You can now choose it from the 'Add category?' dropdown menu while creating/editing a list.")
+            return redirect(url_for("categories"))
+
         return render_template("addcategory.html")
     
     flash("You must be logged in to view this page!")
