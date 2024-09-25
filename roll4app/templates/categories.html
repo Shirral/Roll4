@@ -13,7 +13,7 @@
 
     {% for category in categories %}
         <div class="cardimport">
-            {{category.CategoryName}}
+            <a href="{{url_for('editcategory', categoryid=category._id)}}">{{category.CategoryName}}</a>
         </div>
     {% endfor %}
 

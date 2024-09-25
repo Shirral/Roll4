@@ -160,4 +160,25 @@ def addcategory():
     flash("You must be logged in to view this page!")
     return redirect(url_for("login"))
 
+@app.route("/editcategory/<categoryid>", methods=["GET", "POST"])
+def editcategory(categoryid):
+    if "currentuser" in session:
+        category = mongo.db.Categories.find_one({"_id": ObjectId(categoryid)})
+        
+        if request.method == "POST":
+
+            mongo.db.Categories.update_one(
+                {"_id": ObjectId(categoryid)},
+                {"$set": {"CategoryName": request.form.get("category_name")}}
+            )
+            
+            flash("Category Updated!")
+            return redirect(url_for("categories"))
+
+        return render_template("editcategory.html", category=category, categoryid=categoryid)
+    
+    flash("You must be logged in to view this page!")
+    return redirect(url_for("login"))  
+
+
     
