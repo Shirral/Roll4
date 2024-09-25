@@ -79,6 +79,11 @@ img {
     margin: 0 18px;
 }
 
+#categoryp {
+    color: blue;
+    cursor: pointer;
+}
+
 @media only screen and (min-width: 993px) {
     nav .brand-logo {
       left: 18px;

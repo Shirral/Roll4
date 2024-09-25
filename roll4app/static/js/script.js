@@ -2,6 +2,12 @@
 $(document).ready(function () {
     $('.sidenav').sidenav();
     $('.tooltipped').tooltip();
+    $('select').formSelect();
+});
+
+
+$( "#categoryp" ).on( "click", function() {
+    $( "#categoryselect" ).toggle("slow");
 });
 
 $( ".notesbtn" ).on( "click", function() {

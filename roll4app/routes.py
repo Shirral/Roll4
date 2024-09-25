@@ -87,10 +87,13 @@ def logout():
 @app.route("/addlist/<int:die>", methods=["GET", "POST"])
 def addlist(die):
     if "currentuser" in session:
+        categories = mongo.db.Categories.find()
+
         if request.method == "POST":
             newlist = {
                 "ListName": request.form.get("list_name"),
                 "Die": die,
+                "Category": request.form.get("category"),
                 "UserName": session['currentuser'],
                 "ListItems": {},
                 "ListItemNotes": {}
@@ -112,7 +115,7 @@ def addlist(die):
             flash("List created. Woohoo!")
             return redirect(url_for("lists"))
 
-        return render_template("addlist.html", die=die)
+        return render_template("addlist.html", die=die, categories=categories)
 
     flash("You must be logged in to view this page!")
     return redirect(url_for("login"))
