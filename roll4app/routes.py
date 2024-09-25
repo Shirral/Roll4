@@ -120,7 +120,6 @@ def addlist(die):
 @app.route("/listview/<listid>", methods=["GET", "POST"])
 def listview(listid):
     userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
-    print(userlist)
     return render_template("listview.html", listid = listid, userlist=userlist)
 
 @app.route("/newlist")

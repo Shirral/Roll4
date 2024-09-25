@@ -5,15 +5,17 @@
     <h4 class="center">{{userlist['ListName']}}</h4>
 
     {% for key, val in userlist['ListItems'].items() %}
+        <div class="noteswrapper">
             <div class="cardimport notesbtn row" id="notesbtn{{key}}">
-                <div class="col s12">
+                <div class="col s12 notestxt">
                     {{key + ". " + val}}
-                    <i class="material-icons right">arrow_drop_down</i>
+                    <i class="material-icons right"></i>
                 </div>
             </div>
             <div class="customhide notesview" id="notes{{key}}">
                 <p>{{userlist['ListItemNotes'][key]}}</p>
             </div>
+        </div>
     {% endfor %}
 
 {% endblock %}

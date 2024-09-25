@@ -19,8 +19,16 @@ $( ".notesbtn" ).on( "click", function() {
     $(".notesview").each(function(i, notediv) {
         if ($(notediv).find("p").html().trim() == "") {
             $(notediv).removeAttr("id");
-        }
+          }
     });
 
     $( "#notes"+num ).toggle("slow");
   });
+
+function shownotesicon(){$(".noteswrapper").each(function(i, notediv) {
+    if ($(notediv).find("p").html().trim() !== "") {
+        $(notediv).find(".notestxt i").html("notes")
+      }
+})};
+
+shownotesicon();
