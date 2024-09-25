@@ -138,3 +138,14 @@ def categories():
     
     flash("You must be logged in to view this page!")
     return redirect(url_for("login"))
+
+@app.route("/addcategory")
+def addcategory():
+    if "currentuser" in session:
+        
+        return render_template("addcategory.html")
+    
+    flash("You must be logged in to view this page!")
+    return redirect(url_for("login"))
+
+    
