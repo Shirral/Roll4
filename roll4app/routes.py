@@ -129,3 +129,12 @@ def newlist():
     
     flash("You must be logged in to view this page!")
     return redirect(url_for("login"))
+
+@app.route("/categories")
+def categories():
+    if "currentuser" in session:
+        categories = mongo.db.Categories.find()
+        return render_template("categories.html", categories=categories)
+    
+    flash("You must be logged in to view this page!")
+    return redirect(url_for("login"))
