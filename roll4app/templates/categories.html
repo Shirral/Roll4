@@ -2,8 +2,12 @@
 {% block title %}Your categories{% endblock %}
 {% block content %}
 
-    {% for i in categories %}
-        {{i}}
+    <h4 class="center">Your categories</h4>
+
+    {% for category in categories %}
+        <div class="cardimport">
+            {{category.CategoryName}}
+        </div>
     {% endfor %}
 
 {% endblock %}
