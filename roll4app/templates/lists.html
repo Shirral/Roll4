@@ -8,7 +8,7 @@
     {% if d20 | length > 0 %}
         <h4 class="center">d20</h4>
         {% for list in d20 %}
-            <div class="cardimport" id="{{list._id}}">
+            <div class="cardimport cardactive" id="{{list._id}}">
                 <a href="{{ url_for('listview', listid=list._id) }}">
                     {{ list.ListName }}<br>
                 </a>
@@ -19,7 +19,7 @@
     {% if d12 | length > 0 %}
         <h4 class="center">d12</h4>
         {% for list in d12 %}
-            <div class="cardimport" id="{{list._id}}">
+            <div class="cardimport cardactive" id="{{list._id}}">
                 <a href="{{ url_for('listview', listid=list._id) }}">
                     {{ list.ListName }}<br>
                 </a>
@@ -30,7 +30,7 @@
     {% if d10 | length > 0 %}
         <h4 class="center">d10</h4>
         {% for list in d10 %}
-            <div class="cardimport" id="{{list._id}}">
+            <div class="cardimport cardactive" id="{{list._id}}">
                 <a href="{{ url_for('listview', listid=list._id) }}">
                     {{ list.ListName }}<br>
                 </a>
@@ -41,7 +41,7 @@
     {% if d8 | length > 0 %}
         <h4 class="center">d8</h4>
         {% for list in d8 %}
-            <div class="cardimport" id="{{list._id}}">
+            <div class="cardimport cardactive" id="{{list._id}}">
                 <a href="{{ url_for('listview', listid=list._id) }}">
                     {{ list.ListName }}<br>
                 </a>
@@ -52,7 +52,7 @@
     {% if d6 | length > 0 %}
         <h4 class="center">d6</h4>
         {% for list in d6 %}
-            <div class="cardimport" id="{{list._id}}">
+            <div class="cardimport cardactive" id="{{list._id}}">
                 <a href="{{ url_for('listview', listid=list._id) }}">
                     {{ list.ListName }}<br>
                 </a>
@@ -63,7 +63,7 @@
     {% if d4 | length > 0 %}
         <h4 class="center">d4</h4>
         {% for list in d4 %}
-            <div class="cardimport" id="{{list._id}}">
+            <div class="cardimport cardactive" id="{{list._id}}">
                 <a href="{{ url_for('listview', listid=list._id) }}">
                     {{ list.ListName }}<br>
                 </a>

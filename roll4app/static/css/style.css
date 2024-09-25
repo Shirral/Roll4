@@ -37,10 +37,16 @@ img {
     cursor: pointer;
     transition: 0.2s;
     margin: 30px;
+}
 
+.cardactive {
     &:hover {
         transform: translateY(-10px);
     }
+}
+
+.notesview {
+    margin: 0 10%;
 }
 
 .itemnum {

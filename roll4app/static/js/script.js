@@ -9,14 +9,18 @@ $( ".notesbtn" ).on( "click", function() {
     let divs = document.getElementsByClassName("notesbtn");
     let len = divs.length;
     let num;
-    console.log(num);
     for (var i = 1; i <= len; i++){
         if (this.id == "notesbtn"+i){
             num = i;
             break;
         } 
     }
-    console.log(num);
+
+    $(".notesview").each(function(i, notediv) {
+        if ($(notediv).find("p").html().trim() == "") {
+            $(notediv).removeAttr("id");
+        }
+    });
 
     $( "#notes"+num ).toggle("slow");
   });
