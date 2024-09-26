@@ -45,6 +45,15 @@ img {
     }
 }
 
+#newlistcardbutton {
+    font-size: larger;
+    font-weight: 600;
+    padding: 1em;
+    background-color: rgb(252, 255, 207);
+    text-decoration: none;
+    text-align: center;
+}
+
 .notesview {
     margin: 0 10%;
 }

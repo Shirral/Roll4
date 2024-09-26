@@ -5,6 +5,17 @@
 
     <h3 class="center"> Your lists </h3>
 
+    <div class="row">
+        <div class="col s4"></div>
+        <div class="cardimport valign-wrapper col s4"  id="newlistcardbutton">
+            <a href="{{ url_for('newlist') }}">
+                <i class="material-icons left">add</i>New list...
+            </a>
+        </div>
+        <div class="col s4"></div>
+    </div>
+    
+
     {% if d20 | length > 0 %}
         <h4 class="center">d20</h4>
         {% for list in d20 %}
