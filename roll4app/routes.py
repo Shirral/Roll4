@@ -120,6 +120,38 @@ def addlist(die):
     flash("You must be logged in to view this page!")
     return redirect(url_for("login"))
 
+
+@app.route("/editlist/<listid>", methods=["GET", "POST"])
+def editlist(listid):
+    userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
+    categories = mongo.db.Categories.find()
+
+    if request.method == "POST":
+            editedlist = {
+                "ListName": request.form.get("list_name"),
+                "Category": request.form.get("category"),
+                "ListItems": {},
+                "ListItemNotes": {}
+            }
+
+            num = 1
+            for key, val in request.form.items():
+                if key.startswith("listitem"):
+                    editedlist["ListItems"][str(num)] = val
+                    num += 1
+
+            num2 = 1
+            for key, val in request.form.items():
+                if key.startswith("linote"):
+                    editedlist["ListItemNotes"][str(num2)] = val
+                    num2 += 1
+
+            mongo.db.Lists.update_one({"_id": ObjectId(listid)}, {"$set": editedlist})
+            flash("List updated!")
+            return redirect(url_for("listview", listid = listid, userlist=userlist))
+
+    return render_template("editlist.html", listid = listid, userlist=userlist, categories=categories)
+
 @app.route("/listview/<listid>", methods=["GET", "POST"])
 def listview(listid):
     userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
