@@ -84,10 +84,15 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/addlist", defaults={"die": None})
+@app.route("/addlist/", defaults={"die": None})
 @app.route("/addlist/<int:die>", methods=["GET", "POST"])
 def addlist(die):
     if "currentuser" in session:
         categories = mongo.db.Categories.find()
+
+        if die == None:
+            return redirect(url_for("newlist"))
 
         if request.method == "POST":
             newlist = {
@@ -121,10 +126,15 @@ def addlist(die):
     return redirect(url_for("login"))
 
 
+@app.route("/editlist", defaults={"listid": None})
+@app.route("/editlist/", defaults={"listid": None})
 @app.route("/editlist/<listid>", methods=["GET", "POST"])
 def editlist(listid):
     userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
     categories = mongo.db.Categories.find()
+
+    if listid == None:
+        return redirect(url_for("lists"))
 
     if request.method == "POST":
             editedlist = {
@@ -152,9 +162,14 @@ def editlist(listid):
 
     return render_template("editlist.html", listid = listid, userlist=userlist, categories=categories)
 
+
+@app.route("/listview", defaults={"listid": None})
+@app.route("/listview/", defaults={"listid": None})
 @app.route("/listview/<listid>", methods=["GET", "POST"])
 def listview(listid):
     userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
+    if listid == None:
+        return redirect(url_for("lists"))
     return render_template("listview.html", listid = listid, userlist=userlist)
 
 @app.route("/newlist")
@@ -192,10 +207,17 @@ def addcategory():
     flash("You must be logged in to view this page!")
     return redirect(url_for("login"))
 
+
+
+@app.route("/editcategory", defaults={"categoryid": None})
+@app.route("/editcategory/", defaults={"categoryid": None})
 @app.route("/editcategory/<categoryid>", methods=["GET", "POST"])
 def editcategory(categoryid):
     if "currentuser" in session:
         category = mongo.db.Categories.find_one({"_id": ObjectId(categoryid)})
+
+        if categoryid == None:
+            return redirect(url_for("categories"))
         
         if request.method == "POST":
 
