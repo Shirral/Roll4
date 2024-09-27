@@ -19,13 +19,7 @@
                     <li><a href="{{url_for('lists')}}">Your lists</a></li>
                     <li><a href="{{url_for('newlist')}}">New list</a></li>
                     <li><a href="{{url_for('categories')}}">Your categories</a></li>
-                    <li class="login-logout">
-                        {% if sessioncookie %}
-                            <a href="{{url_for('logout')}}">Log out</a>
-                        {% else %}
-                            <a href="{{url_for('login')}}">Log in</a>
-                        {% endif %}
-                    </li>
+                    <li><a href="{{url_for('logout')}}">Log out</a></li>
                 </ul>
             </div>
         </nav>
@@ -34,13 +28,7 @@
             <li><a href="{{url_for('lists')}}">Your lists</a></li>
             <li><a href="{{url_for('newlist')}}">New list</a></li>
             <li><a href="{{url_for('categories')}}">Your categories</a></li>
-            <li class="login-logout">
-                {% if sessioncookie %}
-                    <a href="{{url_for('logout')}}">Log out</a>
-                {% else %}
-                    <a href="{{url_for('login')}}">Log in</a>
-                {% endif %}
-            </li>
+            <li><a href="{{url_for('logout')}}">Log out</a></li>
         </ul>
     </header>
 

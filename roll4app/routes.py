@@ -8,18 +8,22 @@ from roll4app.models import Users
 @app.route("/")
 @app.route("/lists")
 def lists():
-    d20 = list(mongo.db.Lists.find({"Die": 20, "UserName": session["currentuser"]}))
-    d12 = list(mongo.db.Lists.find({"Die": 12, "UserName": session["currentuser"]}))
-    d10 = list(mongo.db.Lists.find({"Die": 10, "UserName": session["currentuser"]}))
-    d8 = list(mongo.db.Lists.find({"Die": 8, "UserName": session["currentuser"]}))
-    d6 = list(mongo.db.Lists.find({"Die": 6, "UserName": session["currentuser"]}))
-    d4 = list(mongo.db.Lists.find({"Die": 4, "UserName": session["currentuser"]}))
-
     if "currentuser" in session:
-        return render_template("lists.html", sessioncookie = True, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4)
-    else:
-        return render_template("lists.html", sessioncookie = False, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4)
 
+        d20 = list(mongo.db.Lists.find({"Die": 20, "UserName": session["currentuser"]}))
+        d12 = list(mongo.db.Lists.find({"Die": 12, "UserName": session["currentuser"]}))
+        d10 = list(mongo.db.Lists.find({"Die": 10, "UserName": session["currentuser"]}))
+        d8 = list(mongo.db.Lists.find({"Die": 8, "UserName": session["currentuser"]}))
+        d6 = list(mongo.db.Lists.find({"Die": 6, "UserName": session["currentuser"]}))
+        d4 = list(mongo.db.Lists.find({"Die": 4, "UserName": session["currentuser"]}))
+
+        if "currentuser" in session:
+            return render_template("lists.html", sessioncookie = True, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4)
+        else:
+            return render_template("lists.html", sessioncookie = False, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4)
+
+    flash("You must be logged in to view this page!")
+    return redirect(url_for("login"))
 
 @app.route("/userprofile", defaults={"username": None}, methods=["GET", "POST"])
 @app.route("/userprofile/", defaults={"username": None}, methods=["GET", "POST"])
@@ -132,60 +136,92 @@ def addlist(die):
 @app.route("/editlist/", defaults={"listid": None})
 @app.route("/editlist/<listid>", methods=["GET", "POST"])
 def editlist(listid):
-    userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
-    categories = mongo.db.Categories.find()
+    if "currentuser" in session:
 
-    if listid == None:
-        return redirect(url_for("lists"))
+        userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
+        categories = mongo.db.Categories.find()
 
-    if request.method == "POST":
-            editedlist = {
-                "ListName": request.form.get("list_name"),
-                "Category": request.form.get("category"),
-                "ListItems": {},
-                "ListItemNotes": {}
-            }
+        if listid == None:
+            return redirect(url_for("lists"))
+        
+        if not userlist:
+                flash("List not found!")
+                return redirect(url_for("lists"))
 
-            num = 1
-            for key, val in request.form.items():
-                if key.startswith("listitem"):
-                    editedlist["ListItems"][str(num)] = val
-                    num += 1
+        if session["currentuser"].lower() != userlist["UserName"].lower():
+            flash("Oops! You were taken into some strange places. It's okay, we've got you back here now!")
+            return redirect(url_for("lists"))
 
-            num2 = 1
-            for key, val in request.form.items():
-                if key.startswith("linote"):
-                    editedlist["ListItemNotes"][str(num2)] = val
-                    num2 += 1
+        if request.method == "POST":
+                editedlist = {
+                    "ListName": request.form.get("list_name"),
+                    "Category": request.form.get("category"),
+                    "ListItems": {},
+                    "ListItemNotes": {}
+                }
 
-            mongo.db.Lists.update_one({"_id": ObjectId(listid)}, {"$set": editedlist})
-            flash("List updated!")
-            return redirect(url_for("listview", listid = listid, userlist=userlist))
+                num = 1
+                for key, val in request.form.items():
+                    if key.startswith("listitem"):
+                        editedlist["ListItems"][str(num)] = val
+                        num += 1
 
-    return render_template("editlist.html", listid = listid, userlist=userlist, categories=categories)
+                num2 = 1
+                for key, val in request.form.items():
+                    if key.startswith("linote"):
+                        editedlist["ListItemNotes"][str(num2)] = val
+                        num2 += 1
+
+                mongo.db.Lists.update_one({"_id": ObjectId(listid)}, {"$set": editedlist})
+                flash("List updated!")
+                return redirect(url_for("listview", listid = listid, userlist=userlist))
+
+        return render_template("editlist.html", listid = listid, userlist=userlist, categories=categories)
+
+    flash("You must be logged in to view this page!")
+    return redirect(url_for("login"))
 
 
 @app.route("/deletelist", defaults={"listid": None})
 @app.route("/deletelist/", defaults={"listid": None})
 @app.route("/deletelist/<listid>")
 def deletelist(listid):
+    if "currentuser" in session:
 
-    if listid == None:
+        if listid == None:
+            return redirect(url_for("lists"))
+        
+        mongo.db.Lists.delete_one({"_id": ObjectId(listid)})
+        flash("List deleted!")
         return redirect(url_for("lists"))
     
-    mongo.db.Lists.delete_one({"_id": ObjectId(listid)})
-    flash("List deleted!")
-    return redirect(url_for("lists"))
+    flash("You must be logged in to view this page!")
+    return redirect(url_for("login"))
 
 
 @app.route("/listview", defaults={"listid": None})
 @app.route("/listview/", defaults={"listid": None})
 @app.route("/listview/<listid>", methods=["GET", "POST"])
 def listview(listid):
-    userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
-    if listid == None:
-        return redirect(url_for("lists"))
-    return render_template("listview.html", listid = listid, userlist=userlist)
+    if "currentuser" in session:
+    
+        userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
+
+        if listid == None:
+            return redirect(url_for("lists"))
+        
+        if not userlist:
+                flash("List not found!")
+                return redirect(url_for("lists"))
+
+        if session["currentuser"].lower() != userlist["UserName"].lower():
+            flash("Oops! You were taken into some strange places. It's okay, we've got you back here now!")
+            return redirect(url_for("lists"))
+
+        return render_template("listview.html", listid = listid, userlist=userlist)
+
+    flash("You must be logged in to view this page!")
+    return redirect(url_for("login"))
 
 
 @app.route("/newlist")
@@ -231,9 +267,18 @@ def addcategory():
 @app.route("/editcategory/<categoryid>", methods=["GET", "POST"])
 def editcategory(categoryid):
     if "currentuser" in session:
-        category = mongo.db.Categories.find_one({"_id": ObjectId(categoryid)})
 
         if categoryid == None:
+            return redirect(url_for("categories"))
+        
+        category = mongo.db.Categories.find_one({"_id": ObjectId(categoryid)})
+
+        if not category:
+            flash("Category not found!")
+            return redirect(url_for("categories"))
+
+        if session["currentuser"].lower() != category["UserName"].lower():
+            flash("Oops! You were taken into some strange places. It's okay, we've got you back here now!")
             return redirect(url_for("categories"))
         
         if request.method == "POST":
@@ -256,10 +301,14 @@ def editcategory(categoryid):
 @app.route("/deletecategory/", defaults={"categoryid": None})
 @app.route("/deletecategory/<categoryid>")
 def deletecategory(categoryid):
+    if "currentuser" in session:
 
-    if categoryid == None:
-            return redirect(url_for("categories"))
-    
-    mongo.db.Categories.delete_one({"_id": ObjectId(categoryid)})
-    flash("Category deleted!")
-    return redirect(url_for("categories"))
+        if categoryid == None:
+                return redirect(url_for("categories"))
+        
+        mongo.db.Categories.delete_one({"_id": ObjectId(categoryid)})
+        flash("Category deleted!")
+        return redirect(url_for("categories"))
+
+    flash("You must be logged in to view this page!")
+    return redirect(url_for("login"))
