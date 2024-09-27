@@ -21,7 +21,21 @@
             <button class="btn waves-effect waves-light" type="submit" name="action">Save changes
                 <i class="material-icons right">check</i>
             </button>
+            <a href="#categorydeletemodal" class="btn waves-effect waves-light modal-trigger deletebtn" style="text-decoration: none; color: white">
+                Delete category
+                <i class="material-icons right">delete</i>
+            </a>
         </div>
     </form>
+
+    <div id="categorydeletemodal" class="modal">
+        <div class="modal-content center">
+            <p>Are you sure you want to delete <strong>{{category.CategoryName}}</strong>?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="modal-close waves-effect waves-green btn-flat">No, go back!</a>
+            <a href="{{url_for('deletecategory', categoryid=categoryid)}}" class="modal-close waves-effect waves-green btn-flat">I'm sure!</a>
+        </div>
+    </div>
 
 {% endblock %}
