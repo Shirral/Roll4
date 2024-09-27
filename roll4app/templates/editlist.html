@@ -18,14 +18,19 @@
                     <div class="col s3"></div>
                     <div class="input-field col s6">
                         <select id="category" name="category">
-                            <option value="" disabled>Choose category...</option>
+                            <option value="" disabled selected>Choose category...</option>
                             {% for category in categories %}
-                                {% if category.CategoryName == userlist['Category'] %}
-                                    <option value="{{category.CategoryName}}" selected>{{category.CategoryName}}</option>
-                                {% else %}
-                                    <option value="{{category.CategoryName}}">{{category.CategoryName}}</option>
+                                {% if session.currentuser|lower == category.UserName|lower %}
+                                    {% if category.CategoryName == userlist['Category'] %}
+                                        <option value="{{category.CategoryName}}" selected>{{category.CategoryName}}</option>
+                                    {% else %}
+                                        <option value="{{category.CategoryName}}">{{category.CategoryName}}</option>
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
+                            {% if userlist['Category'] != "" %}
+                                <option value="">[remove category]</option>
+                            {% endif %}
                         </select>
                     </div>
                     <div class="col s3"></div>

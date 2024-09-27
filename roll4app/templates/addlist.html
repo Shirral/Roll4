@@ -20,7 +20,9 @@
                         <select id="category" name="category">
                             <option value="" disabled selected>Choose category...</option>
                             {% for category in categories %}
-                                <option value="{{category.CategoryName}}">{{category.CategoryName}}</option>
+                                {% if session.currentuser|lower == category.UserName|lower %}
+                                    <option value="{{category.CategoryName}}">{{category.CategoryName}}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                     </div>

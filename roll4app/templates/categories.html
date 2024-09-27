@@ -12,9 +12,11 @@
     </div>
 
     {% for category in categories %}
-        <div class="cardimport">
-            <a href="{{url_for('editcategory', categoryid=category._id)}}">{{category.CategoryName}}</a>
-        </div>
+        {% if session.currentuser|lower == category.UserName|lower %}
+            <div class="cardimport">
+                <a href="{{url_for('editcategory', categoryid=category._id)}}">{{category.CategoryName}}</a>
+            </div>
+        {% endif %}
     {% endfor %}
 
 {% endblock %}
