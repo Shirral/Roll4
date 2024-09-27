@@ -8,12 +8,12 @@ from roll4app.models import Users
 @app.route("/")
 @app.route("/lists")
 def lists():
-    d20 = list(mongo.db.Lists.find({"Die": 20}))
-    d12 = list(mongo.db.Lists.find({"Die": 12}))
-    d10 = list(mongo.db.Lists.find({"Die": 10}))
-    d8 = list(mongo.db.Lists.find({"Die": 8}))
-    d6 = list(mongo.db.Lists.find({"Die": 6}))
-    d4 = list(mongo.db.Lists.find({"Die": 4}))
+    d20 = list(mongo.db.Lists.find({"Die": 20, "UserName": session["currentuser"]}))
+    d12 = list(mongo.db.Lists.find({"Die": 12, "UserName": session["currentuser"]}))
+    d10 = list(mongo.db.Lists.find({"Die": 10, "UserName": session["currentuser"]}))
+    d8 = list(mongo.db.Lists.find({"Die": 8, "UserName": session["currentuser"]}))
+    d6 = list(mongo.db.Lists.find({"Die": 6, "UserName": session["currentuser"]}))
+    d4 = list(mongo.db.Lists.find({"Die": 4, "UserName": session["currentuser"]}))
 
     if "currentuser" in session:
         return render_template("lists.html", sessioncookie = True, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4)
