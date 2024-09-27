@@ -165,8 +165,14 @@ def editlist(listid):
     return render_template("editlist.html", listid = listid, userlist=userlist, categories=categories)
 
 
+@app.route("/deletelist", defaults={"listid": None})
+@app.route("/deletelist/", defaults={"listid": None})
 @app.route("/deletelist/<listid>")
 def deletelist(listid):
+
+    if listid == None:
+        return redirect(url_for("lists"))
+    
     mongo.db.Lists.delete_one({"_id": ObjectId(listid)})
     flash("List deleted!")
     return redirect(url_for("lists"))
@@ -246,8 +252,14 @@ def editcategory(categoryid):
     return redirect(url_for("login"))  
 
 
+@app.route("/deletecategory", defaults={"categoryid": None})
+@app.route("/deletecategory/", defaults={"categoryid": None})
 @app.route("/deletecategory/<categoryid>")
 def deletecategory(categoryid):
+
+    if categoryid == None:
+            return redirect(url_for("categories"))
+    
     mongo.db.Categories.delete_one({"_id": ObjectId(categoryid)})
     flash("Category deleted!")
     return redirect(url_for("categories"))
