@@ -20,13 +20,27 @@
 
     <div class="row center">
         <button class="btn waves-effect waves-light">
-            <a href="{{url_for('lists')}}" style="text-decoration: none; color: white">Go back
+            <a href="{{url_for('lists')}}" style="text-decoration: none; color: white">Back
             <i class="material-icons left">chevron_left</i></a>
         </button>
         <button class="btn waves-effect waves-light">
             <a href="{{url_for('editlist', listid=listid)}}" style="text-decoration: none; color: white">Edit list
             <i class="material-icons right">edit</i></a>
         </button>
+        <a href="#listdeletemodal" class="btn waves-effect waves-light modal-trigger deletebtn" style="text-decoration: none; color: white">
+            Delete list
+            <i class="material-icons right">delete</i>
+        </a>
+    </div>
+
+    <div id="listdeletemodal" class="modal">
+        <div class="modal-content center">
+            <p>Are you sure you want to delete <strong>{{userlist['ListName']}}</strong>?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="modal-close waves-effect waves-green btn-flat">No, go back!</a>
+            <a href="{{url_for('deletelist', listid=listid)}}" class="modal-close waves-effect waves-green btn-flat">I'm sure!</a>
+        </div>
     </div>
 
 {% endblock %}

@@ -45,6 +45,10 @@ img {
     }
 }
 
+.deletebtn {
+    background-color: crimson;
+}
+
 #newlistcardbutton {
     font-size: larger;
     font-weight: 600;

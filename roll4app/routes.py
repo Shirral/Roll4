@@ -4,6 +4,7 @@ from bson.objectid import ObjectId
 from roll4app import app, mongo, db
 from roll4app.models import Users
 
+
 @app.route("/")
 @app.route("/lists")
 def lists():
@@ -18,6 +19,7 @@ def lists():
         return render_template("lists.html", sessioncookie = True, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4)
     else:
         return render_template("lists.html", sessioncookie = False, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4)
+
 
 @app.route("/userprofile", defaults={"username": None}, methods=["GET", "POST"])
 @app.route("/userprofile/", defaults={"username": None}, methods=["GET", "POST"])
@@ -163,6 +165,13 @@ def editlist(listid):
     return render_template("editlist.html", listid = listid, userlist=userlist, categories=categories)
 
 
+@app.route("/deletelist/<listid>")
+def deletelist(listid):
+    mongo.db.Lists.delete_one({"_id": ObjectId(listid)})
+    flash("List deleted!")
+    return redirect(url_for("lists"))
+
+
 @app.route("/listview", defaults={"listid": None})
 @app.route("/listview/", defaults={"listid": None})
 @app.route("/listview/<listid>", methods=["GET", "POST"])
@@ -172,6 +181,7 @@ def listview(listid):
         return redirect(url_for("lists"))
     return render_template("listview.html", listid = listid, userlist=userlist)
 
+
 @app.route("/newlist")
 def newlist():
     if "currentuser" in session:
@@ -179,6 +189,7 @@ def newlist():
     
     flash("You must be logged in to view this page!")
     return redirect(url_for("login"))
+
 
 @app.route("/categories")
 def categories():
@@ -188,6 +199,7 @@ def categories():
     
     flash("You must be logged in to view this page!")
     return redirect(url_for("login"))
+
 
 @app.route("/addcategory", methods=["GET", "POST"])
 def addcategory():
@@ -206,7 +218,6 @@ def addcategory():
     
     flash("You must be logged in to view this page!")
     return redirect(url_for("login"))
-
 
 
 @app.route("/editcategory", defaults={"categoryid": None})
