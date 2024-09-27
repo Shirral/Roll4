@@ -53,7 +53,7 @@ def register():
 
         session["currentuser"] = request.form.get("user_name").lower()
         flash(f"Welcome onboard, {session['currentuser']}!")
-        return redirect(url_for("userprofile"), username=session["currentuser"])
+        return redirect(url_for("userprofile", username=session["currentuser"]))
     return render_template("register.html")
 
 
