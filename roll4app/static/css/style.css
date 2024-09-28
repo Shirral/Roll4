@@ -1,11 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    font-family: "Comfortaa", sans-serif;
 }
 
 main {
     flex: 1 0 auto;
+}
+
+h1 {
+    font-family: "Lilita One", Impact, sans-serif;
+    font-size: 30px;
 }
 
 img {
@@ -13,6 +22,19 @@ img {
     height: 100%;
     width: 100%;
     padding: 10px;
+}
+
+input {
+    font-family: "Comfortaa", sans-serif;
+}
+
+.brand-logo {
+    font-family: "Lilita One", Impact, sans-serif;
+}
+
+#list_name {
+    font-size: 30px;
+    font-family: "Lilita One", Impact, sans-serif;
 }
 
 .customhide {
