@@ -11,7 +11,6 @@ $( "#categoryp" ).on( "click", function() {
 });
 
 $( ".notesbtn" ).on( "click", function() {
-    
     let divs = document.getElementsByClassName("notesbtn");
     let len = divs.length;
     let num;
@@ -38,3 +37,7 @@ function shownotesicon(){$(".noteswrapper").each(function(i, notediv) {
 })};
 
 shownotesicon();
+
+$(".rolldiebtn").on( "click", function() {
+    console.log('link working!')
+});

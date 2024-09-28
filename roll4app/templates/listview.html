@@ -4,11 +4,19 @@
 
     <h4 class="center">{{userlist['ListName']}}</h4>
 
+    <div class="flexbox ">
+        <div class="row valign-wrapper nobottommargin rolldiebtn">
+            <div class="col"><p>ROLL</p></div>
+            <div class="col"><img src="https://static-00.iconduck.com/assets.00/game-die-emoji-1024x1024-i44ka7eg.png" class="listviewdie"></div>
+            <div class="col"><p>DIE!</p></div>
+        </div>
+    </div>
+
     {% for key, val in userlist['ListItems'].items() %}
         <div class="noteswrapper">
             <div class="cardimport notesbtn row" id="notesbtn{{key}}">
                 <div class="col s12 notestxt">
-                    {{key + ". " + val}}
+                    <span id="number{{key}}">{{key}}</span>{{". " + val}}
                     <i class="material-icons right"></i>
                 </div>
             </div>

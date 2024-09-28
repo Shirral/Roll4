@@ -30,6 +30,10 @@ img {
     align-items: center;
 }
 
+.nobottommargin {
+    margin-bottom: 0;
+}
+
 /* card style borrowed from https://css-tricks.com/block-links-the-search-for-a-perfect-solution/ and edited */
 .cardimport {
     background: white;
@@ -69,6 +73,14 @@ img {
 
 #newlistcardbutton a {
     padding: 1rem 1.5rem;
+}
+
+.rolldiebtn {
+    height: fit-content;
+}
+
+.listviewdie {
+    width: 5em;
 }
 
 .notesbtn {
