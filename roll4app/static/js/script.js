@@ -61,6 +61,7 @@ $(".rolldiebtn").on( "click", function() {
     $(resultspan).html(result);
     if (resultspan != ""){
         $("#rollresultdiv").css("display", "flex");
+        $(".notesbtn").css("background-color", "");
+        $("#notesbtn"+result).css("background-color", "yellow");
     }
-    //$("#righcard").css("background-color", "yellow");
 });
