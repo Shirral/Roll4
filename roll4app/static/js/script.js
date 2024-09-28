@@ -38,6 +38,23 @@ function shownotesicon(){$(".noteswrapper").each(function(i, notediv) {
 
 shownotesicon();
 
+// let divs = document.getElementsByClassName("notesbtn");
+//     let len = divs.length;
+//     let num;
+//     for (var i = 1; i <= len; i++){
+//         if (this.id == "notesbtn"+i){
+//             num = i;
+//             break;
+//         } 
+//     }
+
+// listitemnum = $('spanhere'+spannum).toint(lookup js nem)
+// listitemnum = 8;
+// listitemnum = $("#number"+spannum)
+
 $(".rolldiebtn").on( "click", function() {
+    let die = document.getElementsByClassName("notesbtn").length;
+        
     console.log('link working!')
+    console.log(Math.floor(Math.random() * die) + 1)
 });
