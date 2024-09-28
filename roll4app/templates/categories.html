@@ -4,17 +4,18 @@
 
     <h4 class="center">Your categories</h4>
 
-    <div class="cardimport row">
-        <div class="col s12">
-            <a href="{{url_for('addcategory')}}">New category...</a>
-            <i class="material-icons right">add</i>
+    <div class="row flexbox">
+        <div class="cardimport newbutton">
+            <a href="{{url_for('addcategory')}}" class="main-link">New category...
+                <i class="material-icons right">add</i>
+            </a>
         </div>
     </div>
 
     {% for category in categories %}
         {% if session.currentuser|lower == category.UserName|lower %}
-            <div class="cardimport">
-                <a href="{{url_for('editcategory', categoryid=category._id)}}">{{category.CategoryName}}</a>
+            <div class="cardimport cardactive">
+                <a href="{{url_for('editcategory', categoryid=category._id)}}" class="main-link">{{category.CategoryName}}</a>
             </div>
         {% endif %}
     {% endfor %}

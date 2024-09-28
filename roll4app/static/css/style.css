@@ -23,20 +23,29 @@ img {
     padding: 0;
 }
 
+.flexbox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
 
-/* cars style borrowed from https://css-tricks.com/block-links-the-search-for-a-perfect-solution/ and edited */
+/* card style borrowed from https://css-tricks.com/block-links-the-search-for-a-perfect-solution/ and edited */
 .cardimport {
     background: white;
     border-radius: 16px;
-    padding: 1rem 1.5rem;
     box-shadow: 0 0.3rem #000;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    cursor: pointer;
     transition: 0.2s;
     margin: 30px;
+}
+
+.main-link {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
 }
 
 .cardactive {
@@ -49,13 +58,21 @@ img {
     background-color: crimson;
 }
 
-#newlistcardbutton {
+.newbutton {
+    width: fit-content;
     font-size: larger;
     font-weight: 600;
-    padding: 1em;
     background-color: rgb(252, 255, 207);
     text-decoration: none;
     text-align: center;
+}
+
+#newlistcardbutton a {
+    padding: 1rem 1.5rem;
+}
+
+.notesbtn {
+    padding: 1rem 1.5rem;
 }
 
 .notesview {

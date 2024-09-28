@@ -6,7 +6,6 @@ $(document).ready(function () {
     $('.modal').modal();
 });
 
-
 $( "#categoryp" ).on( "click", function() {
     $( "#categoryselect" ).toggle("slow");
 });
