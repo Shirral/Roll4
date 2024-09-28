@@ -55,6 +55,12 @@ shownotesicon();
 $(".rolldiebtn").on( "click", function() {
     let die = document.getElementsByClassName("notesbtn").length;
         
-    console.log('link working!')
-    console.log(Math.floor(Math.random() * die) + 1)
+    console.log('link working!');
+    let result = (Math.floor(Math.random() * die) + 1);
+    let resultspan = $("#rollresult");
+    $(resultspan).html(result);
+    if (resultspan != ""){
+        $("#rollresultdiv").css("display", "flex");
+    }
+    //$("#righcard").css("background-color", "yellow");
 });

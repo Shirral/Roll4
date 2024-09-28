@@ -4,12 +4,16 @@
 
     <h4 class="center">{{userlist['ListName']}}</h4>
 
-    <div class="flexbox ">
+    <div class="flexbox">
         <div class="row valign-wrapper nobottommargin rolldiebtn">
             <div class="col"><p>ROLL</p></div>
             <div class="col"><img src="https://static-00.iconduck.com/assets.00/game-die-emoji-1024x1024-i44ka7eg.png" class="listviewdie"></div>
             <div class="col"><p>DIE!</p></div>
         </div>
+    </div>
+
+    <div class="row nomarginbottom flexbox" id="rollresultdiv">
+        <p>You rolled <span id="rollresult"></span>!</p>
     </div>
 
     {% for key, val in userlist['ListItems'].items() %}
