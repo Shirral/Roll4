@@ -39,6 +39,10 @@ input {
     margin: 5em auto;
 }
 
+.nodecor {
+    text-decoration: none;
+}
+
 .customhide {
     display: none;
 }
@@ -225,6 +229,10 @@ input {
 #categoryp {
     color: blue;
     cursor: pointer;
+}
+
+.nodecor {
+    text-decoration: none;
 }
 
 @media only screen and (min-width: 993px) {

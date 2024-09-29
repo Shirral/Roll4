@@ -5,4 +5,20 @@
 
     <h1 class="center">Henlo, {{username}}</h1>
 
+    <div class="center">
+        <a href="#profiledeletemodal" class="deep-orange-text text-darken-3 nodecor modal-trigger">
+            Delete profile
+        </a>
+    </div>
+
+    <div id="profiledeletemodal" class="modal">
+        <div class="modal-content center">
+            <p>Are you sure you want to delete your account?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="modal-close waves-effect waves-green btn-flat">No, go back!</a>
+            <a href="{{url_for('deleteuser', username=username)}}" class="modal-close waves-effect waves-green btn-flat">I'm sure!</a>
+        </div>
+    </div>
+
 {% endblock %}

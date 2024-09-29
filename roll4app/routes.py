@@ -148,7 +148,7 @@ def editlist(listid):
                 return redirect(url_for("lists"))
 
         if session["currentuser"].lower() != userlist["UserName"].lower():
-            flash("Oops! You were taken into some strange places. It's okay, we've got you back here now!")
+            flash("Oops! You were taken some strange places. It's okay, we've got you back here now!")
             return redirect(url_for("lists"))
 
         if request.method == "POST":
@@ -212,7 +212,7 @@ def listview(listid):
                 return redirect(url_for("lists"))
 
         if session["currentuser"].lower() != userlist["UserName"].lower():
-            flash("Oops! You were taken into some strange places. It's okay, we've got you back here now!")
+            flash("Oops! You were taken some strange places. It's okay, we've got you back here now!")
             return redirect(url_for("lists"))
 
         return render_template("listview.html", listid = listid, userlist=userlist)
@@ -271,7 +271,7 @@ def editcategory(categoryid):
             return redirect(url_for("categories"))
 
         if session["currentuser"].lower() != category["UserName"].lower():
-            flash("Oops! You were taken into some strange places. It's okay, we've got you back here now!")
+            flash("Oops! You were taken some strange places. It's okay, we've got you back here now!")
             return redirect(url_for("categories"))
         
         if request.method == "POST":
@@ -301,6 +301,25 @@ def deletecategory(categoryid):
         mongo.db.Categories.delete_one({"_id": ObjectId(categoryid)})
         flash("Category deleted!")
         return redirect(url_for("categories"))
+
+    return redirect(url_for("notloggedin"))
+
+@app.route("/deleteuser/<username>")
+def deleteuser(username):
+    if "currentuser" in session:
+
+        user = Users.query.filter_by(user_name=username).first_or_404()
+        db.session.delete(user)
+        db.session.commit()
+
+        if session["currentuser"].lower() != username.lower():
+            flash("Oops! You were taken some strange places. It's okay, we've got you back here now!")
+            return redirect(url_for("lists"))
+
+        
+
+        flash("Profile deleted. See ya!")
+        return redirect(url_for("login"))
 
     return redirect(url_for("notloggedin"))
 
