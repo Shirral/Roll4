@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"  type="text/css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css">
-    <title>{% block title %}{% endblock %}</title>
+    <title>Log in</title>
 </head>
 <body id="loginpage">
     <section>
@@ -21,7 +21,7 @@
         {% endwith %}
     </section>
     <main>
-        <div id="logincontainer">
+        <div class="allcenter" id="logincontainer">
             <div class="container row center">
                 <img src="{{url_for('static', filename='images/d20shadowhite.png')}}" id="logindiepic">
             </div>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="row center">
-                        <button  class="btn waves-effect waves-light" type="submit" id="loginbtn">Let's roll!</button>
+                        <button class="btn waves-effect waves-light loginbtn" type="submit">Let's roll!</button>
                     </div>
                 </form>
             </div>

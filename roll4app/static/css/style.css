@@ -28,6 +28,25 @@ input {
     font-family: "Comfortaa", sans-serif;
 }
 
+.flexbox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.spacer {
+    margin: 5em auto;
+}
+
+.customhide {
+    display: none;
+}
+
+.page-footer {
+    padding: 0;
+}
+
 .btn {
     border-radius: 16px;
     font-family: "Lilita One", Impact, sans-serif;
@@ -64,7 +83,7 @@ input {
     color: #9e9e9e;
 }
 
-#loginbtn {
+.loginbtn {
     font-size: x-large;
     height: 56px;
 }
@@ -78,10 +97,10 @@ input {
 }
 
 /* code snippet from https://www.w3schools.com/howto/howto_css_center-vertical.asp */
-#logincontainer {
+.allcenter {
     margin: 0;
     position: absolute;
-    top: 57%;
+    top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -89,28 +108,27 @@ input {
     width: 40%;
 }
 
+#logincontainer {
+    top: 57%;
+}
+
+#notloggedinbtn {
+    width: fit-content;
+    margin: 0 auto;
+}
+
 #list_name {
     font-size: 30px;
     font-family: "Lilita One", Impact, sans-serif;
 }
 
-.customhide {
-    display: none;
-}
-
-.page-footer {
-    padding: 0;
-}
-
-.flexbox {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
 .nobottommargin {
     margin-bottom: 0;
+}
+
+#logo {
+    height: 1.9em;
+    width: 1.9em;
 }
 
 /* card style borrowed from https://css-tricks.com/block-links-the-search-for-a-perfect-solution/ and edited */

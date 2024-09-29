@@ -12,7 +12,10 @@
     <header>    
         <nav class="grey darken-4">
             <div class="nav-wrapper">
-                <a href="{{url_for('lists')}}" class="brand-logo">Roll4</a>
+                <a href="{{url_for('lists')}}" class="brand-logo">
+                    <img src="{{url_for('static', filename='images/d20shadowhite.png')}}" id="logo" class="left">
+                    Roll4
+                </a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="{{url_for('userprofile', username=session['currentuser'])}}" data-target="mobile-demo" class="right" id="profile-icon"><i class="material-icons">account_circle</i></a>
                 <ul class="right hide-on-med-and-down">

@@ -22,8 +22,7 @@ def lists():
         else:
             return render_template("lists.html", sessioncookie = False, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4)
 
-    flash("You must be logged in to view this page!")
-    return redirect(url_for("login"))
+    return redirect(url_for("notloggedin"))
 
 @app.route("/userprofile", defaults={"username": None}, methods=["GET", "POST"])
 @app.route("/userprofile/", defaults={"username": None}, methods=["GET", "POST"])
@@ -36,8 +35,7 @@ def userprofile(username):
         username = Users.query.filter_by(user_name=session["currentuser"]).first().user_name
         return render_template("userprofile.html", username=username)
     
-    flash("You must be logged in to view this page!")
-    return redirect(url_for("login"))
+    return redirect(url_for("notloggedin"))
    
 
 @app.route("/register", methods=["GET", "POST"])
@@ -85,9 +83,11 @@ def login():
 
 @app.route("/logout")
 def logout():
-    flash("Logged out. See you later!")
-    session.pop("currentuser")
-    return redirect(url_for("login"))
+    if "currentuser" in session:
+        flash("Logged out. See you later!")
+        session.pop("currentuser")
+        return redirect(url_for("login"))
+    return render_template("notloggedin.html")
 
 
 @app.route("/addlist", defaults={"die": None})
@@ -128,8 +128,7 @@ def addlist(die):
 
         return render_template("addlist.html", die=die, categories=categories)
 
-    flash("You must be logged in to view this page!")
-    return redirect(url_for("login"))
+    return redirect(url_for("notloggedin"))
 
 
 @app.route("/editlist", defaults={"listid": None})
@@ -178,8 +177,7 @@ def editlist(listid):
 
         return render_template("editlist.html", listid = listid, userlist=userlist, categories=categories)
 
-    flash("You must be logged in to view this page!")
-    return redirect(url_for("login"))
+    return redirect(url_for("notloggedin"))
 
 
 @app.route("/deletelist", defaults={"listid": None})
@@ -194,9 +192,8 @@ def deletelist(listid):
         mongo.db.Lists.delete_one({"_id": ObjectId(listid)})
         flash("List deleted!")
         return redirect(url_for("lists"))
-    
-    flash("You must be logged in to view this page!")
-    return redirect(url_for("login"))
+
+    return redirect(url_for("notloggedin"))
 
 
 @app.route("/listview", defaults={"listid": None})
@@ -220,17 +217,15 @@ def listview(listid):
 
         return render_template("listview.html", listid = listid, userlist=userlist)
 
-    flash("You must be logged in to view this page!")
-    return redirect(url_for("login"))
+    return redirect(url_for("notloggedin"))
 
 
 @app.route("/newlist")
 def newlist():
     if "currentuser" in session:
         return render_template("newlist.html")
-    
-    flash("You must be logged in to view this page!")
-    return redirect(url_for("login"))
+
+    return redirect(url_for("notloggedin"))
 
 
 @app.route("/categories")
@@ -238,9 +233,8 @@ def categories():
     if "currentuser" in session:
         categories = mongo.db.Categories.find()
         return render_template("categories.html", categories=categories)
-    
-    flash("You must be logged in to view this page!")
-    return redirect(url_for("login"))
+
+    return redirect(url_for("notloggedin"))
 
 
 @app.route("/addcategory", methods=["GET", "POST"])
@@ -257,9 +251,8 @@ def addcategory():
             return redirect(url_for("categories"))
 
         return render_template("addcategory.html")
-    
-    flash("You must be logged in to view this page!")
-    return redirect(url_for("login"))
+
+    return redirect(url_for("notloggedin"))
 
 
 @app.route("/editcategory", defaults={"categoryid": None})
@@ -292,9 +285,8 @@ def editcategory(categoryid):
             return redirect(url_for("categories"))
 
         return render_template("editcategory.html", category=category, categoryid=categoryid)
-    
-    flash("You must be logged in to view this page!")
-    return redirect(url_for("login"))  
+
+    return redirect(url_for("notloggedin"))  
 
 
 @app.route("/deletecategory", defaults={"categoryid": None})
@@ -310,5 +302,11 @@ def deletecategory(categoryid):
         flash("Category deleted!")
         return redirect(url_for("categories"))
 
-    flash("You must be logged in to view this page!")
-    return redirect(url_for("login"))
+    return redirect(url_for("notloggedin"))
+
+@app.route("/notloggedin")
+def notloggedin():
+    if "currentuser" in session:
+        return redirect(url_for("lists"))
+    
+    return render_template("notloggedin.html")
