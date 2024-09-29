@@ -1,26 +1,50 @@
-{% extends "base.html" %}
-{% block title %}Log in{% endblock %}
-{% block content %}
-
-    <form method="POST" action="{{url_for('login')}}">
-        <div>
-            <div>
-                <input type="text" placeholder="Enter username..." id="user_name" name="user_name" minlength="3" maxlength="30" required>
-                <label for="user_name">Username</label>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"  type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body id="loginpage">
+    <section>
+        {% with flashes = get_flashed_messages() %}
+            {% if flashes %}
+                {% for flash in flashes %}
+                    <div class="row">
+                        <h4>{{flash}}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+    <main>
+        <div id="logincontainer">
+            <div class="container row center">
+                <img src="{{url_for('static', filename='images/d20shadowhite.png')}}" id="logindiepic">
             </div>
             <div>
-                <input type="password" placeholder="Enter password..." id="user_password" name="user_password" minlength="8" maxlength="30" required>
-                <label for="user_password">Password</label>
+                <form method="POST" action="{{url_for('login')}}">
+                    <div class="">
+                        <div class="row input-field">
+                            <input type="text" placeholder="Enter username..." id="user_name" name="user_name" minlength="3" maxlength="30" required>
+                        </div>
+                        <div class="row input-field">
+                            <input type="password" placeholder="Enter password..." id="user_password" name="user_password" minlength="8" maxlength="30" required>
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <button  class="btn waves-effect waves-light" type="submit" id="loginbtn">Let's roll!</button>
+                    </div>
+                </form>
+            </div>
+            <div class="container row center registerlink">
+                <p>No account? <a href="{{url_for('register')}}">Register</a></p>
             </div>
         </div>
-        <div>
-            <button type="submit">Let's roll!</button>
-        </div>
-    </form>
+    </main>
 
-    <div class="container">
-        <p>No account? <a href="{{url_for('register')}}">Register</a></p>
-    </div>
+</body>
 
-
-{% endblock %}
