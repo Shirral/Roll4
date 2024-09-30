@@ -183,6 +183,7 @@ input {
 
 .rolldiebtn {
     height: fit-content;
+    cursor: pointer;
 }
 
 .listviewdie {
