@@ -24,7 +24,7 @@ img {
     padding: 10px;
 }
 
-input {
+input, textarea {
     font-family: "Comfortaa", sans-serif;
 }
 
