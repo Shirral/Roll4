@@ -60,9 +60,17 @@ input, textarea {
     border-radius: 16px;
     font-family: "Lilita One", Impact, sans-serif;
     background-color: #d84315;
+    text-decoration: none;
 
     &:hover {
         background-color: #efebe9;
+        color: #d84315;
+    }
+}
+
+.btn a {
+    color: white;
+    &:hover {
         color: #d84315;
     }
 }
@@ -165,8 +173,12 @@ input, textarea {
 }
 
 .deletebtn {
-    background-color: none;
-    border: 1px solid black;
+    background: none;
+    color: #d84315;;
+
+    &:hover {
+        background-color: #ffccbc;
+    }
 }
 
 .newbutton {
