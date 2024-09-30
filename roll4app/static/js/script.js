@@ -6,9 +6,11 @@ $(document).ready(function () {
     $('.modal').modal();
 });
 
+
 $( "#categoryp" ).on( "click", function() {
     $( "#categoryselect" ).toggle("slow");
 });
+
 
 $( ".notesbtn" ).on( "click", function() {
     let divs = document.getElementsByClassName("notesbtn");
@@ -30,6 +32,7 @@ $( ".notesbtn" ).on( "click", function() {
     $( "#notes"+num ).toggle("slow");
   });
 
+
 function shownotesicon(){$(".noteswrapper").each(function(i, notediv) {
     if ($(notediv).find("p").html().trim() !== "") {
         $(notediv).find(".notestxt i").html("notes")
@@ -37,6 +40,7 @@ function shownotesicon(){$(".noteswrapper").each(function(i, notediv) {
 })};
 
 shownotesicon();
+
 
 $(".rolldiebtn").on( "click", function() {
     let die = document.getElementsByClassName("notesbtn").length;
@@ -51,12 +55,14 @@ $(".rolldiebtn").on( "click", function() {
     }
 });
 
-//NEED TO ADD HIDDEN DIV WITH ID AND STH {{INSERTED}} TO EVERY PAGE THAT CHECKS FOR DARKMODE IN THE DATABASE! AND ADD THE VAR TO ALL ROUTES AND LINKS TO ALL PAGES!!!
+
 function checkdarkmode() {
-    if (darkmode.checked){     //check the above instead of this...
+    darkmodecheck = $(".darkmodecheck").html().trim();
+    if (darkmodecheck == "True"){
         $("body").removeClass("brown lighten-5").addClass("grey darken-3 white-text");
         $("#profiledelete").removeClass("text-darken-3").addClass("text-lighten-1");
       }
 };
 
 checkdarkmode();
+

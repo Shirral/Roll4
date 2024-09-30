@@ -17,10 +17,12 @@ def lists():
         d6 = list(mongo.db.Lists.find({"Die": 6, "UserName": session["currentuser"]}))
         d4 = list(mongo.db.Lists.find({"Die": 4, "UserName": session["currentuser"]}))
 
+        darkmode = Users.query.filter_by(user_name=session["currentuser"]).first().darkmode
+
         if "currentuser" in session:
-            return render_template("lists.html", sessioncookie = True, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4)
+            return render_template("lists.html", sessioncookie = True, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4, darkmode=darkmode)
         else:
-            return render_template("lists.html", sessioncookie = False, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4)
+            return render_template("lists.html", sessioncookie = False, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4, darkmode=darkmode)
 
     return redirect(url_for("notloggedin"))
 
@@ -34,12 +36,14 @@ def userprofile(username):
 
         user = Users.query.filter_by(user_name=session["currentuser"]).first()
         username = user.user_name
+        darkmode = user.darkmode
 
         if request.method == "POST":
             user.darkmode = bool(True if request.form.get("darkmode") else False)
-            db.session.commit()            
+            db.session.commit()
+            return redirect(url_for("userprofile"))      
         
-        return render_template("userprofile.html", username=username, user=user)
+        return render_template("userprofile.html", username=username, user=user, darkmode=darkmode)
     
     return redirect(url_for("notloggedin"))
    
@@ -102,6 +106,7 @@ def logout():
 def addlist(die):
     if "currentuser" in session:
         categories = mongo.db.Categories.find()
+        darkmode = Users.query.filter_by(user_name=session["currentuser"]).first().darkmode
 
         if die == None:
             return redirect(url_for("newlist"))
@@ -132,7 +137,7 @@ def addlist(die):
             flash("List created. Woohoo!")
             return redirect(url_for("lists"))
 
-        return render_template("addlist.html", die=die, categories=categories)
+        return render_template("addlist.html", die=die, categories=categories, darkmode=darkmode)
 
     return redirect(url_for("notloggedin"))
 
@@ -145,6 +150,7 @@ def editlist(listid):
 
         userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
         categories = mongo.db.Categories.find()
+        darkmode = Users.query.filter_by(user_name=session["currentuser"]).first().darkmode
 
         if listid == None:
             return redirect(url_for("lists"))
@@ -179,9 +185,9 @@ def editlist(listid):
 
                 mongo.db.Lists.update_one({"_id": ObjectId(listid)}, {"$set": editedlist})
                 flash("List updated!")
-                return redirect(url_for("listview", listid = listid, userlist=userlist))
+                return redirect(url_for("listview", listid = listid, userlist=userlist, darkmode=darkmode))
 
-        return render_template("editlist.html", listid = listid, userlist=userlist, categories=categories)
+        return render_template("editlist.html", listid = listid, userlist=userlist, categories=categories, darkmode=darkmode)
 
     return redirect(url_for("notloggedin"))
 
@@ -209,6 +215,7 @@ def listview(listid):
     if "currentuser" in session:
     
         userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
+        darkmode = Users.query.filter_by(user_name=session["currentuser"]).first().darkmode
 
         if listid == None:
             return redirect(url_for("lists"))
@@ -221,7 +228,7 @@ def listview(listid):
             flash("Oops! You were taken some strange places. It's okay, we've got you back here now!")
             return redirect(url_for("lists"))
 
-        return render_template("listview.html", listid = listid, userlist=userlist)
+        return render_template("listview.html", listid = listid, userlist=userlist, darkmode=darkmode)
 
     return redirect(url_for("notloggedin"))
 
@@ -229,7 +236,8 @@ def listview(listid):
 @app.route("/newlist")
 def newlist():
     if "currentuser" in session:
-        return render_template("newlist.html")
+        darkmode = Users.query.filter_by(user_name=session["currentuser"]).first().darkmode
+        return render_template("newlist.html", darkmode=darkmode)
 
     return redirect(url_for("notloggedin"))
 
@@ -238,7 +246,9 @@ def newlist():
 def categories():
     if "currentuser" in session:
         categories = mongo.db.Categories.find()
-        return render_template("categories.html", categories=categories)
+        darkmode = Users.query.filter_by(user_name=session["currentuser"]).first().darkmode
+
+        return render_template("categories.html", categories=categories, darkmode=darkmode)
 
     return redirect(url_for("notloggedin"))
 
@@ -246,6 +256,8 @@ def categories():
 @app.route("/addcategory", methods=["GET", "POST"])
 def addcategory():
     if "currentuser" in session:
+        darkmode = Users.query.filter_by(user_name=session["currentuser"]).first().darkmode
+
         if request.method == "POST":
             newcategory = {
                 "CategoryName": request.form.get("category_name"),
@@ -256,7 +268,7 @@ def addcategory():
             flash("Category created! You can now choose it from the 'Add category?' dropdown menu while creating/editing a list.")
             return redirect(url_for("categories"))
 
-        return render_template("addcategory.html")
+        return render_template("addcategory.html", darkmode=darkmode)
 
     return redirect(url_for("notloggedin"))
 
@@ -271,6 +283,7 @@ def editcategory(categoryid):
             return redirect(url_for("categories"))
         
         category = mongo.db.Categories.find_one({"_id": ObjectId(categoryid)})
+        darkmode = Users.query.filter_by(user_name=session["currentuser"]).first().darkmode
 
         if not category:
             flash("Category not found!")
@@ -290,7 +303,7 @@ def editcategory(categoryid):
             flash("Category Updated!")
             return redirect(url_for("categories"))
 
-        return render_template("editcategory.html", category=category, categoryid=categoryid)
+        return render_template("editcategory.html", category=category, categoryid=categoryid, darkmode=darkmode)
 
     return redirect(url_for("notloggedin"))  
 
@@ -321,8 +334,6 @@ def deleteuser(username):
         if session["currentuser"].lower() != username.lower():
             flash("Oops! You were taken some strange places. It's okay, we've got you back here now!")
             return redirect(url_for("lists"))
-
-        
 
         flash("Profile deleted. See ya!")
         return redirect(url_for("login"))
