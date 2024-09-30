@@ -31,9 +31,15 @@ def userprofile(username):
     if "currentuser" in session:
         if username == None:
             username = session["currentuser"]
-            
-        username = Users.query.filter_by(user_name=session["currentuser"]).first().user_name
-        return render_template("userprofile.html", username=username)
+
+        user = Users.query.filter_by(user_name=session["currentuser"]).first()
+        username = user.user_name
+
+        if request.method == "POST":
+            user.darkmode = bool(True if request.form.get("darkmode") else False)
+            db.session.commit()            
+        
+        return render_template("userprofile.html", username=username, user=user)
     
     return redirect(url_for("notloggedin"))
    

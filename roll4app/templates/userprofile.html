@@ -3,10 +3,26 @@
 
 {% block content %}
 
-    <h1 class="center">Henlo, {{username}}</h1>
+    <h1 class="center">Hello, {{username}}</h1>
+
+    <form class="row flexbox" method="POST" action="{{url_for('userprofile', username=username)}}">
+        <p class="col" id="switchp">Dark mode:</p>
+        <div class="switch col"> 
+            <label class="">
+                Off
+                {% if user.darkmode == True %}
+                    <input type="checkbox" id="darkmode" name="darkmode" checked onchange="this.form.submit()">
+                {% else %}
+                    <input type="checkbox" id="darkmode" name="darkmode" onchange="this.form.submit()">
+                {% endif %}
+                <span class="lever"></span>
+                On
+            </label>
+        </div>
+    </form>
 
     <div class="center">
-        <a href="#profiledeletemodal" class="deep-orange-text text-darken-3 nodecor modal-trigger">
+        <a href="#profiledeletemodal" class="deep-orange-text text-darken-3 nodecor modal-trigger" id="profiledelete">
             Delete profile
         </a>
     </div>
