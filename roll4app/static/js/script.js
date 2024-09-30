@@ -11,7 +11,28 @@ $( "#categoryp" ).on( "click", function() {
     $( "#categoryselect" ).toggle("slow");
 });
 
+function shownotes(){
+    let divs = document.getElementsByClassName("listitem");
+    let len = divs.length;
+    let num;
+    for (var i = 1; i <= len; i++){
+        if (this.id == "notesbtn"+i){
+            num = i;
+            break;
+        } 
+    }
 
+    $(".notesview").each(function(i, notediv) {
+        if ($(notediv).find("p").html().trim() == "") {
+            $(notediv).removeAttr("id");
+          }
+    });
+
+    $( "#notes"+num ).toggle("slow");
+}
+
+$( ".listitem" ).on( "click", (shownotes))
+    
 $( ".notesbtn" ).on( "click", function() {
     let divs = document.getElementsByClassName("notesbtn");
     let len = divs.length;
@@ -43,14 +64,14 @@ shownotesicon();
 
 
 $(".rolldiebtn").on( "click", function() {
-    let die = document.getElementsByClassName("notesbtn").length;
+    let die = document.getElementsByClassName("listitem").length;
         
     let result = (Math.floor(Math.random() * die) + 1);
     let resultspan = $("#rollresult");
     $(resultspan).html(result);
     if (resultspan != ""){
         $("#rollresultdiv").css("display", "flex");
-        $(".notesbtn").css("background-color", "");
+        $(".listitem").css("background-color", "");
         $("#notesbtn"+result).css("background-color", "yellow");
     }
 });
