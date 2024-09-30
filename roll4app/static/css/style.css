@@ -71,24 +71,24 @@ input, textarea {
     font-family: "Lilita One", Impact, sans-serif;
 }
 
-#loginpage {
+#loginpage, #registerpage {
     background-color: #212121;
     color: white;
 }
 
-#loginpage input {
+#loginpage input, #registerpage input {
     background-color: #efebe9;
     color: #212121;
     border-radius: 16px;
     text-align: center;
 }
 
-#loginpage input::placeholder {
+#loginpage input::placeholder, #registerpage input::placeholder {
     color: #9e9e9e;
     opacity: 1; /* Firefox */
 }
   
-#loginpage input::-ms-input-placeholder { /* Edge 12 -18 */
+#loginpage input::-ms-input-placeholder, #registerpage input::-ms-input-placeholder { /* Edge 12 -18 */
     color: #9e9e9e;
 }
 
@@ -117,7 +117,7 @@ input, textarea {
     width: 40%;
 }
 
-#logincontainer {
+#logincontainer, #registercontainer {
     top: 57%;
 }
 
