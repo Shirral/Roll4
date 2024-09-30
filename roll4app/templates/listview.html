@@ -18,7 +18,7 @@
 
     {% for key, val in userlist['ListItems'].items() %}
         <div class="noteswrapper">
-            <div class="cardimport notesbtn row" id="notesbtn{{key}}">
+            <div class="cardimport listitem row" id="notesbtn{{key}}">
                 <div class="col s12 notestxt">
                     <span id="number{{key}}">{{key}}</span>{{". " + val}}
                     <i class="material-icons right"></i>
