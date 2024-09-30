@@ -263,6 +263,143 @@ input, textarea {
     text-decoration: none;
 }
 
+[type="radio"]:not(:checked) + span,
+[type="radio"]:checked + span {
+    margin: 1em 2em;
+    height: 50px;
+    width: 50px;
+}
+
+[type="radio"] + span:before,
+[type="radio"] + span:after {
+    width: 50px;
+    height: 50px;
+}
+
+.category-red:not(:checked)+span:before {
+    background-color: #ef5350;
+}
+.category-red:checked+span:after {
+    background-color: #ef5350;
+    border: #212121 solid 3px;
+}
+
+.category-pink:not(:checked)+span:before {
+    background-color: #ec407a;
+}
+.category-pink:checked+span:after {
+    background-color: #ec407a;
+    border: #212121 solid 3px;
+}
+
+.category-purple:not(:checked)+span:before {
+    background-color: #ab47bc;
+}
+.category-purple:checked+span:after {
+    background-color: #ab47bc;
+    border: #212121 solid 3px;
+}
+
+.category-blue:not(:checked)+span:before {
+    background-color: #42a5f5;
+}
+.category-blue:checked+span:after {
+    background-color: #42a5f5;
+    border: #212121 solid 3px;
+}
+
+.category-cyan:not(:checked)+span:before {
+    background-color: #26c6da;
+}
+.category-cyan:checked+span:after {
+    background-color: #26c6da;
+    border: #212121 solid 3px;
+}
+
+.category-teal:not(:checked)+span:before {
+    background-color: #26a69a;
+}
+.category-teal:checked+span:after {
+    background-color: #26a69a;
+    border: #212121 solid 3px;
+}
+
+.category-green:not(:checked)+span:before {
+    background-color: #7bbb66;
+}
+.category-green:checked+span:after {
+    background-color: #7bbb66;
+    border: #212121 solid 3px;
+}
+
+.category-lime:not(:checked)+span:before {
+    background-color: #d4e157;
+}
+.category-lime:checked+span:after {
+    background-color: #d4e157;
+    border: #212121 solid 3px;
+}
+
+.category-yellow:not(:checked)+span:before {
+    background-color: #ffee58;
+}
+.category-yellow:checked+span:after {
+    background-color: #ffee58;
+    border: #212121 solid 3px;
+}
+
+.category-orange:not(:checked)+span:before {
+    background-color: #ffa726;
+}
+.category-orange:checked+span:after {
+    background-color: #ffa726;
+    border: #212121 solid 3px;
+}
+
+.category-brown:not(:checked)+span:before {
+    background-color: #8d6e63;
+}
+.category-brown:checked+span:after {
+    background-color: #8d6e63;
+    border: #212121 solid 3px;
+}
+
+
+.category-blue-grey:not(:checked)+span:before {
+    background-color: #bdbdbd;
+}
+.category-blue-grey:checked+span:after {
+    background-color: #bdbdbd;
+    border: #212121 solid 3px;
+}
+
+
+/* --------------------------------------------------------------------------------------------------------------------- */
+
+/* .radiocontainer {
+    cursor: pointer;
+} */
+
+/* Hide the browser's default radio button */
+/* .radiocontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+} */
+
+/* Create a custom radio button */
+/* .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 50px;
+    background-color: #eee;
+    border-radius: 50%;
+} */
+
 @media only screen and (min-width: 993px) {
     nav .brand-logo {
       left: 18px;
