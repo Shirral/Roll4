@@ -6,7 +6,7 @@ from roll4app import db
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(30), nullable=False, unique=True)
-    user_password = db.Column(db.String(30), nullable=False)
+    user_password = db.Column(db.String(300), nullable=False)
     darkmode = db.Column(db.Boolean, default=False, nullable=False)
 
     def __repr__(self):
