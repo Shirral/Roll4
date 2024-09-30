@@ -63,7 +63,7 @@ input, textarea {
 
     &:hover {
         background-color: #efebe9;
-        color: #dd2c00;
+        color: #d84315;
     }
 }
 
@@ -165,16 +165,21 @@ input, textarea {
 }
 
 .deletebtn {
-    background-color: crimson;
+    background-color: none;
+    border: 1px solid black;
 }
 
 .newbutton {
     width: fit-content;
     font-size: larger;
     font-weight: 600;
-    background-color: rgb(252, 255, 207);
+    background-color: #d84315;
     text-decoration: none;
     text-align: center;
+}
+
+.newbutton a {
+    color: white;
 }
 
 #newlistcardbutton a {
