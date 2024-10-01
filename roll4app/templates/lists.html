@@ -27,7 +27,8 @@
             {% endfor %}
             " id="{{list._id}}">
                 <a href="{{ url_for('listview', listid=list._id) }}" class="main-link">
-                    {{ list.ListName }}<br>
+                    {{ list.ListName }}
+                    <span class="right">[{{list.Category}}]</span>
                 </a>
             </div>
         {% endfor %}
@@ -44,7 +45,8 @@
             {% endfor %}
             " id="{{list._id}}">
                 <a href="{{ url_for('listview', listid=list._id) }}" class="main-link">
-                    {{ list.ListName }}<br>
+                    {{ list.ListName }}
+                    <span class="right">[{{list.Category}}]</span>
                 </a>
             </div>
         {% endfor %}
@@ -61,7 +63,8 @@
             {% endfor %}
             " id="{{list._id}}">
                 <a href="{{ url_for('listview', listid=list._id) }}" class="main-link">
-                    {{ list.ListName }}<br>
+                    {{ list.ListName }}
+                    <span class="right">[{{list.Category}}]</span>
                 </a>
             </div>
         {% endfor %}
@@ -78,7 +81,8 @@
             {% endfor %}
             " id="{{list._id}}">
                 <a href="{{ url_for('listview', listid=list._id) }}" class="main-link">
-                    {{ list.ListName }}<br>
+                    {{ list.ListName }}
+                    <span class="right">[{{list.Category}}]</span>
                 </a>
             </div>
         {% endfor %}
@@ -95,7 +99,8 @@
             {% endfor %}
             " id="{{list._id}}">
                 <a href="{{ url_for('listview', listid=list._id) }}" class="main-link">
-                    {{ list.ListName }}<br>
+                    {{ list.ListName }}
+                    <span class="right">[{{list.Category}}]</span>
                 </a>
             </div>
         {% endfor %}
@@ -111,7 +116,8 @@
                 {% endif %}
             {% endfor %}" id="{{list._id}}">
                 <a href="{{ url_for('listview', listid=list._id) }}" class="main-link">
-                    {{ list.ListName }}<br>
+                    {{ list.ListName }}
+                    <span class="right">[{{list.Category}}]</span>
                 </a>
             </div>
         {% endfor %}
