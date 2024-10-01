@@ -82,8 +82,19 @@ function checkdarkmode() {
     if (darkmodecheck == "True"){
         $("body").removeClass("brown lighten-5").addClass("grey darken-3 white-text");
         $("#profiledelete").removeClass("text-darken-3").addClass("text-lighten-1");
-      }
+        $(".cardimport").not(".colour, .newbutton").css("background-color", "#757575");
+        $("#categoryp").css("color", "#ff7043");
+    }
 };
 
 checkdarkmode();
 
+$(document).ready(function() {
+    darkmodecheck = $(".darkmodecheck").html().trim();
+    if (darkmodecheck == "True"){
+        $(".select-wrapper .select-dropdown").css("color", "white");
+        $(".select-wrapper .caret").css("fill", "white");
+        $(".select-wrapper ul").css("background-color", "#757575");
+        $(".dropdown-content li>a, .dropdown-content li>span").css("color", "white");
+    }
+});
