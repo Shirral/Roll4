@@ -72,7 +72,7 @@
                     </label>
         
                     <label class="radiocontainer">
-                        <input name="colour" type="radio" id="category-grey" value="grey" class="category-grey">
+                        <input name="colour" type="radio" id="category-blue-grey" value="grey" class="category-grey">
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -80,10 +80,9 @@
         </div>
 
         <div class="row center">
-            <button class="btn waves-effect waves-light">
-                <a href="{{url_for('categories')}}">Cancel
-                <i class="material-icons right">close</i></a>
-            </button>
+            <a href="{{url_for('categories')}}" class="btn waves-effect waves-light">Cancel
+                <i class="material-icons right">close</i>
+            </a>
             <button class="btn waves-effect waves-light" type="submit" name="action">Add category
                 <i class="material-icons right">send</i>
             </button>
