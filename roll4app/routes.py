@@ -262,6 +262,7 @@ def addcategory():
             newcategory = {
                 "CategoryName": request.form.get("category_name"),
                 "UserName": session['currentuser'],
+                "CategoryColour": request.form.get("colour")
             }
 
             mongo.db.Categories.insert_one(newcategory)
