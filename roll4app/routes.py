@@ -296,10 +296,12 @@ def editcategory(categoryid):
         
         if request.method == "POST":
 
-            mongo.db.Categories.update_one(
-                {"_id": ObjectId(categoryid)},
-                {"$set": {"CategoryName": request.form.get("category_name")}}
-            )
+            editedcategory = {
+                "CategoryName": request.form.get("category_name"),
+                "CategoryColour": request.form.get("colour")
+            }
+
+            mongo.db.Categories.update_one({"_id": ObjectId(categoryid)}, {"$set": editedcategory})
             
             flash("Category Updated!")
             return redirect(url_for("categories"))

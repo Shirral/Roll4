@@ -9,10 +9,88 @@
             <div class="col s2"></div>
             <div class="input-field col s8">
                 <input placeholder="Name the new category..." value="{{category.CategoryName}}" id="category_name" name="category_name" type="text" minlength="3" maxlength="30" class="center validate" required>
-                <label for="category_name">Category name:</label>
             </div>
             <div class="col s2"></div>
         </div>
+
+        <div class="row center">
+            <div class="container">
+                <div class="row">
+                    <label class="radiocontainer">
+                        <input name="colour" type="radio" id="category-red" value="red" class="category-red" {% if
+                            category.CategoryColour=="red" %} checked {% endif %}>
+                        <span class="checkmark"></span>
+                    </label>
+        
+                    <label class="radiocontainer">
+                        <input name="colour" type="radio" id="category-pink" value="pink" class="category-pink" {% if
+                            category.CategoryColour=="pink" %} checked {% endif %}>
+                        <span class="checkmark"></span>
+                    </label>
+        
+                    <label class="radiocontainer">
+                        <input name="colour" type="radio" id="category-purple" value="purple" class="category-purple" {% if
+                            category.CategoryColour=="purple" %} checked {% endif %}>
+                        <span class="checkmark"></span>
+                    </label>
+        
+                    <label class="radiocontainer">
+                        <input name="colour" type="radio" id="category-blue" value="blue" class="category-blue" {% if
+                            category.CategoryColour=="blue" %} checked {% endif %}>
+                        <span class="checkmark"></span>
+                    </label>
+        
+                    <label class="radiocontainer">
+                        <input name="colour" type="radio" id="category-cyan" value="cyan" class="category-cyan" {% if
+                            category.CategoryColour=="cyan" %} checked {% endif %}>
+                        <span class="checkmark"></span>
+                    </label>
+        
+                    <label class="radiocontainer">
+                        <input name="colour" type="radio" id="category-teal" value="teal" class="category-teal" {% if
+                            category.CategoryColour=="teal" %} checked {% endif %}>
+                        <span class="checkmark"></span>
+                    </label>
+        
+                    <label class="radiocontainer">
+                        <input name="colour" type="radio" id="category-green" value="green" class="category-green" {% if
+                            category.CategoryColour=="green" %} checked {% endif %}>
+                        <span class="checkmark"></span>
+                    </label>
+        
+                    <label class="radiocontainer">
+                        <input name="colour" type="radio" id="category-lime" value="lime" class="category-lime" {% if
+                            category.CategoryColour=="lime" %} checked {% endif %}>
+                        <span class="checkmark"></span>
+                    </label>
+        
+                    <label class="radiocontainer">
+                        <input name="colour" type="radio" id="category-yellow" value="yellow" class="category-yellow" {% if
+                            category.CategoryColour=="yellow" %} checked {% endif %}>
+                        <span class="checkmark"></span>
+                    </label>
+        
+                    <label class="radiocontainer">
+                        <input name="colour" type="radio" id="category-orange" value="orange" class="category-orange" {% if
+                            category.CategoryColour=="orange" %} checked {% endif %}>
+                        <span class="checkmark"></span>
+                    </label>
+        
+                    <label class="radiocontainer">
+                        <input name="colour" type="radio" id="category-brown" value="brown" class="category-brown" {% if
+                            category.CategoryColour=="brown" %} checked {% endif %}>
+                        <span class="checkmark"></span>
+                    </label>
+        
+                    <label class="radiocontainer">
+                        <input name="colour" type="radio" id="category-blue-grey" value="grey" class="category-blue-grey" {% if
+                            category.CategoryColour=="grey" %} checked {% endif %}>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
         <div class="row center">
             <button class="btn waves-effect waves-light">
                 <a href="{{url_for('categories')}}">Cancel
