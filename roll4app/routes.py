@@ -17,12 +17,13 @@ def lists():
         d6 = list(mongo.db.Lists.find({"Die": 6, "UserName": session["currentuser"]}))
         d4 = list(mongo.db.Lists.find({"Die": 4, "UserName": session["currentuser"]}))
 
+        categories = mongo.db.Categories.find()
         darkmode = Users.query.filter_by(user_name=session["currentuser"]).first().darkmode
 
         if "currentuser" in session:
-            return render_template("lists.html", sessioncookie = True, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4, darkmode=darkmode)
+            return render_template("lists.html", sessioncookie = True, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4, darkmode=darkmode, categories=categories)
         else:
-            return render_template("lists.html", sessioncookie = False, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4, darkmode=darkmode)
+            return render_template("lists.html", sessioncookie = False, d20=d20, d12=d12, d10=d10, d8=d8, d6=d6, d4=d4, darkmode=darkmode, categories=categories)
 
     return redirect(url_for("notloggedin"))
 

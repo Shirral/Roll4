@@ -161,6 +161,11 @@ input, textarea {
     margin: 30px;
 }
 
+.cardimport a {
+    color: #000;
+    font-weight: 700;
+}
+
 .main-link {
     padding: 1rem 1.5rem;
     cursor: pointer;
@@ -276,6 +281,9 @@ input, textarea {
     height: 50px;
 }
 
+.c-red{
+    background-color: #ef5350;
+}
 .category-red:not(:checked)+span:before {
     background-color: #ef5350;
 }
@@ -284,6 +292,9 @@ input, textarea {
     border: #212121 solid 3px;
 }
 
+.c-pink{
+    background-color: #ec407a;
+}
 .category-pink:not(:checked)+span:before {
     background-color: #ec407a;
 }
@@ -292,6 +303,9 @@ input, textarea {
     border: #212121 solid 3px;
 }
 
+.c-purple{
+    background-color: #ab47bc;
+}
 .category-purple:not(:checked)+span:before {
     background-color: #ab47bc;
 }
@@ -300,6 +314,9 @@ input, textarea {
     border: #212121 solid 3px;
 }
 
+.c-blue{
+    background-color: #42a5f5;
+}
 .category-blue:not(:checked)+span:before {
     background-color: #42a5f5;
 }
@@ -308,6 +325,9 @@ input, textarea {
     border: #212121 solid 3px;
 }
 
+.c-cyan{
+    background-color: #26c6da;
+}
 .category-cyan:not(:checked)+span:before {
     background-color: #26c6da;
 }
@@ -316,6 +336,9 @@ input, textarea {
     border: #212121 solid 3px;
 }
 
+.c-teal{
+    background-color: #26a69a;
+}
 .category-teal:not(:checked)+span:before {
     background-color: #26a69a;
 }
@@ -324,6 +347,9 @@ input, textarea {
     border: #212121 solid 3px;
 }
 
+.c-green{
+    background-color: #7bbb66;
+}
 .category-green:not(:checked)+span:before {
     background-color: #7bbb66;
 }
@@ -332,6 +358,9 @@ input, textarea {
     border: #212121 solid 3px;
 }
 
+.c-lime{
+    background-color: #d4e157;
+}
 .category-lime:not(:checked)+span:before {
     background-color: #d4e157;
 }
@@ -340,6 +369,9 @@ input, textarea {
     border: #212121 solid 3px;
 }
 
+.c-yellow{
+    background-color: #ffee58;
+}
 .category-yellow:not(:checked)+span:before {
     background-color: #ffee58;
 }
@@ -348,6 +380,9 @@ input, textarea {
     border: #212121 solid 3px;
 }
 
+.c-orange{
+    background-color: #ffa726;
+}
 .category-orange:not(:checked)+span:before {
     background-color: #ffa726;
 }
@@ -356,6 +391,9 @@ input, textarea {
     border: #212121 solid 3px;
 }
 
+.c-brown{
+    background-color: #8d6e63;
+}
 .category-brown:not(:checked)+span:before {
     background-color: #8d6e63;
 }
@@ -364,41 +402,23 @@ input, textarea {
     border: #212121 solid 3px;
 }
 
-
-.category-blue-grey:not(:checked)+span:before {
+.c-grey{
     background-color: #bdbdbd;
 }
-.category-blue-grey:checked+span:after {
+.category-grey:not(:checked)+span:before {
+    background-color: #bdbdbd;
+}
+.category-grey:checked+span:after {
     background-color: #bdbdbd;
     border: #212121 solid 3px;
 }
 
 
+
+
 /* --------------------------------------------------------------------------------------------------------------------- */
 
-/* .radiocontainer {
-    cursor: pointer;
-} */
 
-/* Hide the browser's default radio button */
-/* .radiocontainer input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-} */
-
-/* Create a custom radio button */
-/* .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 50px;
-    width: 50px;
-    background-color: #eee;
-    border-radius: 50%;
-} */
 
 @media only screen and (min-width: 993px) {
     nav .brand-logo {
