@@ -17,7 +17,7 @@ def lists():
         d6 = list(mongo.db.Lists.find({"Die": 6, "UserName": session["currentuser"]}))
         d4 = list(mongo.db.Lists.find({"Die": 4, "UserName": session["currentuser"]}))
 
-        categories = mongo.db.Categories.find()
+        categories = list(mongo.db.Categories.find())
         darkmode = Users.query.filter_by(user_name=session["currentuser"]).first().darkmode
 
         if "currentuser" in session:
