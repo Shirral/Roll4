@@ -413,6 +413,14 @@ input, textarea {
     border: #212121 solid 3px;
 }
 
+span.checkmark.darkmode:before {
+    border: #e0e0e0 solid 2px !important;
+}
+
+span.checkmark.darkmode:after {
+    border: white solid 3.5px;
+}
+
 
 
 

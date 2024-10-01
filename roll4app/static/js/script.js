@@ -84,6 +84,12 @@ function checkdarkmode() {
         $("#profiledelete").removeClass("text-darken-3").addClass("text-lighten-1");
         $(".cardimport").not(".colour, .newbutton").css("background-color", "#757575");
         $("#categoryp").css("color", "#ff7043");
+        $("#mainbody input").addClass("white-text");
+        $("#mainbody textarea").addClass("white-text");
+
+       
+        
+
     }
 };
 
@@ -96,5 +102,6 @@ $(document).ready(function() {
         $(".select-wrapper .caret").css("fill", "white");
         $(".select-wrapper ul").css("background-color", "#757575");
         $(".dropdown-content li>a, .dropdown-content li>span").css("color", "white");
+        $("span.checkmark").toggleClass("darkmode");
     }
 });
