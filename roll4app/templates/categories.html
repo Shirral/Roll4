@@ -14,7 +14,7 @@
 
     {% for category in categories %}
         {% if session.currentuser|lower == category.UserName|lower %}
-            <div class="cardimport cardactive">
+            <div class="cardimport cardactive  {{category.CategoryColour}}">
                 <a href="{{url_for('editcategory', categoryid=category._id)}}" class="main-link">{{category.CategoryName}}</a>
             </div>
         {% endif %}
