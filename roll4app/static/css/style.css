@@ -224,6 +224,10 @@ input, textarea {
     margin: 0 10%;
 }
 
+.notestxt {
+    font-weight: 700;
+}
+
 .itemnum {
     font-size: x-large;
 }

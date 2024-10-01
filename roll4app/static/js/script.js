@@ -68,17 +68,24 @@ $(".rolldiebtn").on( "click", function() {
         
     let result = (Math.floor(Math.random() * die) + 1);
     let resultspan = $("#rollresult");
+    let darkmodecheck = $(".darkmodecheck").html().trim();
     $(resultspan).html(result);
     if (resultspan != ""){
         $("#rollresultdiv").css("display", "flex");
-        $(".listitem").css("background-color", "");
-        $("#notesbtn"+result).css("background-color", "yellow");
+        if (darkmodecheck == "True"){
+            $(".listitem").css("background-color", "#757575");
+            $("#notesbtn"+result).css("background-color", "#d84315");
+        } else {
+            $(".listitem").css("background-color", "");
+            $("#notesbtn"+result).css("background-color", "#ff7043 ");
+        }
+        
     }
 });
 
 
 function checkdarkmode() {
-    darkmodecheck = $(".darkmodecheck").html().trim();
+    let darkmodecheck = $(".darkmodecheck").html().trim();
     if (darkmodecheck == "True"){
         $("body").removeClass("brown lighten-5").addClass("grey darken-3 white-text");
         $("#profiledelete").removeClass("text-darken-3").addClass("text-lighten-1");
