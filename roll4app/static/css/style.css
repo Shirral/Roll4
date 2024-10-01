@@ -148,6 +148,14 @@ input, textarea {
     width: 1.9em;
 }
 
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #ff7043;
+}
+
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #d84315;
+}
+
 /* card style borrowed from https://css-tricks.com/block-links-the-search-for-a-perfect-solution/ and edited */
 .cardimport {
     background: white;
