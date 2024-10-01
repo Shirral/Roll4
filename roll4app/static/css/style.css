@@ -52,6 +52,17 @@ input, textarea {
     font-size: 30px;
 }
 
+.modal {
+    border-radius: 16px;
+    background-color: #efebe9;
+    color: #212121;
+}
+
+.modal .modal-footer {
+    background-color: #efebe9;
+    font-weight: 700;
+}
+
 .page-footer {
     padding: 0;
 }

@@ -94,9 +94,6 @@ function checkdarkmode() {
         $("#mainbody input").addClass("white-text");
         $("#mainbody textarea").addClass("white-text");
 
-       
-        
-
     }
 };
 
