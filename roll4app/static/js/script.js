@@ -81,6 +81,19 @@ $(".rolldiebtn").on( "click", function() {
         }
         
     }
+
+    let data = {
+        "rollResult": result,
+        "listID": $("#listidhere").html().trim()
+    };
+
+    fetch("/saveroll", {
+        "method": "POST",
+        "headers": {"Content-Type": "application/json"},
+        "body": JSON.stringify(data),
+    }).then(response => response.json()).then(data => {
+        console.log("Roll saved:", data);
+    })
 });
 
 

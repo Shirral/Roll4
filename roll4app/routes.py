@@ -119,7 +119,8 @@ def addlist(die):
                 "Category": request.form.get("category"),
                 "UserName": session['currentuser'],
                 "ListItems": {},
-                "ListItemNotes": {}
+                "ListItemNotes": {},
+                "RollHistory": []
             }
 
             num = 1
@@ -344,9 +345,31 @@ def deleteuser(username):
 
     return redirect(url_for("notloggedin"))
 
+
 @app.route("/notloggedin")
 def notloggedin():
     if "currentuser" in session:
         return redirect(url_for("lists"))
     
     return render_template("notloggedin.html")
+
+
+@app.route("/saveroll", methods=["GET", "POST"])
+def saveroll():
+    if "currentuser" not in session:
+        return redirect(url_for("notloggedin"))
+
+    if request.method == "POST":
+                json = request.get_json()
+                listid = json.get("listID")
+                savedroll = json.get("rollResult")
+
+                userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
+
+                if session["currentuser"].lower() != userlist["UserName"].lower():
+                    flash("Oops! You were taken some strange places. It's okay, we've got you back here now!")
+                    return redirect(url_for("lists"))
+                
+                mongo.db.Lists.update_one({"_id": ObjectId(listid)}, {"$push": {"RollHistory": savedroll}})
+                print("Roll saved!")
+
