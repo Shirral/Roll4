@@ -64,22 +64,49 @@ shownotesicon();
 
 
 $(".rolldiebtn").on( "click", function() {
+    
     let die = document.getElementsByClassName("listitem").length;
-        
-    let result = (Math.floor(Math.random() * die) + 1);
+
+    function dieroll(){
+        return Math.floor(Math.random() * die) + 1;
+    }        
+    let result = dieroll();
+
+    //if task mode is on...
+    let rolled = $(".rolled"); //objects
+    let rollednums = []; //list of just nums
+
+    rolled.each(function() {
+        let num = $(this).find("span").html().trim();
+        rollednums.push(num);
+    });
+
+    console.log(rollednums);
+
+    if (rolled.length != die){
+        while (rollednums.includes(result.toString())) {
+            result = dieroll();
+        }
+    }
+    //end of taskmode block
+
     let resultspan = $("#rollresult");
     let darkmodecheck = $(".darkmodecheck").html().trim();
+
     $(resultspan).html(result);
     if (resultspan != ""){
         $("#rollresultdiv").css("display", "flex");
         if (darkmodecheck == "True"){
             $(".listitem").css("background-color", "#757575");
-            $("#notesbtn"+result).css("background-color", "#d84315");
+            $(".listitem").removeClass("white-text");
+            $("#notesbtn"+result).addClass("rolled");
+            $("#notesbtn"+result).css("background-color", "#d84315").addClass("white-text");
         } else {
             $(".listitem").css("background-color", "");
-            $("#notesbtn"+result).css("background-color", "#ff7043 ");
+            $(".listitem").removeClass("black-text");
+            $("#notesbtn"+result).addClass("rolled");
+            $("#notesbtn"+result).css("background-color", "#ff7043").addClass("black-text");
         }
-        
     }
 
     let data = {
