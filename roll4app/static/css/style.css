@@ -287,6 +287,10 @@ input, textarea {
     font-weight: 700;
 }
 
+.material-tooltip {
+    border-radius: 10px;
+}
+
 .nodecor {
     text-decoration: none;
 }

@@ -33,7 +33,7 @@
     {% endfor %}
 
     <form class="row flexbox" method="POST" action="">
-        <p class="col" id="switchp">Task mode:</p>
+        <p class="col" id="switchp"><i class="material-icons left tooltipped" data-position="top" data-tooltip="Never roll the same thing twice. Allows you to tick things off your list. Refreshes when all the numbers have been rolled.">help</i>Task mode:</p>
         <div class="switch col"> 
             <label class="">
                 Off
@@ -74,7 +74,7 @@
     <div class="customhide" id="listidhere">
         {{userlist['_id']}}
     </div>
-    <div class="" id="taskmodehere">
+    <div class="customhide" id="taskmodehere">
         {{userlist['TaskMode']}}
     </div>
 
