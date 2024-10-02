@@ -66,29 +66,36 @@ shownotesicon();
 $(".rolldiebtn").on( "click", function() {
     
     let die = document.getElementsByClassName("listitem").length;
+    let taskmode = $("#taskmodehere").html().trim();
+    let listreset;
 
     function dieroll(){
         return Math.floor(Math.random() * die) + 1;
     }        
     let result = dieroll();
 
-    //if task mode is on...
-    let rolled = $(".rolled"); //objects
-    let rollednums = []; //list of just nums
+    if (taskmode == "True"){
+        //if task mode is on...
+        let rolled = $(".rolled"); //objects
+        let rollednums = []; //list of just nums
 
-    rolled.each(function() {
-        let num = $(this).find("span").html().trim();
-        rollednums.push(num);
-    });
+        rolled.each(function() {
+            let num = $(this).find("span").html().trim();
+            rollednums.push(num);
+        });
 
-    console.log(rollednums);
+        console.log(rollednums);
 
-    if (rolled.length != die){
-        while (rollednums.includes(result.toString())) {
-            result = dieroll();
+        if (rolled.length != die){
+            while (rollednums.includes(result.toString())) {
+                result = dieroll();
+            }
+        } else {
+            listreset = "reset";
+            $(".listitem").removeClass("rolled");
         }
+        //end of taskmode block
     }
-    //end of taskmode block
 
     let resultspan = $("#rollresult");
     let darkmodecheck = $(".darkmodecheck").html().trim();
@@ -99,28 +106,35 @@ $(".rolldiebtn").on( "click", function() {
         if (darkmodecheck == "True"){
             $(".listitem").css("background-color", "#757575");
             $(".listitem").removeClass("white-text");
-            $("#notesbtn"+result).addClass("rolled");
+            if (taskmode == "True"){
+                $("#notesbtn"+result).addClass("rolled");
+            }
             $("#notesbtn"+result).css("background-color", "#d84315").addClass("white-text");
         } else {
             $(".listitem").css("background-color", "");
             $(".listitem").removeClass("black-text");
-            $("#notesbtn"+result).addClass("rolled");
+            if (taskmode == "True"){
+                $("#notesbtn"+result).addClass("rolled");
+            }
             $("#notesbtn"+result).css("background-color", "#ff7043").addClass("black-text");
         }
     }
 
-    let data = {
-        "rollResult": result,
-        "listID": $("#listidhere").html().trim()
-    };
+    if (taskmode == "True"){
+        let data = {
+            "rollResult": result,
+            "listID": $("#listidhere").html().trim(),
+            "listreset": listreset
+        };
 
-    fetch("/saveroll", {
-        "method": "POST",
-        "headers": {"Content-Type": "application/json"},
-        "body": JSON.stringify(data),
-    }).then(response => response.json()).then(data => {
-        console.log("Roll saved:", data);
-    })
+        fetch("/saveroll", {
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "body": JSON.stringify(data),
+        }).then(response => response.json()).then(data => {
+            console.log("Roll saved:", data);
+        })
+    }
 });
 
 

@@ -120,7 +120,8 @@ def addlist(die):
                 "UserName": session['currentuser'],
                 "ListItems": {},
                 "ListItemNotes": {},
-                "RollHistory": []
+                "RollHistory": [],
+                "TaskMode": False
             }
 
             num = 1
@@ -229,6 +230,15 @@ def listview(listid):
         if session["currentuser"].lower() != userlist["UserName"].lower():
             flash("Oops! You were taken some strange places. It's okay, we've got you back here now!")
             return redirect(url_for("lists"))
+
+        if request.method == "POST":
+            taskmode = True if request.form.get("taskmode") else False
+
+            if taskmode == False:
+                mongo.db.Lists.update_one({"_id": ObjectId(listid)}, {"$set": {"RollHistory": []}})
+
+            mongo.db.Lists.update_one({"_id": ObjectId(listid)}, {"$set": {"TaskMode": taskmode}})
+            return redirect(url_for("listview", listid = listid))
 
         return render_template("listview.html", listid = listid, userlist=userlist, darkmode=darkmode)
 
@@ -363,6 +373,7 @@ def saveroll():
                 json = request.get_json()
                 listid = json.get("listID")
                 savedroll = json.get("rollResult")
+                listreset = json.get("listreset")
 
                 userlist = mongo.db.Lists.find_one({"_id": ObjectId(listid)})
 
@@ -370,6 +381,10 @@ def saveroll():
                     flash("Oops! You were taken some strange places. It's okay, we've got you back here now!")
                     return redirect(url_for("lists"))
                 
+                
+                if listreset == "reset":
+                    mongo.db.Lists.update_one({"_id": ObjectId(listid)}, {"$set": {"RollHistory": []}})
+                print(listreset)
                 mongo.db.Lists.update_one({"_id": ObjectId(listid)}, {"$push": {"RollHistory": savedroll}})
-                print("Roll saved!")
 
+                print("Roll saved!")

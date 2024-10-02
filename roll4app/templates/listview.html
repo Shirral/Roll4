@@ -32,6 +32,22 @@
         </div>
     {% endfor %}
 
+    <form class="row flexbox" method="POST" action="">
+        <p class="col" id="switchp">Task mode:</p>
+        <div class="switch col"> 
+            <label class="">
+                Off
+                {% if userlist.TaskMode == True %}
+                    <input type="checkbox" id="taskmode" name="taskmode" checked onchange="this.form.submit()">
+                {% else %}
+                    <input type="checkbox" id="taskmode" name="taskmode" onchange="this.form.submit()">
+                {% endif %}
+                <span class="lever"></span>
+                On
+            </label>
+        </div>
+    </form>
+
     <div class="row center">
         <a href="{{url_for('lists')}}" class="btn waves-effect waves-light">Back
             <i class="material-icons left">chevron_left</i>
@@ -57,6 +73,9 @@
 
     <div class="customhide" id="listidhere">
         {{userlist['_id']}}
+    </div>
+    <div class="" id="taskmodehere">
+        {{userlist['TaskMode']}}
     </div>
 
 {% endblock %}
