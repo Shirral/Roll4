@@ -251,6 +251,7 @@ input, textarea {
 .rolldiebtn {
     height: fit-content;
     cursor: pointer;
+    font-weight: 700;
 }
 
 .listviewdie {

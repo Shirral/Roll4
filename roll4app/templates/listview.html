@@ -7,7 +7,11 @@
     <div class="flexbox">
         <div class="row valign-wrapper nobottommargin rolldiebtn">
             <div class="col"><p>ROLL</p></div>
-            <div class="col"><img src="https://static-00.iconduck.com/assets.00/game-die-emoji-1024x1024-i44ka7eg.png" class="listviewdie"></div>
+            {% if darkmode %}
+                <div class="col"><img src="{{url_for('static', filename='images/d' ~ userlist.Die ~ 'white.png')}}" class="listviewdie"></div>
+            {% else %}
+                <div class="col"><img src="{{url_for('static', filename='images/d' ~ userlist.Die ~ '.png')}}" class="listviewdie"></div>
+            {% endif %}
             <div class="col"><p>DIE!</p></div>
         </div>
     </div>
