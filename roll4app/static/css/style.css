@@ -486,6 +486,40 @@ span.checkmark.darkmode:after {
     }
 }
 
+@media only screen and (max-width: 1000px) {
+    #homepageimg {
+      display: none;
+    }
+
+    #homepageimg2 {
+        display: block;
+        width: 30%;
+        max-width: 200px;
+        margin: 2rem auto;
+    }
+
+    .row .col.s9 {
+        width: 100%;
+        text-align: center;
+    }
+    
+    #homepagemain p {
+        font-size: medium;
+        margin: 0 auto;
+    }
+    
+    #homepageh1 {
+        font-size: 30px;
+        margin-bottom: 0.5em;
+        margin: 0 auto;
+    }
+    
+    #homepageh2 {
+        font-size: medium;
+        margin: 1em auto;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     #logincontainer {
       width: auto;

@@ -12,27 +12,30 @@
     
     <main id="homepagemain">
         <div class="row">
-            <div class="container col s8">
-                <div>
+            <div class="container col s9">
+                <div class="row">
                     <h2 id="homepageh2">Need a hand deciding what to watch at a movie night? Deciding what kind
                         of pizza to order? Or which chores to tackle first?</h2>
                     <h1 id="homepageh1"><span class="deep-orange-text text-darken-3">Welcome to Roll4!</span><br> We have you covered.</h1>
                 </div>
-                <div>
+                <div id="homepageimg2" class="customhide row">
+                    <img src="{{url_for('static', filename='images/d20shadowhite.png')}}" alt="">
+                </div>
+                <div class="row">
                     <p>Roll4 makes decisionmaking fun. Pick a die to make a list of things to choose from, add your options...
-                        and roll!</p>
+                        and roll!</p><br>
                     <p>Got a set of dice on you? Great! Rolling a physical die is the best. Just match the result with the
                         number of the option in your list! No physical dice? Don't fret - a virtual roll is just a tap, or a click,
                         away!
                     </p>
                 </div>
-                <div>
+                <div class="row">
                     <p><span>Ready to roll?</span> <a href="{{url_for('register')}}" class="bold700 deep-orange-text text-darken-3">Register</a> or <a
                             href="{{url_for('login')}}" class="bold700 deep-orange-text text-darken-3">Log in</a> to start!</p>
                 </div>
             </div>
-            <div class="container col s4">
-                <img src="{{url_for('static', filename='images/phone.png')}}" style="width: 65%; height: auto; margin-left: 3em;">
+            <div class="container col s3" id="homepageimg">
+                <img src="{{url_for('static', filename='images/phone.png')}}" style="width: 85%; height: auto; margin-left: 3em;">
             </div>
         </div>
     </main>
