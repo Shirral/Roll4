@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash, session
+from flask import render_template, request, redirect, url_for, flash, session, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
 from roll4app import app, mongo, db
@@ -388,7 +388,7 @@ def saveroll():
                 print(listreset)
                 mongo.db.Lists.update_one({"_id": ObjectId(listid)}, {"$push": {"RollHistory": savedroll}})
 
-                print("Roll saved!")
+                return jsonify({'message': 'Data received successfully', 'status': 'success'}), 200
 
 
 @app.errorhandler(404)
@@ -397,5 +397,5 @@ def error404(e):
 
 
 @app.errorhandler(500)
-def error500():
+def error500(e):
     return render_template("error500.html"), 500

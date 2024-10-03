@@ -45,7 +45,7 @@ The app also features a dark theme which can be toggledd off/on in the user prof
 
 The home page, login and register screens, as well as the error screens also use the dark palette, with a dark grey background, white text, and deep orange accents:
 
-![colour palette - home page, login and register screens, error screens](roll4app/static/readme/colours3.png "A colour palette for the home page, login and register screens and the error screens.")
+![colour palette - home page, login, register and not logged in screens, error screens](roll4app/static/readme/colours3.png "A colour palette for the home page, login, register and not logged in screens and the error screens.")
 
 The users are able to choose a colour for each of the categories they create to tell the lists belonging to them more easily. Twelve colours (11 from the Materialize's colour palette, one custom) have been picked for this purpose:
 
@@ -72,6 +72,7 @@ The wireframes made in the planning stage of the project work have guided me lat
 
 ![wireframes](roll4app/static/readme/wireframes.png "Initial wireframes.")
 ![wireframes](roll4app/static/readme/wireframes2.png "Initial wireframes.")
+![wireframes](roll4app/static/readme/wireframes3.png "Initial wireframes.")
 
 ## Features
 
@@ -83,6 +84,101 @@ The website responds to a wide variety of screen sizes. The Materialize framewor
 ![responsive design](roll4app/static/readme/responsive.png "Comparison of the homepage on different screen sizes.")
 ![responsive design](roll4app/static/readme/responsive.png "Comparison of the Add Category page on different screen sizes.")
 
+### Flash messaged
+
+All of the pages except for the **Homepage** and the **Not logged in page** have a dedicated section at the top of the page for displaying flash messages. The messages are used to greet the user after they register or log in, bid them goodbye when they log out or delete their profile, and confirm the successful execution of operations such as adding, editing, or deleting a list or a category.
+
+![flash message](roll4app/static/readme/flash.jpg "A flash message displayed after the user logs in.")
+
+### Navbar
+
+The Materialize navbar is present on all the main pages extended from base.html - the standard pages the user sees after they log in. It provides the user with a quick access to all the main functionalities of the app. The logo, shown on the left on larger screens and in the middle on the smaller screens, is a link leading the user to the **Lists** page. On the very right of the navbar there is a user icon, taking the user to their profile settings. The standard links are displayed on the right side on the bigger screens and in the side menu shown after tapping on the burger icon, displayed on the left of the navbar on smaller screens.
+
+![navbar](roll4app/static/readme/navbar.png "The navbar: mobile on the left, desktop on the right.")
+![expanded mobile navbar](roll4app/static/readme/navbar2.jpg "Mobile navbar expanded.")
+
 ### Homepage
 
-### Login/Register pages
+The simple homepage provides basic information about the application and how to use it. It invites the user to give it a try and presents them with links to **Login** and **Register** pages.
+
+![homepage](assets/readme/homepage.jpg "Homepage.")
+
+### Login/Register/Not logged in pages
+
+The Login page, Register page, and Not logged in page follow the same simple design. The **Not logged in** page shows up whenever the user is trying to access a page they need to be logged in to see (any pages other than the Homepage, Login/Register pages, and the error pages). It informs the user that they need to be logged in to view the page and prompts them to log in with a big button. 
+
+Log in and Register pages feature a form with two input elements - one for the username, the other for password - and a submit button. The forms are connected to a PostgreSQL database where the user data is being stored. The passwords are hashed with Werkzeug.
+There is also a link to the Register page on the Login page and a link to the Login page on the Register page in case a registered user accidentally ends up at the Register page, or an unregister user is brought to a Login page.
+
+![not logged in page, login page, register page](assets/readme/loginpages.png "The 'Not logged in', Login, and Register pages.")
+
+### Error pages
+
+The Error 404 and Error 500 pages follow the same simple design. They name the error, provide a brief description to the user, and suggest them an action to take - either going back to an existing page (Lists) in case of error 404, or trying to access the page again at a later time in case of error 500. They both offer the button with a link to help the user take that action. The button on the error 500 page brings the user to the page they were trying to access earlier.
+
+![error pages](assets/readme/errorpages.png "The error pages.")
+
+### Lists page
+
+The lists page is the main viewpoint of the app. This is where all of the lists created by the logged in user can be seen. The list information is pulled from a MondoDB database.
+
+![lists page](assets/readme/lists.jpg "The lists page.")
+
+* **New list button:** Positioned above all of the existing list, the button provides the user with a quick access to creating a new list. It leads to the **New list** page.
+
+![new list button](assets/readme/newlistbutton.jpg "New list button.")
+
+* **List display section:** Below the new list button, all of the lists created by the user are displayed in the form of cards. They are grouped by the die associated with them. Each die section is only going to be displayed if there is at least one list of its kind in them - empty sections will be hidden.
+
+If the lists are given categories, they will be dosplayed on the cards on the very right of them. Lists without a category assigned to them will display [None] as their category. If the category assigned to a list has been assigned a colour, the card will be of that colour.
+After clicking on a card, the user will be taken to its **List view** page.
+
+![list display section](assets/readme/listsection.jpg "List display section.")
+
+### New list page
+
+The New list page utilizes Materialize's grid system to align dice on the page. Here, the user picks the die that will determine the number of items in their list. Each option is represented with a picture of the die in question, its name, and a short description of what it represents. Clicking on each die (or their name, or description) leads the user to the **Add list** page of that specific type.
+
+![new list page](assets/readme/newlist.jpg "New list page.")
+
+### List view page
+
+This is where the user can access the details of their list. The list information is pulled from a MondoDB database.
+
+* **List name:** Displays the name given to the list by the user on the top of the page.
+
+* **List item cards:** Each list item is displayed in a card accompanied by its associated number and a notes icon. The icon is only shown on the list items that have any notes added to them. If they do, the list item card can be clicked on for the notes to be shown. Clicking on a card that does not have any notes attached to it does not do anything.
+
+![list item card](assets/readme/itemcard.gif "List item card.")
+
+* **Roll die functionality:** Allows the user to pick a random item from the list. The number rolled will be shown underneath the "DIE ROLL!" section and the corresponding card will be highlighted.
+
+![die rolling](assets/readme/rolldie.gif "Roll die functionality.")
+
+* **Task mode functionality:** Turns the list into a one-off-tasks kind of an affair. After turning the toggle on, every list item can only be rolled once; the items which have been rolled previously will become greyed out. The list refreshes once all of the list items have been rolled, or if the user turns task mode off and on again.
+
+![task mode](assets/readme/taskmode.gif "Task mode functionality.")
+
+* **Back, edit list, delete list buttons:** Let the user navigate to: Lists page, List edit page for the current list, and a modal confirming list deletion, respectively.
+
+![list view buttons](assets/readme/listviewbuttons.gif "Back, edit list, and delete list buttons.")
+
+* **List delete modal:** Asks the user if they are sure they want to delete the list. Shown when the user clicks on the "delete list" button; hidden when the user clicks away from it or chooses one of the options. When list deletion is chosen, the list gets deleted from the database.
+
+### Add/edit list pages
+
+The add/edit list pages look nearly identical. When creating a new list, all of the fields are empty; the placeholder is shown in the input field for the list name. In the edit list page, the information already submitted by the user will be shown; the fields will be pre-populated with the information about the list saved in the database.
+
+![add and edit list pages](assets/readme/addeditlist.png "Comparison of the add list and edit list pages.")
+
+### Categories page
+
+### Add/edit category pages
+
+### User profile page
+
+* **Dark mode toggle:** Allows the user to turn the dark mode on/off. The dark mode inverses the colour scheme of the main section of the app pages, providing ligh-coloured text, icons, and images on a dark background.
+
+![list display section](assets/readme/listsection.jpg "List display section.")
+![list display section](assets/readme/listsection.jpg "List display section.")
+
