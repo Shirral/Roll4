@@ -253,108 +253,7 @@ Although the project is a simple one and it's meant to stay that way not to over
 
 * **Allowing the user to change them their username and password, and to provide a recovery email address which could be used to recover forgotten password.**
 
-## Testing
-
-### Validator Testing
-
-* **HTML:**
-
-  The initial testing has revealed a `<span>` tag that was not closed properly and the lack of a space character between the "id" and "class" attributes in two divs of the end screen. This has been fixed.
-
-  The validator has also thrown a warning about the empty heading in the end screen that gets filled with the information on the player's victory or defeat through Javascript at the end of the game.
-
-  It has also shown errors relating to the missing `alt` attribute for the image tags. I initially didn't see the purpose of adding it - the project is a game that is relies on visual imagery and the speed of reaction; the images don't fill any of the functions that normally call for using the attribute in web projects. I have added the attribute in the end, as there is no harm in that and it might be useful to be able to tell the images apart in case they fail to load.
-
-  The second round of testing only showed the warning about the empty heading.
-
-  [W3C validator](https://validator.w3.org/) was used.
-
-* **CSS:**
-
-  The validator did not find any errors.
-  
-  Warnings were shown about the vendor extensions I used to ensure that the styling I'm using will work on all the major browsers: `-webkit-user-select`, `-ms-user-select`, `-ms-overflow-style` and `::-webkit-scrollbar`.
-
-  [W3C Jigsaw validator](https://jigsaw.w3.org/css-validator/) was used.
-
-* **JS:**
-
-  The validator has found one unnecessary semicolon at the end of a function definition. The semicolon was removed.
-
-  [JQuery Validator](https://www.utilities-online.info/jquery-validator) was used.
-
-* **Performance & best practices:**
-
-  While [Lighthouse](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk) was satisfied with the page load of the project (all of the statistics in the green zone, ranging between 90-100% on both desktop and mobile device evaluation), it was less impressed when I evaluated the project using its Timespan mode so that the whole project and its interactivity would be assessed. Best Practices were rated 8/8, but the Performance was rated 14/22 (yellow zone).
-
-  After I implemented some of the suggested changes (compressing the background images into the WebP format, adding the missing meta tag attribute), the latter went up to 17/22.
-
-### Manual testing: Features
-
-
-| Feature       | Expected behaviour | Action  | Result |
-| ------------- |--------------------| --------|--------|
-| *Responsive design* | When the project is viewed on different kinds of devices with different screen sizes, the design should remain clear and functional. The elements of the starting screen and end screen should resize to match the window size; the apples should generate on a smaller area on smaller screens, and be smaller, and take up more space on screens where more space is available. No elements should go beyond the edge of the screen. | The project is opened and the game is played on several different devices: a laptop (Acer Nitro 5), an Android phone (Ulephone Power Armor 14), and an iOS tablet (iPad Air 4th Generation). | The elements of the project respond to the different screen sizes correctly, changing their proportions to preserve the design and functionality of the game. |
-| *Start screen* | The starting screen should load all its elements: the main heading, the div element with the main text, the background image, and the "TO THE ORCHARD!" button-like link. The main text should be scrollable within the bounds of the div on the smaller screens.  | The page is loaded. Scrolling the main text is attempted on a mobile phone (Ulephone Power Armor 14). | All of the elements are loaded correctly. The main text scrolls within its div on a mobile device. |
-| *Start screen: "TO THE ORCHARD!" button* | The button should change its colour scheme (black should change to red) once it is hovered upon with a pointer. The starting screen should be replaced with the main game screen with the controls instructions overlay once the button is clicked. | The button is hovered over with a cursor, then it is clicked. | The button changes its colour scheme correctly. The starting screen is replaced with the main game screen with the controls instructions overlay. |
-| *Controls instructions overlay* | The controls instructions overlay should be shown on top of the tree background once the main game screen is loaded. The animated gif images presenting the actions required from the player to pick and drop apples should display correcly and show the animation. Each image should be accompanied by a textual description of the action either directly below it (in case of bigger screens) or to its side (in case of small screens). Below them, a "START THE DAY!" button should be displayed. | The main game screen is loaded. | All of the elements load and display correctly. |
-| *Controls instructions overlay: "START THE DAY!" button* | The button should change its colour scheme (black should change to pastel yellow, and vice versa; a thin black outline should appear) once it is hovered upon with a pointer. The overlay should disappear, the main game elements (timer, bin, apples) should be shown, and the game should begin. | The button is hovered over with a cursor, then it is clicked. | The button changes its colour scheme correctly. The overlay is hidden, the main game elements are shown, and the game starts correctly. |
-| *Timer* | The timer should update the hour shown on the screen by 15 minutes every 5 seconds. When it reaches 16:00, the game should end and the main game screen should be replaced with the end screen. | The game is started and the timer is allowed to run until the hour shown in the screen reaches 16:00. | The timer updates the hour shown on the screen correctly. The game ends and the end screen is shown once it reaches 16:00 with all of its elements loading correctly. |
-| *Randomly generated apples* | When the game starts, a random amount of apples between 5-40 appears on the screen, in randomly determined positions between the timer and the apple bin. While it's okay for the apples to cover the top of the bin, they should never cover the timer or go over the edge of the screen. The number of apples generated should never be below 5 or above 40 at a time. All 6 different kinds of apples (3 good, 3 bad) should be generating with a similar frequency. | The game is started multiple times so that several batches of apples are generated. | The apples are generated correctly. |
-| *Apple bin* | The picture of the apple bin changes, showing the level of the fullness of the bin, once the following numbers of apples in the current bin are reached: 1, 13, 26, 40. When the bin is full, an animation is triggered that moved the picture of the full bin off the side of the screen, to the left, and brings in a picture of an empty bin back to the centre of the screen, from the right. | 40 apple images are clicked on. | The bin image swaps are happening at the right thresholds of apples picked. At 40 apples, the bin animation is triggered. It runs as expected. |
-| *Apple tree background* | When the game is started and the main game screen is emptied of apples (they have been picked or dropped), the background image of an apple tree is animated off the side of the screen, to the left, and then slides back into its central position on the screen from the right. | The game is started and all the apples that generated are clicked on. | When the screen is empty of apples, the background image animation is triggered. It runs as expected. |
-| *Game outcome section* | The heading at the very top of the page should say either "APPLE VICTORIA!" if the player has met the victory conditions or "APPLE DEFEAT!" if they have not. | The game is played twice. The first time, to win (good apples are picked, bad apples are dropped); the second time - to fail (no apples are picked or dropped). | The heading shows the correct message in both scenarios. |
-| *Outcome text section* | The outcome text should inform the player how many bins of apples they picked and what percentage of them were rotten. It should provide feedback on how good the player's performance was. There are several different outcomes dependent on the player's speed and accuracy. | The game was played several times to achieve the following results: 3.5+ bins of apples picked, none of them rotten; 3.5+ bins of apples picked, one of them rotten; 3.5+ bins of apples picked, less than 5% of them rotten; 3.5+ bins of apples picked, 5%+ of them rotten; less than 3.5+ bins of apples picked, less than 5% of them rotten; less than 3.5+ bins of apples picked, 5%+ of them rotten; less than 0.5 bins of apples picked, rotten or not, and none apples picked at all. | Picking 0, 1, less than 5% and 5%+ of the bad apples, as well as picking no apples, have all shown different feedback on the amount of rotten apples in the second paragraph. The combinations 3.5+ bins, <5% rotten apples; 3.5+ bins, 5%+ rotten apples; <3.5 bins, <5% rotten apples; <3.5 bins, 5%+ rotten apples and <0.5 bins have all brought different supervisor feedback messages in paragraphs 3, 4, and 5. |
-| *Score section* | The score should display 0 if the player has not met the victory conditions. If they have, the score should display the amount of apples picked by the player. | The game is played twice. The first time, to win (good apples are picked, bad apples are dropped); the second time - to fail (only a few apples are picked). | The score displays 0 when the game is lost and a number of apples picked (in this case, 153) when it is won. |
-| *Try again button* | The button should change its colour scheme (dark green should change to light green, and vice versa; the outline should disappear) once it is hovered upon with a pointer. When the button is clicked, the game should be reset and the player should be brought back to the main game screen with the controls instructions overlay, ready to start another round. | The button is hovered over with a cursor, then it is clicked. | The button changes its colour scheme correctly. The end screen is replaced with the main game screen with the controls instructions overlay. |
-
-### Manual Testing: Testing User Stories from the UX/UI section
-
-**1. First Time Visitor Goals**
-
-* *As a first time visitor, I am bored and I'm looking for some entertainment; I want to have fun.*
-
-  * The user is brought to the starting screen. The imagery and the story introduction suggest the website might have something to do with picking apples; hopefully that makes the user curious. If they read the emphasised line on the bottom or click on the button, they will realise it's a game they can play to fend off their boredom for a bit. They click on the "GO TO THE ORCHARD!" button, learn the controls, click on the "START THE DAY!" button and play the game.
-
-* *As a first time visitor, I have a few minutes to pass and I'm looking for something to do that won't take a long time.*
-
-  * The user is brought to the starting screen. If they read the emphasised line on the bottom, they will realise the website contains a game that only takes about 3 minutes to play - just what they need. They can now click on the "GO TO THE ORCHARD!" button and play the game.
-
-* *As a first time visitor, I am curious about apple picking and want to see how an apple picking simulator might work.*
-
-  * The user is brought to the starting screen where they are presented with the flavour text that details the basic rules of apple picking. Then, after they click on the "GO TO THE ORCHARD!" button and familiarise themselves with the controls, they start the game by clicking on the "START THE DAY!" button. During the gameplay, they get to put what they've just learned into practice. At the end, they receive an evaluation of their efforts which is what they would likely be told by their supervisor if they picked a similar amount of apples of a similar quality at a real-life commercial farm.
-
-**2. Returning Visitor Goals**
-
-* *As a returning visitor, I want to try to beat my previous score in the game.*
-
-  * After having played the game once and receiving their evaluation, the user can click on the "GIVE IT ANOTHER GO!" button to play again and try to achieve a better result. They can also refresh the website to start the game again from the starting screen. The user can always navigate to the website after having closed the page to play the game again, too.
-
-* *As a returning visitor, I want to try to share the game with somebody who might find it funny - perhaps someone who has worked as an apple picker at a farm before.*
-
-  * The user can copy the website's address and paste it in a message to their friend or, if they're on a mobile device, tap on the "share" button in their browser to share the game with others.
-
-### Further Testing
-
-The website has been tested on a variety of screen sizes (resizing the browser window on desktop, tablet, smartphones), browsers (Chrome, Safari, Opera, Edge, Firefox), and devices. Family and friends have been asked to perform additional testing on devices I had no access to (Macbook, iPhone).
-
-The game performed well on all of the devices and browsers tested, although there were some unexpected differences between them:
-
-* The performance on Chrome on iPad Air (4th Edition) was not as smooth as on other devices using the same browser, nor as the same device running Safari. The browser struggled to register apples being tapped quickly one after another to be picked; it did not have the same problem with swiping on the apples to drop them, though.
-
-* Microsoft Edge would sometimes display an image search icon on the clicked apples, which was easy to click on accidentally when picking another apple nearby. This would disrupt the gameplay as it would prompt the browser to run the image search in a window that would pop up to the right side of the screen. Sadly, a programmatical way of disabling it doesn't seem to exist at the moment; the feature can only be turned off locally on the user's device. 
-
-## Bugs fixed & problems overcome
-
-| Problem description   |  Fix  |
-| --------------------- | ----- |
-| It was possible to click on the same apple numerous times before it was revomed from the DOM, getting it counted as if the player has picked similar apples. | A flag was added to the apple element the first time the user clicks on a given apple. A flag check was also added to run any time an apple is clicked - if the flag was already there, the rest of the picking or dropping function is going to be ignored. |
-| The nextTree function would sometimes run several times, leading to several sets of apples generating all at once, if the player has been picking/dropping apples very quickly, making a lot of clicks. | Adding the flags and the flag checks described above has solved this issue, too. |
-| The apple bin wouldn't always return to the central position after the animation of it being moved to the side and returning from the other side would finish. The way the bin images were being swapped while the animation was running was to blame. | Pre-loading all the images and using `.show()` and `.hide()` methods has solved the issue. |
-| Accidentally dragging or selecting the apple images would stop the click event, interfering with the gameplay and making it impossible to play the game quickly as it's meant to be played. | `ondragstart="return false"` has been added to the `<body>` element in the html file and the `user-select: none;`, `-webkit-user-select: none;` and `-ms-user-select: none;` rules have been added to the css class applied to the apples and other chosen elements. |
-| Adding a swipe event for the dropping action on mobile devices proved to be quite a challenge, even though I have found several external libraries that offer the functionality I needed. After a lot of trial and error, it turned out that my apple elements were too small for the script I used to work reliably. | Tweaking the settings in the downloaded library a little has solved the issue. |
-| The iPads allow for the display of the context menu if the user taps and holds on an apple or a bin. | `-webkit-touch-callout: none;` has been added to the css class used for preventing selection of images. |
-| The second and following bins would not be positioned in the center of the screen after the window was resized. This happened both on computers and mobile devices (if the orientation was changed during the game) and was due to the fact that the nextBin function calculates the bin's current position to pass it to the animation, which  desn't accept standard values for centering, overriding the css margin settings from the stylesheet; the new position wouldn't be central anymore if the screen was suddenly resized. | jQuery's `.resize` method was used to listen for any screen size changes, and to apply the original margin that centers the bin element to it. |
+* **Adding search and sort functionalities** to give the user more control over their lists, especially if they have a lot of them.
 
 ## Technologies and Resources used
 
@@ -363,110 +262,52 @@ The game performed well on all of the devices and browsers tested, although ther
 * **HTML5**
 * **CSS3**
 * **JavaScript**
+* **Python**
+
+### Database management systems used:
+
+* **[PostgreSQL](https://www.postgresql.org/)**
+* **[MongoDB](https://www.mongodb.com/)**
 
 ### Frameworks & Libraries Used:
 
+* **[Flask](https://flask.palletsprojects.com/en/3.0.x/)**
 * **[jQuery](https://jquery.com/)**
-* **[swipe events by jquery](https://codepen.io/w3codemasters/pen/qvVwGQ)**
+* **[Materialize](https://materializecss.com/)**
 * **[Google Fonts](https://fonts.google.com/)**
+* **[Material Icons](https://developers.google.com/fonts/docs/material_icons)**
 
 ### Software & other technologies used:
 
-* **[Visual Studio Code(https://code.visualstudio.com/)]** - IDE the project was written in. Used with the **[Live Server (Five Server)](https://marketplace.visualstudio.com/items?itemName=yandeu.five-server)**, **[HTML Boilerplate](https://marketplace.visualstudio.com/items?itemName=sidthesloth.html5-boilerplate)** and **[IntelliSense for CSS class names in HTML](https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion)** extensions.
+* **[Visual Studio Code(https://code.visualstudio.com/)]** - IDE the project was written in. Used with the **[HTML Boilerplate](https://marketplace.visualstudio.com/items?itemName=sidthesloth.html5-boilerplate)**, **[Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)**, **[MongoDB for VS Code](https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode)**, **[PostgreSQL](https://marketplace.visualstudio.com/items?itemName=ms-ossdata.vscode-postgresql)**, **[Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)**, **[Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)** and **[IntelliSense for CSS class names in HTML](https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion)** extensions.
 * **[GitHub Desktop](https://github.com/apps/desktop)** - used for version control and pushing commits to GitHub.
-* **[Canva](https://www.canva.com/)** - used to get the screens mockup base.
+* **[MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database)** - used to control the contents of and the connection to the MongoDB database.
+* **[PostgreSQL server and pgAdmin4](https://www.postgresql.org/download/windows/)** - used to control the contents of and the connection to the PostgreSQL database.
+* **[Canva](https://www.canva.com/)** - used to get the mockup base.
 * **[Photopea](https://www.photopea.com/)** - used to prepare the images for the readme file.
-* **[Procreate](https://procreate.com/)** - used to draw the images of the apple tree, the apples, the apple bins, and the static images for the animated gifs showing the controls.
-* **[Ezgif](https://ezgif.com/maker)** - used to put the static images for the controls instructions gifs together into animated gif files and to convert video into gif files for the readme.
-* **[Microsoft Copilot](https://copilot.microsoft.com/)** - used to create the background images for the starting screen and for the end screen.
-* **[Img.Upscaler](https://imgupscaler.com/)** - used for upscaling the images generated with Copilot.
-* **[IMAGECOLORPICKER](https://imagecolorpicker.com/)** - used to grab the colours to use in the design of the website from the generated images.
-* **[Snipping Tool](https://apps.microsoft.com/detail/9mz95kl8mr0l?hl=en-US&gl=US)** - used to for the screen recording to create the animated gifs for the readme file.
+* **[Figma](https://www.figma.com/)** - used to create the wireframes.
+* **[Ezgif](https://ezgif.com/maker)** - used to convert video files into gif files for the readme file.
+* **[Snipping Tool](https://apps.microsoft.com/detail/9mz95kl8mr0l?hl=en-US&gl=US)** - used to take screenshots and for the screen recording to create the animated gifs for the readme file.
 
 ### How-to references used:
 
-* [right click event](https://api.jquery.com/contextmenu/)
-* [swipe event](https://codepen.io/w3codemasters/pen/qvVwGQ )
-* [checking if a div is empty](https://www.geeksforgeeks.org/how-to-check-an-html-element-is-empty-using-jquery/)
-* [figuring out how to create the timer](https://www.w3schools.com/jsref/met_win_setinterval.asp), [another resource for this](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)
-* [rounding numbers to 1 decimal point](https://www.altcademy.com/blog/how-to-round-numbers-in-javascript/)
-* [preventing user selection](https://www.w3schools.com/howto/howto_css_disable_text_selection.asp)
-* [preventing dragging](https://stackoverflow.com/questions/62097523/disable-dragging-of-image-in-entire-project-html-pages)
-* [hiding the scroll bar](https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp)
-* [fixing issues with media queries not being applied properly](https://blog.openreplay.com/understanding-css-media-queries/)
-* [media queries - detecting touch devices](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Media_queries), [another resource for this](https://stackoverflow.com/questions/26546254/how-to-write-css-media-queries-to-detect-a-touchscreen-device)
-* [cursor - pointer](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor)
-* [converting seconds to a hh:mm time format](https://www.geeksforgeeks.org/how-to-convert-seconds-to-time-string-format-hhmmss-using-javascript/ )
-* [preventing the context menu on a long tap on mobile Apple devices](https://stackoverflow.com/questions/12304012/preventing-default-context-menu-on-longpress-longclick-in-mobile-safari-ipad), [another resource for this](https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-touch-callout)
-* [event listener for screen resize action](https://stackoverflow.com/questions/2996431/detect-when-a-window-is-resized-using-javascript)
+* [querying the db with sqlalchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/)
+* [using -range- with Jinja](https://stackoverflow.com/questions/17691838/range-in-jinja2-inside-a-for-loop)
+* [using -defaults- with Flask routes to solve problems with generic adresses being accessed by the user without the expected variable](https://www.learninbits.com/flask-routing-tricks-using-default-values-for-dynamic-urls/)
+* [using request.form.getitems to get an entire list/dictionary of similar items from a form](https://stackoverflow.com/questions/58160006/how-to-get-multiple-elements-from-a-form-using-request-form-get)
+* [converting 'int' to 'string' with Jinja](https://stackoverflow.com/questions/35644954/jinja2-converting-int-to-string-inside-html)
+* [cards css](https://css-tricks.com/block-links-the-search-for-a-perfect-solution/)
+* [using logic operators in Jinja](https://stackoverflow.com/questions/41873717/how-to-use-logic-operators-in-jinja-template-on-salt-stack-and-or)
+* [submitting a checkbox without using a submit button](https://stackoverflow.com/questions/33393852/is-it-possible-to-submit-a-checkbox-form-without-submit-button-in-php)
+* [checking if a checkbox is checked with JS](https://stackoverflow.com/questions/9887360/how-can-i-check-if-a-checkbox-is-checked)
+* [creating custom radio buttons](https://www.w3schools.com/howto/howto_css_custom_checkbox.asp)
+* [using -set- with Jinja](https://jinja.palletsprojects.com/en/3.1.x/templates/#assignments)
+* [changing arrow colour in Materialize's select element](https://stackoverflow.com/questions/60914431/)
+* [changing colour of Materialize's switch element](https://codepen.io/Nohinn/pen/xONgLv)
+* [using fetch() with flask](https://flask.palletsprojects.com/en/3.0.x/patterns/javascript/) and [also this](https://rahulbaran.hashnode.dev/how-to-send-json-from-javascript-to-flask-using-fetch-api)
 
 ### Project guidance & assistance:
 
 * **My Mentor, Mitko Bachvarov** - thank you for your feedback and guidance!
-* **My friend Luís** - thank you for all the troubleshooting help, and for showing me how to do debugging!
-
-## Deployment
-
-### GitHub Pages
-
-The project was deployed to GitHub Pages as follows:
-
-1. I opened GitHub and located the project's repository.
-
-  ![locating the repository](assets/readme/deployment-1.png "Locating the project's repository.")
-
-2. I entered the repository and opened its settings.
-
-  ![settings](assets/readme/deployment-2.png "The repository's settings.")
-
-3. There, in the menu on the left of the screen, I located Pages.
-
-  ![accessing Pages](assets/readme/deployment-3.png "Accessing Pages.")
-
-4. Under "Build and development", there is a "Branch" section. I chose the `main` branch from the dropdown menu and clicked on the `Save` button.
-
-  ![choosing the branch](assets/readme/deployment-4.png "Choosing the main branch.")
-
-5. That's it! The site is now deployed and can be accessed from the link created by GitHub. The link can be found on the top of the "Pages" page once it refreshes.
-
-  ![live website link](assets/readme/deployment-5.png "Live website link.")
-
-### Forking the project on GitHub
-
-If, for whatever reason, anyone would like to get themselves a copy of this project to tinker with on their own - feel free to do so! Here is how to do it so you can have your own copy of the entire repository that you can do whatever you please with, without causing any changes to the original:
-
-1. Open the repository of this project on GitHub. It can be found [here](https://github.com/Shirral/Apple-Victoria).
-
-2. Find the "Fork" button located between the "Watch" and "Star" buttons, near the top of the repository page.
-
-  ![forking](assets/readme/fork.png "Forking the project.")
-
-3. Done! Go back to your profile - you will find the copy of the project in your repositories.
-
-### Cloning the project on GitHub *(instructions copied from GitHub Docs)*
-
-1. On GitHub.com, navigate to the main page of the repository.
-
-2. Above the list of files, click `Code`.
-
-  ![cloning](assets/readme/clone-1.png "Cloning the project.")
-
-3. Copy the URL for the repository.
-
-* To clone the repository using HTTPS, under "HTTPS", click on the 'copy' icon.
-* To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click SSH, then click on the 'copy' icon.
-* To clone a repository using GitHub CLI, click GitHub CLI, then click on the 'copy' icon.
-
-  ![cloning](assets/readme/clone-2.png "Cloning the project.")
-
-4. Open Git Bash.
-
-5. Change the current working directory to the location where you want the cloned directory.
-
-6. Type `git clone`, and then paste the URL you copied earlier.
-
-7. Press Enter to create your local clone.
-
-## Live website link:
-
-[https://shirral.github.io/Apple-Victoria/](https://shirral.github.io/Apple-Victoria/)
+* **My friend Luís** - thank you for the troubleshooting help with the project setup!
+* **The loveliest Azul** - thank you for the troubleshooting help, reminding me to take things step by step, and for all moral support when things were not working and I was about to give up!
