@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"  type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css">
+    <title>Error 404: Page Not Found</title>
+</head>
+<body class="errorpage">
+    <section>
+        {% with flashes = get_flashed_messages() %}
+            {% if flashes %}
+                {% for flash in flashes %}
+                    <div class="row center">
+                        <h2 class="flash">{{flash}}</h2>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+    <main>
+        <div class="allcenter errorcontainer">
+            <div class="container row center">
+                <img src="{{url_for('static', filename='images/d20shadowhite.png')}}" id="logindiepic">
+            </div>
+            <div>
+                <div class="row center">
+                    <h1>Error 404!</h1>
+                    <h2>Oops! You seem to have the wrong address. This page doesn't really exist!</h2>
+                    <p>But fret not, we're going to take you away from here.</p>
+                </div>
+                <div class="row center">
+                    <a href="{{url_for('lists')}}" class="btn waves-effect waves-light">Back to your lists</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+

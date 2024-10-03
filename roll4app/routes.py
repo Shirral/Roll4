@@ -389,3 +389,13 @@ def saveroll():
                 mongo.db.Lists.update_one({"_id": ObjectId(listid)}, {"$push": {"RollHistory": savedroll}})
 
                 print("Roll saved!")
+
+
+@app.errorhandler(404)
+def error404(e):
+    return render_template("error404.html"), 404
+
+
+@app.errorhandler(500)
+def error500():
+    return render_template("error500.html"), 500

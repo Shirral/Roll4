@@ -112,7 +112,7 @@ input, textarea {
     font-size: 27px;
 }
 
-#loginpage, #registerpage {
+#loginpage, #registerpage, .errorpage {
     background-color: #212121;
     color: white;
 }
@@ -160,6 +160,10 @@ input, textarea {
 
 #logincontainer, #registercontainer {
     top: 57%;
+}
+
+.errorcontainer {
+    top: 50%;
 }
 
 #notloggedinbtn {
