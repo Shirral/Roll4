@@ -9,7 +9,11 @@
     <div class="row s12 dicerow">
         <div class="col s4 center vfill">
             <div class="dicediv valign-wrapper">
-                <img src="https://static-00.iconduck.com/assets.00/game-die-emoji-1024x1024-i44ka7eg.png">
+                {% if darkmode %}
+                    <img src="{{url_for('static', filename='images/d4white.png')}}">
+                {% else %}
+                    <img src="{{url_for('static', filename='images/d4.png')}}">
+                {% endif %}
             </div>
             <div>
                 <p><a href="{{url_for('addlist', die='4')}}">d4</a></p>
@@ -17,7 +21,11 @@
         </div>
         <div class="col s4 center vfill">
             <div class="dicediv valign-wrapper">
-                <img src="https://static-00.iconduck.com/assets.00/game-die-emoji-1024x1024-i44ka7eg.png">
+                {% if darkmode %}
+                    <img src="{{url_for('static', filename='images/d6white.png')}}">
+                {% else %}
+                    <img src="{{url_for('static', filename='images/d6.png')}}">
+                {% endif %}
             </div>
             <div>
                 <p><a href="{{url_for('addlist', die='6')}}">d6</a></p>
@@ -25,7 +33,11 @@
         </div>
         <div class="col s4 center vfill">
             <div class="dicediv valign-wrapper">
-                <img src="https://static-00.iconduck.com/assets.00/game-die-emoji-1024x1024-i44ka7eg.png">
+                {% if darkmode %}
+                    <img src="{{url_for('static', filename='images/d8white.png')}}">
+                {% else %}
+                    <img src="{{url_for('static', filename='images/d8.png')}}">
+                {% endif %}
             </div>
             <div>
                 <p><a href="{{url_for('addlist', die='8')}}">d8</a></p>
@@ -36,7 +48,11 @@
     <div class="row s12 dicerow">
         <div class="col s4 center vfill">
             <div class="dicediv valign-wrapper">
-                <img src="https://static-00.iconduck.com/assets.00/game-die-emoji-1024x1024-i44ka7eg.png">
+                {% if darkmode %}
+                    <img src="{{url_for('static', filename='images/d10white.png')}}">
+                {% else %}
+                    <img src="{{url_for('static', filename='images/d10.png')}}">
+                {% endif %}
             </div>
             <div>
                 <p><a href="{{url_for('addlist', die='10')}}">d10</a></p>
@@ -44,7 +60,11 @@
         </div>
         <div class="col s4 center vfill">
             <div class="dicediv valign-wrapper">
-                <img src="https://static-00.iconduck.com/assets.00/game-die-emoji-1024x1024-i44ka7eg.png">
+                {% if darkmode %}
+                    <img src="{{url_for('static', filename='images/d12white.png')}}">
+                {% else %}
+                    <img src="{{url_for('static', filename='images/d12.png')}}">
+                {% endif %}
             </div>
             <div>
                 <p><a href="{{url_for('addlist', die='12')}}">d12</a></p>
@@ -52,7 +72,11 @@
         </div>
         <div class="col s4 center vfill">
             <div class="dicediv valign-wrapper">
-                <img src="https://static-00.iconduck.com/assets.00/game-die-emoji-1024x1024-i44ka7eg.png">
+                {% if darkmode %}
+                    <img src="{{url_for('static', filename='images/d20white.png')}}">
+                {% else %}
+                    <img src="{{url_for('static', filename='images/d20.png')}}">
+                {% endif %}
             </div>
             <div>
                 <p><a href="{{url_for('addlist', die='20')}}">d20</a></p>
