@@ -282,17 +282,26 @@ input, textarea {
 }
 
 #dicepick {
-    margin: 20px 0;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 70%;
+}
+
+.dicewrapper {
+    cursor: pointer;
+    margin: 0;
 }
 
 .dicerow {
     height: 25vh;
-    /* background-color: blue; */
 }
 
 .dicediv {
     height: 60%;
-    /* background-color: blueviolet; */
 }
 
 .dicetextdiv {
@@ -493,6 +502,12 @@ span.checkmark.darkmode:after {
 @media only screen and (max-width: 1000px) {
     #homepageimg {
       display: none;
+    }
+
+    #dicepick {
+        width: 100%;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
     }
 
     #homepageimg2 {

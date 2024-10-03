@@ -4,10 +4,11 @@
 
 <!-- block links - do later: https://www.geeksforgeeks.org/how-to-convert-a-div-into-a-link-in-html/ -->
 
-<div id="dicepick">
+<!-- tablet/desktop view -->
+<div id="dicepick" class="hide-on-small-only">
     <!-- row 1 -->
     <div class="row s12 dicerow">
-        <div class="col s4 center vfill">
+        <div class="col s4 m2 offset-m1 center vfill">
             <div class="dicediv valign-wrapper">
                 {% if darkmode %}
                     <img src="{{url_for('static', filename='images/d4white.png')}}">
@@ -16,10 +17,11 @@
                 {% endif %}
             </div>
             <div>
-                <p><a href="{{url_for('addlist', die='4')}}">d4</a></p>
+                <p><a href="{{url_for('addlist', die='4')}}">[d4]</a><br>
+                    A 4-item list.</p>
             </div>
         </div>
-        <div class="col s4 center vfill">
+        <div class="col s4 m2 offset-m2 center vfill">
             <div class="dicediv valign-wrapper">
                 {% if darkmode %}
                     <img src="{{url_for('static', filename='images/d6white.png')}}">
@@ -28,10 +30,11 @@
                 {% endif %}
             </div>
             <div>
-                <p><a href="{{url_for('addlist', die='6')}}">d6</a></p>
+                <p><a href="{{url_for('addlist', die='6')}}">[d6]</a><br>
+                    A 6-item list.</p>
             </div>
         </div>
-        <div class="col s4 center vfill">
+        <div class="col s4 m2 offset-m2 center vfill">
             <div class="dicediv valign-wrapper">
                 {% if darkmode %}
                     <img src="{{url_for('static', filename='images/d8white.png')}}">
@@ -40,13 +43,14 @@
                 {% endif %}
             </div>
             <div>
-                <p><a href="{{url_for('addlist', die='8')}}">d8</a></p>
+                <p><a href="{{url_for('addlist', die='8')}}">[d8]</a><br>
+                    A 8-item list.</p>
             </div>
         </div>
     </div>
     <!-- row 2 -->
     <div class="row s12 dicerow">
-        <div class="col s4 center vfill">
+        <div class="col s4 m2 offset-m1 center vfill dicewrapper">
             <div class="dicediv valign-wrapper">
                 {% if darkmode %}
                     <img src="{{url_for('static', filename='images/d10white.png')}}">
@@ -55,10 +59,11 @@
                 {% endif %}
             </div>
             <div>
-                <p><a href="{{url_for('addlist', die='10')}}">d10</a></p>
+                <p><a href="{{url_for('addlist', die='10')}}">[d10]</a><br>
+                    A 10-item list.</p>
             </div>
         </div>
-        <div class="col s4 center vfill">
+        <div class="col s4 m2 offset-m2 center vfill">
             <div class="dicediv valign-wrapper">
                 {% if darkmode %}
                     <img src="{{url_for('static', filename='images/d12white.png')}}">
@@ -67,10 +72,11 @@
                 {% endif %}
             </div>
             <div>
-                <p><a href="{{url_for('addlist', die='12')}}">d12</a></p>
+                <p><a href="{{url_for('addlist', die='12')}}">[d12]</a><br>
+                    A 12-item list.</p>
             </div>
         </div>
-        <div class="col s4 center vfill">
+        <div class="col s4 m2 offset-m2 center vfill">
             <div class="dicediv valign-wrapper">
                 {% if darkmode %}
                     <img src="{{url_for('static', filename='images/d20white.png')}}">
@@ -79,7 +85,98 @@
                 {% endif %}
             </div>
             <div>
-                <p><a href="{{url_for('addlist', die='20')}}">d20</a></p>
+                <p><a href="{{url_for('addlist', die='20')}}">[d20]</a><br>
+                    A 20-item list.</p>
+            </div>
+        </div>
+    </div>
+</div>   
+
+<!-- mobile device view -->
+<div id="dicepick" class="hide-on-med-and-up">
+    <!-- row 1 -->
+    <div class="row s12 dicerow">
+        <div class="col s6 center vfill">
+            <div class="dicediv valign-wrapper">
+                {% if darkmode %}
+                    <img src="{{url_for('static', filename='images/d4white.png')}}">
+                {% else %}
+                    <img src="{{url_for('static', filename='images/d4.png')}}">
+                {% endif %}
+            </div>
+            <div>
+                <p><a href="{{url_for('addlist', die='4')}}">[d4]</a><br>
+                    A 4-item list.</p>
+            </div>
+        </div>
+        <div class="col s6 center vfill">
+            <div class="dicediv valign-wrapper">
+                {% if darkmode %}
+                    <img src="{{url_for('static', filename='images/d6white.png')}}">
+                {% else %}
+                    <img src="{{url_for('static', filename='images/d6.png')}}">
+                {% endif %}
+            </div>
+            <div>
+                <p><a href="{{url_for('addlist', die='6')}}">[d6]</a><br>
+                    A 6-item list.</p>
+            </div>
+        </div>
+    </div>
+    <!-- row 2 -->
+    <div class="row s12 dicerow">
+        <div class="col s6 center vfill">
+            <div class="dicediv valign-wrapper">
+                {% if darkmode %}
+                    <img src="{{url_for('static', filename='images/d8white.png')}}">
+                {% else %}
+                    <img src="{{url_for('static', filename='images/d8.png')}}">
+                {% endif %}
+            </div>
+            <div>
+                <p><a href="{{url_for('addlist', die='8')}}">[d8]</a><br>
+                    A 8-item list.</p>
+            </div>
+        </div>
+        <div class="col s6 center vfill">
+            <div class="dicediv valign-wrapper">
+                {% if darkmode %}
+                    <img src="{{url_for('static', filename='images/d10white.png')}}">
+                {% else %}
+                    <img src="{{url_for('static', filename='images/d10.png')}}">
+                {% endif %}
+            </div>
+            <div>
+                <p><a href="{{url_for('addlist', die='10')}}">[d10]</a><br>
+                    A 10-item list.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row s12 dicerow">
+        <div class="col s6 center vfill">
+            <div class="dicediv valign-wrapper">
+                {% if darkmode %}
+                    <img src="{{url_for('static', filename='images/d12white.png')}}">
+                {% else %}
+                    <img src="{{url_for('static', filename='images/d12.png')}}">
+                {% endif %}
+            </div>
+            <div>
+                <p><a href="{{url_for('addlist', die='12')}}">[d12]</a><br>
+                    A 12-item list.</p>
+            </div>
+        </div>
+        <div class="col s6 center vfill">
+            <div class="dicediv valign-wrapper">
+                {% if darkmode %}
+                    <img src="{{url_for('static', filename='images/d20white.png')}}">
+                {% else %}
+                    <img src="{{url_for('static', filename='images/d20.png')}}">
+                {% endif %}
+            </div>
+            <div>
+                <p><a href="{{url_for('addlist', die='20')}}">[d20]</a><br>
+                    A 20-item list.</p>
             </div>
         </div>
     </div>
