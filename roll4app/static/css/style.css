@@ -86,8 +86,30 @@ input, textarea {
     }
 }
 
+.bold700 {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
 .brand-logo {
     font-family: "Lilita One", Impact, sans-serif;
+}
+
+#homepagemain {
+    padding: 3rem;
+}
+
+#homepagemain p {
+    font-size: large;
+}
+
+#homepageh1 {
+    font-size: 60px;
+    margin-bottom: 0.5em;
+}
+
+#homepageh2 {
+    font-size: 30px;
 }
 
 #loginpage, #registerpage {
