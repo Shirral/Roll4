@@ -147,7 +147,7 @@ function checkdarkmode() {
         $("#categoryp").css("color", "#ff7043");
         $("#mainbody input").addClass("white-text");
         $("#mainbody textarea").addClass("white-text");
-
+        $(".dicewrapper a").css("color", "#ff7043");
     }
 };
 

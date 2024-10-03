@@ -295,6 +295,11 @@ input, textarea {
     cursor: pointer;
 }
 
+.dicewrapper a {
+    color: #d84315;
+    font-weight: 700;
+}
+
 .dicerow {
     height: 25vh;
 }
