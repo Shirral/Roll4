@@ -162,8 +162,22 @@ input, textarea {
     top: 57%;
 }
 
+.errorcenter {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
 .errorcontainer {
     top: 50%;
+}
+
+.errorcontainer h2 {
+    font-size: x-large;
 }
 
 #notloggedinbtn {
