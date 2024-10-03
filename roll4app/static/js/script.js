@@ -163,3 +163,7 @@ $(document).ready(function() {
         $("span.checkmark").toggleClass("darkmode");
     }
 });
+
+$(".dicewrapper").on( "click", function() {
+    $(this).find("a")[0].click();
+});
