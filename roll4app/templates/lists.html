@@ -1,23 +1,24 @@
 {% extends "base.html" %}
 {% block title %}Your lists{% endblock %}
-
 {% block content %}
 
+    <!-- header -->
     <h1 class="center"> Your lists </h1>
 
+    <!-- button for adding a new list -->
     <div class="row valign-wrapper flexbox">
-
         <div class="cardimport newbutton">
             <a href="{{ url_for('newlist') }}" class="main-link">
                 <i class="material-icons right">add</i>New list...
             </a>
         </div>
-
     </div>
     
-
+    <!-- checks if there are any d20 lists and, if so, displays them - and so on for each following die category below -->
     {% if d20 | length > 0 %}
         <h4 class="center">d20</h4>
+
+        <!-- loops through each d20 list -->
         {% for list in d20 %}
             <div class="cardimport cardactive
             {% for category in categories %}
@@ -25,9 +26,13 @@
                     c-{{category.CategoryColour}} colour
                 {% endif %}
             {% endfor %}
-            " id="{{list._id}}">
+            " id="{{list._id}}"> <!-- sets the id for the list -->
                 <a href="{{ url_for('listview', listid=list._id) }}" class="main-link">
+                    
+                    <!-- displays the name of the list -->
                     {{ list.ListName }}
+
+                    <!-- displays the category of the list -->
                     <span class="right">[{{list.Category}}]</span>
                 </a>
             </div>
