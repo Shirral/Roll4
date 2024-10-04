@@ -5,6 +5,8 @@ from roll4app import app, mongo, db
 from roll4app.models import Users
 
 
+# routes for the html templates and their functionalities
+
 @app.route("/")
 @app.route("/index")
 def index():
@@ -95,16 +97,6 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html")
-
-
-@app.route("/logout")
-def logout():
-    if "currentuser" not in session:
-        return redirect(url_for("notloggedin"))
-
-    flash("Logged out. See you later!")
-    session.pop("currentuser")
-    return redirect(url_for("login"))
 
 
 @app.route("/addlist", defaults={"die": None})
@@ -198,21 +190,6 @@ def editlist(listid):
             return redirect(url_for("listview", listid = listid, userlist=userlist, darkmode=darkmode))
 
     return render_template("editlist.html", listid = listid, userlist=userlist, categories=categories, darkmode=darkmode)
-
-
-@app.route("/deletelist", defaults={"listid": None})
-@app.route("/deletelist/", defaults={"listid": None})
-@app.route("/deletelist/<listid>")
-def deletelist(listid):
-    if "currentuser" not in session:
-        return redirect(url_for("notloggedin"))
-
-    if listid == None:
-        return redirect(url_for("lists"))
-    
-    mongo.db.Lists.delete_one({"_id": ObjectId(listid)})
-    flash("List deleted!")
-    return redirect(url_for("lists"))
 
 
 @app.route("/listview", defaults={"listid": None})
@@ -325,6 +302,16 @@ def editcategory(categoryid):
     return render_template("editcategory.html", category=category, categoryid=categoryid, darkmode=darkmode)  
 
 
+@app.route("/notloggedin")
+def notloggedin():
+    if "currentuser" in session:
+        return redirect(url_for("lists"))
+    
+    return render_template("notloggedin.html")
+
+
+# routes for deleting information from databases
+
 @app.route("/deletecategory", defaults={"categoryid": None})
 @app.route("/deletecategory/", defaults={"categoryid": None})
 @app.route("/deletecategory/<categoryid>")
@@ -338,6 +325,21 @@ def deletecategory(categoryid):
     mongo.db.Categories.delete_one({"_id": ObjectId(categoryid)})
     flash("Category deleted!")
     return redirect(url_for("categories"))
+
+
+@app.route("/deletelist", defaults={"listid": None})
+@app.route("/deletelist/", defaults={"listid": None})
+@app.route("/deletelist/<listid>")
+def deletelist(listid):
+    if "currentuser" not in session:
+        return redirect(url_for("notloggedin"))
+
+    if listid == None:
+        return redirect(url_for("lists"))
+    
+    mongo.db.Lists.delete_one({"_id": ObjectId(listid)})
+    flash("List deleted!")
+    return redirect(url_for("lists"))
 
 
 @app.route("/deleteuser/<username>")
@@ -357,14 +359,7 @@ def deleteuser(username):
     return redirect(url_for("login"))
 
 
-@app.route("/notloggedin")
-def notloggedin():
-    if "currentuser" in session:
-        return redirect(url_for("lists"))
-    
-    return render_template("notloggedin.html")
-
-
+# route for the task mode functionality - saving the previous dice rolls to the database
 @app.route("/saveroll", methods=["GET", "POST"])
 def saveroll():
     if "currentuser" not in session:
@@ -390,6 +385,19 @@ def saveroll():
 
                 return jsonify({'message': 'Data received successfully', 'status': 'success'}), 200
 
+
+# route for logging the user out
+@app.route("/logout")
+def logout():
+    if "currentuser" not in session:
+        return redirect(url_for("notloggedin"))
+
+    flash("Logged out. See you later!")
+    session.pop("currentuser")
+    return redirect(url_for("login"))
+
+
+# error handlers
 
 @app.errorhandler(404)
 def error404(e):
