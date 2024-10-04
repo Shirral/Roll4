@@ -6,7 +6,6 @@ $(document).ready(function () {
     $('.modal').modal();
 });
 
-
 $( "#categoryp" ).on( "click", function() {
     $( "#categoryselect" ).toggle("slow");
 });
@@ -31,7 +30,7 @@ function shownotes(){
     $( "#notes"+num ).toggle("slow");
 }
 
-$( ".listitem" ).on( "click", (shownotes))
+$( ".listitem" ).on( "click", (shownotes));
     
 $( ".notesbtn" ).on( "click", function() {
     let divs = document.getElementsByClassName("notesbtn");
@@ -47,21 +46,22 @@ $( ".notesbtn" ).on( "click", function() {
     $(".notesview").each(function(i, notediv) {
         if ($(notediv).find("p").html().trim() == "") {
             $(notediv).removeAttr("id");
-          }
+        }
     });
 
     $( "#notes"+num ).toggle("slow");
   });
 
 
-function shownotesicon(){$(".noteswrapper").each(function(i, notediv) {
-    if ($(notediv).find("p").html().trim() !== "") {
-        $(notediv).find(".notestxt i").html("notes")
-      }
-})};
+function shownotesicon(){
+    $(".noteswrapper").each(function(i, notediv) {
+        if ($(notediv).find("p").html().trim() !== "") {
+            $(notediv).find(".notestxt i").html("notes");
+        }
+    });
+}
 
 shownotesicon();
-
 
 $(".rolldiebtn").on( "click", function() {
     
@@ -133,10 +133,9 @@ $(".rolldiebtn").on( "click", function() {
             "body": JSON.stringify(data),
         }).then(response => response.json()).then(data => {
             console.log("Roll saved:", data);
-        })
+        });
     }
 });
-
 
 function checkdarkmode() {
     let darkmodecheck = $(".darkmodecheck").html().trim();
@@ -149,7 +148,7 @@ function checkdarkmode() {
         $("#mainbody textarea").addClass("white-text");
         $(".dicewrapper a").css("color", "#ff7043");
     }
-};
+}
 
 checkdarkmode();
 

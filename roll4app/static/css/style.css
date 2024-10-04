@@ -72,18 +72,19 @@ input, textarea {
     font-family: "Lilita One", Impact, sans-serif;
     background-color: #d84315;
     text-decoration: none;
+}
 
-    &:hover {
-        background-color: #efebe9;
-        color: #d84315;
-    }
+.btn:hover {
+    background-color: #efebe9;
+    color: #d84315;
 }
 
 .btn a {
     color: white;
-    &:hover {
-        color: #d84315;
-    }
+}
+
+.btn a:hover {
+    color: #d84315;
 }
 
 .bold700 {
@@ -230,19 +231,17 @@ input, textarea {
     cursor: pointer;
 }
 
-.cardactive {
-    &:hover {
-        transform: translateY(-10px);
-    }
+.cardactive:hover {
+    transform: translateY(-10px);
 }
 
 .deletebtn {
     background: none;
     color: #d84315;;
+}
 
-    &:hover {
-        background-color: #ffccbc;
-    }
+.deletebtn:hover {
+    background-color: #ffccbc;
 }
 
 .newbutton {
@@ -296,7 +295,7 @@ input, textarea {
     height: 100%;
 }
 
-#dicepick {
+.dicepick {
     margin: 0;
     position: absolute;
     top: 50%;
@@ -506,6 +505,11 @@ span.checkmark.darkmode:after {
     color: #bdbdbd ;
 }
 
+#phonepicture {
+    width: 85%;
+    height: auto;
+    margin-left: 3em;
+}
 
 
 /* --------------------------------------------------------------------------------------------------------------------- */
@@ -523,7 +527,7 @@ span.checkmark.darkmode:after {
       display: none;
     }
 
-    #dicepick {
+    .dicepick {
         width: 100%;
         margin-top: 1.5em;
         margin-bottom: 1.5em;

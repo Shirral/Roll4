@@ -255,6 +255,10 @@ Although the project is a simple one and it's meant to stay that way not to over
 
 * **Adding search and sort functionalities** to give the user more control over their lists, especially if they have a lot of them.
 
+## Testing
+
+For information about testing, please refer to **[TESTING.md](TESTING.md)**.
+
 ## Technologies and Resources used
 
 ### Programming languages used:

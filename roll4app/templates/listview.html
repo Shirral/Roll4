@@ -8,9 +8,9 @@
         <div class="row valign-wrapper nobottommargin rolldiebtn">
             <div class="col"><p>ROLL</p></div>
             {% if darkmode %}
-                <div class="col"><img src="{{url_for('static', filename='images/d' ~ userlist.Die ~ 'white.png')}}" class="listviewdie"></div>
+                <div class="col"><img src="{{url_for('static', filename='images/d' ~ userlist.Die ~ 'white.png')}}" class="listviewdie" alt="Image of a game die"></div>
             {% else %}
-                <div class="col"><img src="{{url_for('static', filename='images/d' ~ userlist.Die ~ '.png')}}" class="listviewdie"></div>
+                <div class="col"><img src="{{url_for('static', filename='images/d' ~ userlist.Die ~ '.png')}}" class="listviewdie" alt="Image of a game die"></div>
             {% endif %}
             <div class="col"><p>DIE!</p></div>
         </div>
@@ -36,7 +36,7 @@
         </div>
     {% endfor %}
 
-    <form class="row flexbox" method="POST" action="">
+    <form class="row flexbox" method="POST">
         <p class="col" id="switchp"><i class="material-icons left tooltipped" data-position="top" data-tooltip="Never roll the same thing twice. Allows you to tick things off your list. Refreshes when all the numbers have been rolled.">help</i>Task mode:</p>
         <div class="switch col"> 
             <label class="">
