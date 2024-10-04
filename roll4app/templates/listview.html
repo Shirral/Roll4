@@ -2,11 +2,15 @@
 {% block title %}{{userlist['ListName']}}{% endblock %}
 {% block content %}
 
+    <!-- header -->
     <h1 class="center">{{userlist['ListName']}}</h1>
 
+    <!-- roll die button -->
     <div class="flexbox">
         <div class="row valign-wrapper nobottommargin rolldiebtn">
             <div class="col"><p>ROLL</p></div>
+
+            <!-- display white die image if darkmode is on, black if it's off -->
             {% if darkmode %}
                 <div class="col"><img src="{{url_for('static', filename='images/d' ~ userlist.Die ~ 'white.png')}}" class="listviewdie" alt="Image of a game die"></div>
             {% else %}
@@ -16,31 +20,43 @@
         </div>
     </div>
 
+    <!-- shows the result of a die roll -->
     <div class="row nomarginbottom flexbox" id="rollresultdiv">
         <p>You rolled <span id="rollresult"></span>!</p>
     </div>
 
+    <!-- loop through list items and display them on cards -->
     {% for key, val in userlist['ListItems'].items() %}
         <div class="noteswrapper">
             <div class="cardimport listitem row
             {% if key|string in userlist['RollHistory']|map('string') %} rolled {% endif %}
-            " id="notesbtn{{key}}">
+            " id="notesbtn{{key}}">  <!-- add a 'rolled' class to list items that have been previously rolled; set id dynamically -->
+                
+                <!-- display list items with their corresponding numbers -->
                 <div class="col s12 notestxt">
                     <span id="number{{key}}">{{key}}</span>{{". " + val}}
+                    
+                    <!-- an empty container for inserting a notes icon into if there are notes attached to a list item -->
                     <i class="material-icons right"></i>
                 </div>
             </div>
+
+            <!-- hidden notes div shown upon clicking on the card with a notes icon -->
             <div class="customhide notesview" id="notes{{key}}">
                 <p>{{userlist['ListItemNotes'][key]}}</p>
             </div>
         </div>
     {% endfor %}
 
+    <!-- task mode Materialize switch -->
     <form class="row flexbox" method="POST">
-        <p class="col" id="switchp"><i class="material-icons left tooltipped" data-position="top" data-tooltip="Never roll the same thing twice. Allows you to tick things off your list. Refreshes when all the numbers have been rolled.">help</i>Task mode:</p>
+        <p class="col" id="switchp">
+            <i class="material-icons left tooltipped" data-position="top" data-tooltip="Never roll the same thing twice. Allows you to tick things off your list. Refreshes when all the numbers have been rolled.">help
+            </i>Task mode:</p>
         <div class="switch col"> 
-            <label class="">
+            <label>
                 Off
+                <!-- determines the state of the switch -->
                 {% if userlist.TaskMode == True %}
                     <input type="checkbox" id="taskmode" name="taskmode" checked onchange="this.form.submit()">
                 {% else %}
@@ -52,6 +68,7 @@
         </div>
     </form>
 
+    <!-- back, edit list, delete list buttons -->
     <div class="row center">
         <a href="{{url_for('lists')}}" class="btn waves-effect waves-light btn-3">Back
             <i class="material-icons left">chevron_left</i>
@@ -65,16 +82,22 @@
         </a>
     </div>
 
+    <!-- list deletion modal -->
     <div id="listdeletemodal" class="modal">
         <div class="modal-content center">
             <p>Are you sure you want to delete <strong>{{userlist['ListName']}}</strong>?</p>
         </div>
         <div class="modal-footer">
+
+            <!-- cancels list deletion -->
             <a href="#" class="modal-close waves-effect waves-green btn-flat">No, go back!</a>
+
+            <!-- links to 'deletelist' route which deletes the list -->
             <a href="{{url_for('deletelist', listid=listid)}}" class="modal-close waves-effect waves-green btn-flat">I'm sure!</a>
         </div>
     </div>
 
+    <!-- hidden divs displaying the variables from Flask for js to use -->
     <div class="customhide" id="listidhere">
         {{userlist['_id']}}
     </div>
