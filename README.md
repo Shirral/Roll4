@@ -37,19 +37,9 @@ The goal of the site is to provide the user with a handy tool to aid their decis
 
 The colour scheme of the app focuses three main colours from the Materialize framework's palette: grey, deep orange, and white. In addition to that, the lightest variant of brown (#efebe9) has been used for the background of the main screens of the app. The full colour palette:
 
-![colour palette - default mode](roll4app/static/readme/colours1.png "A colour palette for the interface elements.")
+![colour palette - default mode](roll4app/static/readme/palette.png "A colour palette for the interface elements.")
 
-The app also features a dark theme which can be toggledd off/on in the user profile settings. It inverts most colours, using a dark grey background and a white font; the deep orange text has been made lighter. The colour palette for the dark mode:
-
-![colour palette - dark mode](roll4app/static/readme/colours2.png "A colour palette for the interface elements in the dark mode.")
-
-The home page, login and register screens, as well as the error screens also use the dark palette, with a dark grey background, white text, and deep orange accents:
-
-![colour palette - home page, login, register and not logged in screens, error screens](roll4app/static/readme/colours3.png "A colour palette for the home page, login, register and not logged in screens and the error screens.")
-
-The users are able to choose a colour for each of the categories they create to tell the lists belonging to them more easily. Twelve colours (11 from the Materialize's colour palette, one custom) have been picked for this purpose:
-
-![category colours](roll4app/static/readme/colours4.png "Colours available for the categories.")
+The app also features a dark theme which can be toggledd off/on in the user profile settings. It inverts most colours, using a dark grey background and a white font; the deep orange text has been made lighter. The home page, login and register screens, as well as the error screens also use the dark palette, with a dark grey background, white text, and deep orange accents.
 
 **Typography**
 
@@ -80,9 +70,7 @@ The wireframes made in the planning stage of the project work have guided me lat
 
 The website responds to a wide variety of screen sizes. The Materialize framework handles the most breakpoints automatically, but a few elements have been given their own media queries to determine which version of the layout is shown to the user.
 
-![responsive design](roll4app/static/readme/responsive.png "Comparison of the New List page on different screen sizes.")
-![responsive design](roll4app/static/readme/responsive.png "Comparison of the homepage on different screen sizes.")
-![responsive design](roll4app/static/readme/responsive.png "Comparison of the Add Category page on different screen sizes.")
+![responsive design](roll4app/static/readme/responsive.png "Responsive design.")
 
 ### Flash messages
 
@@ -95,6 +83,9 @@ All of the pages except for the **Homepage** and the **Not logged in page** have
 The Materialize navbar is present on all the main pages extended from base.html - the standard pages the user sees after they log in. It provides the user with a quick access to all the main functionalities of the app. The logo, shown on the left on larger screens and in the middle on the smaller screens, is a link leading the user to the **Lists** page. On the very right of the navbar there is a user icon, taking the user to their profile settings. The standard links are displayed on the right side on the bigger screens and in the side menu shown after tapping on the burger icon, displayed on the left of the navbar on smaller screens.
 
 ![navbar](roll4app/static/readme/navbar.png "The navbar: mobile on the left, desktop on the right.")
+
+Expanded mobile navbar:
+
 ![expanded mobile navbar](roll4app/static/readme/navbar2.jpg "Mobile navbar expanded.")
 
 ### Homepage
@@ -128,9 +119,7 @@ The lists page is the main viewpoint of the app. This is where all of the lists 
 
 ![new list button](roll4app/static/readme/newlistbutton.jpg "New list button.")
 
-* **List display section:** Below the new list button, all of the lists created by the user are displayed in the form of cards. They are grouped by the die associated with them. Each die section is only going to be displayed if there is at least one list of its kind in them - empty sections will be hidden.
-
-If the lists are given categories, they will be dosplayed on the cards on the very right of them. Lists without a category assigned to them will display [None] as their category. If the category assigned to a list has been assigned a colour, the card will be of that colour.
+* **List display section:** Below the new list button, all of the lists created by the user are displayed in the form of cards. They are grouped by the die associated with them. Each die section is only going to be displayed if there is at least one list of its kind in them - empty sections will be hidden. If the lists are given categories, they will be displayed on the cards on the very right of them. Lists without a category assigned to them will display [None] as their category. If the category assigned to a list has been assigned a colour, the card will be of that colour.
 After clicking on a card, the user will be taken to its **List view** page.
 
 ![list display section](roll4app/static/readme/listsection.jpg "List display section.")
@@ -161,9 +150,11 @@ This is where the user can access the details of their list. The list informatio
 
 * **Back, edit list, delete list buttons:** Let the user navigate to: Lists page, List edit page for the current list, and a modal confirming list deletion, respectively.
 
-![list view buttons](roll4app/static/readme/listviewbuttons.gif "Back, edit list, and delete list buttons.")
+![list view buttons](roll4app/static/readme/listviewbuttons.jpg "Back, edit list, and delete list buttons.")
 
 * **List delete modal:** Asks the user if they are sure they want to delete the list. Shown when the user clicks on the "delete list" button; hidden when the user clicks away from it or chooses one of the options. When list deletion is chosen, the list gets deleted from the database.
+
+![list delete modal](roll4app/static/readme/deletemodal.jpg "List delete modal.")
 
 ### Add/edit list pages
 
