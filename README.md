@@ -306,3 +306,79 @@ For information about testing, please refer to **[TESTING.md](TESTING.md)**.
 * **My Mentor, Mitko Bachvarov** - thank you for your feedback and guidance!
 * **My friend Luís** - thank you for the troubleshooting help with the project setup!
 * **The loveliest Azul** - thank you for the troubleshooting help, reminding me to take things step by step, and for all moral support when things were not working and I was about to give up!
+
+## Deployment
+
+### Heroku
+
+The project was deployed to Heroku as follows:
+
+1. I opened my Heroku dashboard and clicked on `New` > `Create new app`.
+
+  ![creating new app](roll4app/static/readme/heroku1.jpg "Creating a new app on Heroku.")
+
+2. I named the project and picked the correct server for the deployment.
+
+  ![naming the project, server choice](roll4app/static/readme/heroku2.jpg "Naming the project and choosing the server.")
+
+3. I picked `connect to GitHub`, searched for my project's repository and connected to it.
+
+  ![connecting to GitHub](roll4app/static/readme/heroku3.jpg "Connecting to GitHub.")
+
+4. I enabled automatic deploys and clicked on `deploy branch`.
+
+  ![deploying the branch](roll4app/static/readme/heroku4.jpg "Deploying the branch.")
+
+5. As the application was building, I went to the `settings` tab, scrolled down to `Reveal Config Vars`, revealed them, and copied my environmental variables from the env file into the fields meant for it. I also pasted in the variable with the address for the Code Institute provided PostgreSQL database.
+
+  ![config vars](roll4app/static/readme/heroku5.jpg "Filling in the config variables.")
+
+6. I clicked on the `More` button and chose `Run console`. There, I populated my PostgreSQL database with the command:
+    ```
+    from roll4app import app, db
+
+    with app.app_context():
+        db.create_all()
+    ```
+
+  ![accessing the console](roll4app/static/readme/heroku6.jpg "Accessing the console.")
+
+7. Live website: [link](https://roll4-a8b526da208b.herokuapp.com/)
+
+### Forking the project on GitHub
+
+If, for whatever reason, anyone would like to get themselves a copy of this project to tinker with on their own - feel free to do so! Here is how to do it so you can have your own copy of the entire repository that you can do whatever you please with, without causing any changes to the original:
+
+1. Open the repository of this project on GitHub. It can be found [here](https://github.com/Shirral/Roll4/).
+
+2. Find the "Fork" button located between the "Watch" and "Star" buttons, near the top of the repository page. Click on it.
+
+3. Done! Go back to your profile - you will find the copy of the project in your repositories.
+
+### Cloning the project on GitHub *(instructions copied from GitHub Docs)*
+
+1. On GitHub.com, navigate to the main page of the repository.
+
+2. Above the list of files, click `Code`.
+
+  ![cloning](roll4app/static/readme/clone-1.png "Cloning the project.")
+
+3. Copy the URL for the repository.
+
+* To clone the repository using HTTPS, under "HTTPS", click on the 'copy' icon.
+* To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click SSH, then click on the 'copy' icon.
+* To clone a repository using GitHub CLI, click GitHub CLI, then click on the 'copy' icon.
+
+  ![cloning](roll4app/static/readme/clone-2.png "Cloning the project.")
+
+4. Open Git Bash.
+
+5. Change the current working directory to the location where you want the cloned directory.
+
+6. Type `git clone`, and then paste the URL you copied earlier.
+
+7. Press Enter to create your local clone.
+
+## Live website link:
+
+[https://roll4-a8b526da208b.herokuapp.com/](https://roll4-a8b526da208b.herokuapp.com/)
