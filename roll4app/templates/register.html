@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+
+    <!-- Google Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"  type="text/css">
+
+    <!-- custom stylesheet -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css">
+
+    <!-- page title -->
     <title>Log in</title>
 </head>
 <body id="registerpage">
+
+    <!-- flash messages section -->
     <section>
         {% with flashes = get_flashed_messages() %}
             {% if flashes %}
@@ -20,26 +30,40 @@
             {% endif %}
         {% endwith %}
     </section>
+
+    <!-- main content of the page -->
     <main>
         <div class="allcenter" id="registercontainer">
+
+            <!-- Roll20 logo -->
             <div class="container row center">
                 <img src="{{url_for('static', filename='images/d20shadowhite.png')}}" alt="Roll4 logo" id="logindiepic">
             </div>
+
+            <!-- form for registering -->
             <div>
                 <form method="POST" action="{{url_for('register')}}">
-                    <div class="">
+                    <div>
+
+                        <!-- username input field -->
                         <div class="row input-field">
                             <input type="text" placeholder="Enter username..." id="user_name" name="user_name" minlength="3" maxlength="30" required>
                         </div>
+
+                        <!-- password input field -->
                         <div class="row input-field">
                             <input type="password" placeholder="Enter password..." id="user_password" name="user_password" minlength="8" maxlength="30" required>
                         </div>
                     </div>
+
+                    <!-- submit button -->
                     <div class="row center">
                         <button class="btn waves-effect waves-light loginbtn" type="submit">Register!</button>
                     </div>
                 </form>
             </div>
+
+            <!-- link to the login page -->
             <div class="container row center registerlink">
                 <p>Already registered? <a href="{{url_for('login')}}">Log in</a></p>
             </div>
