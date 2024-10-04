@@ -2,19 +2,28 @@
 {% block title %}Your categories{% endblock %}
 {% block content %}
 
+    <!-- heading -->
     <h1 class="center">Your categories</h1>
 
+    <!-- button for adding a new category -->
     <div class="row flexbox">
         <div class="cardimport newbutton">
+            
+            <!-- link to the 'addcategory' page -->
             <a href="{{url_for('addcategory')}}" class="main-link">New category...
                 <i class="material-icons right">add</i>
             </a>
         </div>
     </div>
 
+    <!-- loops through all categories to display them; only show categories belonging to the currently logged in user -->
     {% for category in categories %}
         {% if session.currentuser|lower == category.UserName|lower %}
+
+            <!-- gives the card the class that will colour it the right colour -->
             <div class="cardimport cardactive {{category.CategoryColour}}">
+                
+                <!-- link to the edit category page of the displayed category -->
                 <a href="{{url_for('editcategory', categoryid=category._id)}}" class="main-link">{{category.CategoryName}}</a>
             </div>
         {% endif %}
