@@ -4,21 +4,30 @@
 
 <div>
     <div class="row">
+
+        <!-- form for creating a new list; posts to the 'addlist' route -->
         <form class="col s12" method="POST" action="{{url_for('addlist', die=die)}}">
+            
+            <!-- input field for list name -->
             <div class="row">
-                <div class="col s2"></div>
-                <div class="input-field col s8">
+                <div class="input-field col s8 offset-s2">
                     <input placeholder="Name your list..." id="list_name" name="list_name" type="text" minlength="3" maxlength="30" class="center validate" required>
                 </div>
-                <div class="col s2"></div>
             </div>
+
+            <!-- category selection dropdown menu; shown/hidden when the user clicks on the paragraph -->
             <div class="row center">
+
+                <!-- the clickable paragraph toggling the display of the select element -->
                 <p id="categoryp">Add category?</p>
+
+                <!-- the hidden category selection dropdown menu -->
                 <div class="customhide" id="categoryselect">
-                    <div class="col s3"></div>
-                    <div class="input-field col s6">
+                    <div class="input-field col s6 offset-s3">
                         <select id="category" name="category">
                             <option value="" disabled selected>Choose category...</option>
+                            
+                            <!-- only shows categories belonging to the currently logged in user  -->
                             {% for category in categories %}
                                 {% if session.currentuser|lower == category.UserName|lower %}
                                     <option value="{{category.CategoryName}}">{{category.CategoryName}}</option>
@@ -26,33 +35,39 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="col s3"></div>
                 </div>
             </div>
             
+            <!-- loops through the number of items based on the die value -->
             {% for num in range(1, die+1) %}
 
+                <!-- list item input field with an 'add notes' button -->
                 <div class="row valign-wrapper">
                     <div class="col s1 center">
-                        <p class="itemnum">{{num}}.</p>
+                        <p class="itemnum">{{num}}.</p> <!-- displays the number of the current list item -->
                     </div>
+
+                    <!-- list item input field -->
                     <div class="input-field col s10">
                         <input id="listitem{{num}}" name="listitem{{num}}" type="text" maxlength="100" class="validate" required>
                     </div>
+
+                    <!-- 'add notes' button -->
                     <div class="col s1">
                         <a class="btn-floating btn-small waves-effect waves-light red right tooltipped notesbtn" id="notesbtn{{num}}" data-position="top" data-tooltip="Add notes..."><i class="material-icons">notes</i></a>
                     </div>
                 </div>
+
+                <!-- hidden notes section - shown/hidden when the user clicks on the associated 'add notes' button -->
                 <div class="row customhide" id="notes{{num}}">
-                    <div class="col s1"></div>
-                    <div class="col s10 input-field">
+                    <div class="col s10 offset-s1 input-field">
                         <textarea id="linote{{num}}" name="linote{{num}}" type="textfield" maxlength="500"></textarea>
                     </div>
-                    <div class="col s1"></div>
                 </div>
             
             {% endfor %}            
             
+            <!-- cancel and save list (submit) buttons -->
             <div class="row center">
                 <a href="{{url_for('lists')}}" class="btn waves-effect waves-light">Cancel
                     <i class="material-icons right">close</i>
@@ -64,7 +79,5 @@
         </form>
     </div>
 </div>
-
-
 
 {% endblock %}
