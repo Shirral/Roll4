@@ -3,20 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+
+    <!-- Google Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"  type="text/css">
+
+    <!-- custom stylesheet -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css">
+
+    <!-- page title -->
     <title>Not logged in!</title>
 </head>
 <body id="loginpage">
+
+    <!-- main content of the page -->
     <main>
         <div class="allcenter">
+
+            <!-- Roll20 logo -->
             <div class="container row center">
                 <img src="{{url_for('static', filename='images/d20shadowhite.png')}}" class="center" alt="Roll4 logo" id="logindiepic">
             </div>
+            <!-- message for the user -->
             <div class="spacer center">
                 <p>You must be logged in to view this page!</p>
             </div>
+
+            <!-- button-styled link to the login page -->
             <div class="container row center">
                 <a href="{{url_for('login')}}" class="white-text loginbtn btn waves-effect waves-light flexbox" id="notloggedinbtn">Log in</a>
             </div>

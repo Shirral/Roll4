@@ -3,13 +3,16 @@
 
 {% block content %}
 
+    <!-- heading -->
     <h1 class="center">Hello, {{username}}</h1>
 
+    <!-- darkmode switch -->
     <form class="row flexbox" method="POST" action="{{url_for('userprofile', username=username)}}">
         <p class="col" id="switchp">Dark mode:</p>
         <div class="switch col"> 
             <label class="">
                 Off
+                <!-- determines the displayed position of the switch -->
                 {% if user.darkmode == True %}
                     <input type="checkbox" id="darkmode" name="darkmode" checked onchange="this.form.submit()">
                 {% else %}
@@ -21,18 +24,26 @@
         </div>
     </form>
 
+    <!-- profile delete section -->
     <div class="center">
+
+        <!-- triggers the profile deletion modal -->
         <a href="#profiledeletemodal" class="deep-orange-text text-darken-3 nodecor modal-trigger" id="profiledelete">
             Delete profile
         </a>
     </div>
 
+    <!-- profile delete modal - fires when the user clisks on the link above -->
     <div id="profiledeletemodal" class="modal">
         <div class="modal-content center">
             <p>Are you sure you want to delete your account?</p>
         </div>
         <div class="modal-footer">
+
+            <!-- cancels profile deletion -->
             <a href="#" class="modal-close waves-effect waves-green btn-flat">No, go back!</a>
+
+            <!-- links to 'deleteuser' route which deletes the user from the database -->
             <a href="{{url_for('deleteuser', username=username)}}" class="modal-close waves-effect waves-green btn-flat">I'm sure!</a>
         </div>
     </div>
