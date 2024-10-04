@@ -143,6 +143,11 @@ input, textarea {
     margin: 5em auto;
 }
 
+.registerlink a {
+    color: #ff7043;
+    text-decoration: underline;
+}
+
 #logindiepic {
     max-height: 160px;
 }
@@ -563,7 +568,7 @@ span.checkmark.darkmode:after {
 }
 
 @media only screen and (max-width: 600px) {
-    #logincontainer {
+    #logincontainer, #registercontainer {
       width: auto;
     }
 }
