@@ -1,5 +1,10 @@
+/* import Google Fonts */
+
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+
+
+/* base styles for the generic DOM elements */
 
 body {
     display: flex;
@@ -28,6 +33,9 @@ input, textarea {
     font-family: "Comfortaa", sans-serif;
 }
 
+
+/* general utility classes */
+
 .flexbox {
     display: flex;
     flex-wrap: wrap;
@@ -43,8 +51,20 @@ input, textarea {
     text-decoration: none;
 }
 
+.nobottommargin {
+    margin-bottom: 0;
+}
+
 .customhide {
     display: none;
+}
+
+.vfill {
+    height: 100%;
+}
+
+.nodecor {
+    text-decoration: none;
 }
 
 .flash {
@@ -96,6 +116,9 @@ input, textarea {
     font-family: "Lilita One", Impact, sans-serif;
 }
 
+
+/* homepage */
+
 #homepagemain {
     padding: 3rem;
 }
@@ -112,6 +135,15 @@ input, textarea {
 #homepageh2 {
     font-size: 27px;
 }
+
+#phonepicture {
+    width: 85%;
+    height: auto;
+    margin-left: 3em;
+}
+
+
+/* login page, register page, error page */
 
 #loginpage, #registerpage, .errorpage {
     background-color: #212121;
@@ -152,6 +184,11 @@ input, textarea {
     max-height: 160px;
 }
 
+#logo {
+    height: 1.9em;
+    width: 1.9em;
+}
+
 /* code snippet from https://www.w3schools.com/howto/howto_css_center-vertical.asp */
 .allcenter {
     margin: 0;
@@ -167,6 +204,9 @@ input, textarea {
 #logincontainer, #registercontainer {
     top: 57%;
 }
+
+
+/* error pages */
 
 .errorcenter {
     margin: 0;
@@ -191,18 +231,12 @@ input, textarea {
     margin: 0 auto;
 }
 
+
+/* lists and cards */
+
 #list_name {
     font-size: 30px;
     font-family: "Lilita One", Impact, sans-serif;
-}
-
-.nobottommargin {
-    margin-bottom: 0;
-}
-
-#logo {
-    height: 1.9em;
-    width: 1.9em;
 }
 
 .switch label input[type=checkbox]:checked+.lever {
@@ -240,6 +274,37 @@ input, textarea {
     transform: translateY(-10px);
 }
 
+.rolled {
+    color: #bdbdbd ;
+}
+
+.listviewdie {
+    width: 5em;
+}
+
+#rollresultdiv {
+    display: none;
+}
+
+.listitem {
+    padding: 1rem 1.5rem;
+}
+
+.notesview {
+    margin: 0 10%;
+}
+
+.notestxt {
+    font-weight: 700;
+}
+
+.itemnum {
+    font-size: x-large;
+}
+
+
+/* buttons */
+
 .btn-3 {
     margin-bottom: 1em;
 }
@@ -276,33 +341,8 @@ input, textarea {
     font-weight: 700;
 }
 
-.listviewdie {
-    width: 5em;
-}
 
-#rollresultdiv {
-    display: none;
-}
-
-.listitem {
-    padding: 1rem 1.5rem;
-}
-
-.notesview {
-    margin: 0 10%;
-}
-
-.notestxt {
-    font-weight: 700;
-}
-
-.itemnum {
-    font-size: x-large;
-}
-
-.vfill {
-    height: 100%;
-}
+/* newlist */
 
 .dicepick {
     margin: 0;
@@ -353,9 +393,8 @@ input, textarea {
     border-radius: 10px;
 }
 
-.nodecor {
-    text-decoration: none;
-}
+
+/* colour picker */
 
 [type="radio"]:not(:checked) + span,
 [type="radio"]:checked + span {
@@ -510,19 +549,7 @@ span.checkmark.darkmode:after {
     border: white solid 3.5px;
 }
 
-.rolled {
-    color: #bdbdbd ;
-}
-
-#phonepicture {
-    width: 85%;
-    height: auto;
-    margin-left: 3em;
-}
-
-
-/* --------------------------------------------------------------------------------------------------------------------- */
-
+/* ------------------------------------------------ MEDIA QUERIES -------------------------------------------- */
 
 
 @media only screen and (min-width: 993px) {
