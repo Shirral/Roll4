@@ -1,72 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"  type="text/css">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css">
-    <title>{% block title %}{% endblock %}</title>
-</head>
-<body class="brown lighten-5" id="mainbody">
-    <header>    
-        <nav class="grey darken-4">
-            <div class="nav-wrapper">
-                <a href="{{url_for('lists')}}" class="brand-logo">
-                    <img src="{{url_for('static', filename='images/d20shadowhite.png')}}" id="logo" alt="Roll4 logo" class="left">
-                    Roll4
-                </a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <a href="{{url_for('userprofile', username=session['currentuser'])}}" data-target="mobile-demo" class="right" id="profile-icon"><i class="material-icons">account_circle</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="{{url_for('lists')}}">Your lists</a></li>
-                    <li><a href="{{url_for('newlist')}}">New list</a></li>
-                    <li><a href="{{url_for('categories')}}">Your categories</a></li>
-                    <li><a href="{{url_for('logout')}}">Log out</a></li>
-                </ul>
-            </div>
-        </nav>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="{{url_for('lists')}}">Your lists</a></li>
-            <li><a href="{{url_for('newlist')}}">New list</a></li>
-            <li><a href="{{url_for('categories')}}">Your categories</a></li>
-            <li><a href="{{url_for('logout')}}">Log out</a></li>
-        </ul>
-    </header>
+        <!-- Materialize CSS framework -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+        
+        <!-- Google Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"  type="text/css">
+        
+        <!-- custom stylesheet -->
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css">
+        
+        <!-- dynamic page title set with Jinja -->
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body class="brown lighten-5" id="mainbody">
+        
+        <!-- navbar -->
+        <header>    
+            <nav class="grey darken-4">
+                <div class="nav-wrapper">
 
-    <section>
-        {% with flashes = get_flashed_messages() %}
-            {% if flashes %}
-                {% for flash in flashes %}
-                    <div class="row center">
-                        <h2 class="flash">{{flash}}</h2>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </section>
+                    <!-- Roll4 logo linking to 'lists' page -->
+                    <a href="{{url_for('lists')}}" class="brand-logo">
+                        <img src="{{url_for('static', filename='images/d20shadowhite.png')}}" id="logo" alt="Roll4 logo" class="left">
+                        Roll4
+                    </a>
 
-    <main class="container">
-        {% block content %}
-        {% endblock %}
-    </main>
+                    <!-- mobile menu trigger - burger icon -->
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    
+                    <!-- profile icon linking to 'userprofile' page -->
+                    <a href="{{url_for('userprofile', username=session['currentuser'])}}" data-target="mobile-demo" class="right" id="profile-icon"><i class="material-icons">account_circle</i></a>
+                    
+                    <!-- navbar links for larger screens -->
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="{{url_for('lists')}}">Your lists</a></li>
+                        <li><a href="{{url_for('newlist')}}">New list</a></li>
+                        <li><a href="{{url_for('categories')}}">Your categories</a></li>
+                        <li><a href="{{url_for('logout')}}">Log out</a></li>
+                    </ul>
+                </div>
+            </nav>
 
-    <div class="customhide darkmodecheck">
-        {{darkmode}}
-    </div>
-    
-    <footer class="page-footer grey darken-4">
-        <div>
-            <div class="container center">
-                <p>Shirral 2024. No rights reserved at all! Hooray!</p>
-            </div>
+            <!-- mobile navigation side menu -->
+            <ul class="sidenav" id="mobile-demo">
+                <li><a href="{{url_for('lists')}}">Your lists</a></li>
+                <li><a href="{{url_for('newlist')}}">New list</a></li>
+                <li><a href="{{url_for('categories')}}">Your categories</a></li>
+                <li><a href="{{url_for('logout')}}">Log out</a></li>
+            </ul>
+        </header>
+
+        <!-- flash message section: displays flash messages if there are any to display -->
+        <section>
+            {% with flashes = get_flashed_messages() %}
+                {% if flashes %}
+                    {% for flash in flashes %}
+                        <div class="row center">
+                            <h2 class="flash">{{flash}}</h2>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </section>
+
+        <!-- main content section - to be filled by child templates -->
+        <main class="container">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <!-- hidden div displaying the value of dark mode variable - used by JS to determine whether dark mode is on -->
+        <div class="customhide darkmodecheck">
+            {{darkmode}}
         </div>
-    </footer>
+        
+        <!-- footer -->
+        <footer class="page-footer grey darken-4">
+            <div>
+                <div class="container center">
+                    <p>Shirral 2024. No rights reserved at all! Hooray!</p>
+                </div>
+            </div>
+        </footer>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="{{url_for('static', filename='js/script.js')}}"></script>
-    <script src="{{url_for('static', filename='js/select.js')}}"></script>
-</body>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        
+        <!-- Materialize js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        
+        <!-- custom js file -->
+        <script src="{{url_for('static', filename='js/script.js')}}"></script>
+        
+        <!-- downloaded external js file that fixes a Materialize select element functionality bug on iOS -->
+        <script src="{{url_for('static', filename='js/select.js')}}"></script>
+    </body>
 </html>

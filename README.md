@@ -140,7 +140,7 @@ This is where the user can access the details of their list. The list informatio
 
 ![list item card](roll4app/static/readme/itemcard.gif "List item card.")
 
-* **Roll die functionality:** Allows the user to pick a random item from the list. The number rolled will be shown underneath the "DIE ROLL!" section and the corresponding card will be highlighted.
+* **Roll die functionality:** Allows the user to pick a random item from the list. The number rolled will be shown underneath the "ROLL DIE!" section and the corresponding card will be highlighted.
 
 ![die rolling](roll4app/static/readme/rolldie.gif "Roll die functionality.")
 
