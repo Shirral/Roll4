@@ -3,21 +3,34 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Materialize CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+        
+        <!-- Google Material Icons -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"  type="text/css">
+        
+        <!-- custom stylesheet -->
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css">
+        
+        <!-- homepage title -->
         <title>Roll4</title>
     </head>
     <body class="grey darken-4 white-text">
         
+        <!-- main content for the homepage -->
         <main id="homepagemain">
             <div class="row">
+
+                <!-- left section with the welcome message -->
                 <div class="container col s9">
                     <div class="row">
                         <h2 id="homepageh2">Need a hand deciding what to watch at a movie night? Deciding what kind
                             of pizza to order? Or which chores to tackle first?</h2>
                         <h1 id="homepageh1"><span class="deep-orange-text text-darken-3">Welcome to Roll4!</span><br> We have you covered.</h1>
                     </div>
+
+                    <!-- Roll4 logo shown on smaller screens instead of the phone image -->
                     <div id="homepageimg2" class="customhide row">
                         <img src="{{url_for('static', filename='images/d20shadowhite.png')}}" alt="Roll4 logo">
                     </div>
@@ -30,13 +43,21 @@
                                 href="{{url_for('login')}}" class="bold700 deep-orange-text text-darken-3">Log in</a> to start!</p>
                     </div>
                 </div>
+
+                <!-- right section with an image of the Roll4 app on a phone -->
                 <div class="container col s3" id="homepageimg">
                     <img src="{{url_for('static', filename='images/phone.png')}}" alt="Picture of a phone with the Roll4 app open" id="phonepicture">
                 </div>
             </div>
         </main>
+
+        <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        
+        <!-- Materialize js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        
+        <!-- custom js file -->
         <script src="{{url_for('static', filename='js/script.js')}}"></script>
     </body>
 </html>
