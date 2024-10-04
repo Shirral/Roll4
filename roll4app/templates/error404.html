@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+
+    <!-- Google Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"  type="text/css">
+
+    <!-- custom stylesheet -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css">
+
+    <!-- error page title -->
     <title>Error 404: Page Not Found</title>
 </head>
 <body class="errorpage">
+
+    <!-- flash messages section -->
     <section>
         {% with flashes = get_flashed_messages() %}
             {% if flashes %}
@@ -20,23 +30,30 @@
             {% endif %}
         {% endwith %}
     </section>
+
+    <!-- main content of the error page -->
     <main>
         <div class="errorcenter errorcontainer">
+
+            <!-- Roll20 logo -->
             <div class="container row center">
                 <img src="{{url_for('static', filename='images/d20shadowhite.png')}}" id="logindiepic" alt="Roll4 logo">
             </div>
             <div>
+
+                <!-- error message displayed to the user -->
                 <div class="row center">
                     <h1>Error 404!</h1>
                     <h2>Oops! You seem to have the wrong address. This page doesn't really exist!</h2>
                     <p>But fret not, we're going to take you away from here.</p>
                 </div>
+
+                <!-- button to redirect the user back to the lists page -->
                 <div class="row center">
                     <a href="{{url_for('lists')}}" class="btn waves-effect waves-light">Back to your lists</a>
                 </div>
             </div>
         </div>
     </main>
-
 </body>
 
