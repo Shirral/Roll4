@@ -2,20 +2,25 @@
 {% block title %}Edit category{% endblock %}
 {% block content %}
 
+    <!-- heading -->
     <h1 class="center">Edit category...</h1>
 
+    <!-- form for editing the category -->
     <form class="col s12" method="POST" action="{{url_for('editcategory', categoryid=category._id)}}">
+        
+        <!-- input for the category name with existing value pre-filled -->
         <div class="row">
-            <div class="col s2"></div>
-            <div class="input-field col s8">
-                <input placeholder="Name the new category..." value="{{category.CategoryName}}" id="category_name" name="category_name" type="text" minlength="3" maxlength="30" class="center validate" required>
+            <div class="input-field col s8 offset-s2">
+                <input placeholder="Edit category name..." value="{{category.CategoryName}}" id="category_name" name="category_name" type="text" minlength="3" maxlength="30" class="center validate" required>
             </div>
-            <div class="col s2"></div>
         </div>
 
+        <!-- colour picker for assigning a colour to the category -->
         <div class="row center">
             <div class="container">
                 <div class="row">
+
+                    <!-- available colours; the radio button is checked if it's the currently chosen colour -->
                     <label class="radiocontainer">
                         <input name="colour" type="radio" id="category-red" value="red" class="category-red" {% if
                             category.CategoryColour=="red" %} checked {% endif %}>
@@ -91,6 +96,7 @@
             </div>
         </div>
 
+        <!-- cancel, save changes, and delete category buttons -->
         <div class="row center">
             <a href="{{url_for('categories')}}" class="btn waves-effect waves-light">Cancel
                 <i class="material-icons right">close</i>
@@ -105,12 +111,19 @@
         </div>
     </form>
 
+    <!-- delete category modal - shown when the user clicks on the delete category button -->
     <div id="categorydeletemodal" class="modal">
         <div class="modal-content center">
+
+            <!-- warning message with the category name -->
             <p>Are you sure you want to delete <strong>{{category.CategoryName}}</strong>?</p>
         </div>
         <div class="modal-footer">
+
+            <!-- cancels the operation -->
             <a href="#" class="modal-close waves-effect waves-green btn-flat">No, go back!</a>
+            
+            <!-- links to the 'deletecategory' route which permanently deletes the category from the database -->
             <a href="{{url_for('deletecategory', categoryid=categoryid)}}" class="modal-close waves-effect waves-green btn-flat">I'm sure!</a>
         </div>
     </div>
